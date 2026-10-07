@@ -14,9 +14,8 @@ html {
 
 body {
     font-family: Arial, sans-serif;
-    /* Tu fondo original con degradado */
     background: linear-gradient(to bottom, #1a1a1a, #0b0b0b);
-    color: red;
+    color: #ffffff;
     min-height: 100vh;
     overflow-x: hidden;
 }
@@ -297,7 +296,7 @@ body {
 .inicio p {
     font-size: 20px;
     line-height: 1.5;
-    /* Margen negativo para integrar el texto con el difuminado del carrusel */
+    /* Añadimos este margen negativo para integrar el texto con el difuminado del carrusel */
     margin-top: -50px; 
 }
 
@@ -550,9 +549,8 @@ body {
 .carrusel-contenedor {
     text-align: center;
     padding: 40px 20px;
-    padding-bottom: 150px; /* Espacio para el difuminado */
-    /* Usamos el tono más oscuro de tu fondo degradado */
-    background-color: #0b0b0b; 
+    padding-bottom: 100px; /* Aumentamos el padding inferior para el difuminado */
+    background-color: #121212; /* Color oscuro de fondo */
     margin-bottom: 0;
     position: relative; /* Necesario para posicionar el difuminado */
 }
@@ -565,14 +563,13 @@ body {
     left: 0;
     width: 100%;
     height: 150px; /* Altura del difuminado */
-    /* Degradado que va de tu color de fondo a transparente para fundirse con el body */
     background: linear-gradient(
         to bottom, 
-        rgba(11, 11, 11, 1) 0%,    /* Color #0b0b0b totalmente opaco arriba */
-        rgba(11, 11, 11, 0) 100%   /* Transparente rgba(#0b0b0b, 0) abajo */
+        rgba(18, 18, 18, 0) 0%,   /* Transparente arriba */
+        rgba(18, 18, 18, 1) 100%  /* Negro #121212 abajo */
     );
-    z-index: 5; /* Por encima del contenedor, por debajo de las flechas */
-    pointer-events: none; /* Permite hacer clic a través */
+    z-index: 5; /* Por encima del borde, por debajo de las flechas */
+    pointer-events: none; /* Permite hacer clic a través si hay algo debajo */
 }
 
 .carrusel-contenedor h2 {
@@ -583,7 +580,7 @@ body {
 /* Contenedor interno que contiene las imágenes y las flechas */
 .carrusel-interno {
     position: relative;
-    max-width: 900px; /* Ancho máximo en escritorio */
+    max-width: 900px; /* Ancho máximo */
     margin: 0 auto;
     overflow: visible; /* Permite que las flechas salgan de los bordes */
     background-color: transparent;
