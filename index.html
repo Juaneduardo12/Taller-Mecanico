@@ -13,42 +13,76 @@
 
 <body>
 
-    <!-- MENÚ PRINCIPAL -->
+    <!-- =========================================
+          MENÚ PRINCIPAL Y BARRA SUPERIOR
+          ========================================= -->
+    
     <header class="menu">
+    
+        <!-- 1. BOTÓN HAMBURGUESA (IZQUIERDA) -->
+        <button class="boton-menu" id="botonMenu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
 
-        <nav>
+        <!-- 2. TÍTULO CENTRADO -->
+        <span class="titulo-barra">Bienvenido a nuestro Taller Mecánico</span>
+
+        <!-- 3. LOGOTIPO (DERECHA) -->
+        <img src="img/Logotipo_del_taller.jpg" alt="Logo Taller" class="logo-barra">
+    
+        <!-- BOTONES DEL MENÚ (PANTALLA COMPLETA) -->
+        <nav id="menuNav">
             <a href="index.html">Inicio</a>
             <a href="nosotros.html">Nosotros</a>
             <a href="">Botón 3</a>
             <a href="">Botón 4</a>
             <a href="">Botón 5</a>
-           <!-- <a href="servicios.html">Servicios</a>
-            <a href="citas.html">Citas</a>
-            <a href="contacto.html">Contacto</a>-->
         </nav>
-
+    
     </header>
 
-     <!-- LOGOTIPO  DEL TALLER -->
-    <section class="imagen-taller">
+    <!-- =========================================
+          CARRUSEL DE IMÁGENES (NUEVA VERSIÓN)
+          ========================================= -->
 
-        <img src="img/Logotipo_del_taller.jpg" alt="Taller Mecánico">
+    <section class="carrusel-contenedor">
 
+        <div class="carrusel-interno">
+            <!-- Botón Anterior -->
+            <button class="carrusel-boton carrusel-boton-anterior" onclick="moverCarrusel(-1)">&#10094;</button>
+
+            <!-- Contenedor de las diapositivas -->
+            <div class="carrusel-track">
+                <!-- IMAGEN 1 -->
+                <div class="carrusel-slide activa">
+                    <img src="img/img_muestra1.jpg" alt="Vista general del taller" class="img-personalizada">
+                </div>
+
+                <!-- IMAGEN 2 -->
+                <div class="carrusel-slide">
+                    <img src="img/img_muestra2.jpg" alt="Mecánico trabajando en un motor" class="img-personalizada">
+                </div>
+
+                <!-- IMAGEN 3 -->
+                <div class="carrusel-slide">
+                    <img src="img/img_muestra3.jpg" alt="Herramientas de diagnóstico" class="img-personalizada">
+                </div>
+            </div>
+
+            <!-- Botón Siguiente -->
+            <button class="carrusel-boton carrusel-boton-siguiente" onclick="moverCarrusel(1)">&#10095;</button>
+        </div>
     </section>
-
-
     <!-- CONTENIDO PRINCIPAL -->
     <main>
 
         <section class="inicio">
-
-            <h1>Bienvenido a nuestro Taller Mecánico</h1>
-
             <p>
                 Servicio profesional para el mantenimiento
                 y reparación de tu vehículo.
             </p>
-
         </section>
 
     </main>
@@ -88,7 +122,6 @@
 
             <div class="dato-contacto">
                 <h3>Teléfono: 777 5041214</h3>
-                
             </div>
 
             <div class="dato-contacto">
