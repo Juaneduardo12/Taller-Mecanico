@@ -16,7 +16,7 @@ body {
     font-family: Arial, sans-serif;
     /* Tu fondo original con degradado */
     background: linear-gradient(to bottom, #1a1a1a, #0b0b0b);
-    color: #ffffff;
+    color: red;
     min-height: 100vh;
     overflow-x: hidden;
 }
