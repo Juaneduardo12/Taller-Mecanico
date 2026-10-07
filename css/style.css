@@ -38,6 +38,8 @@ body {
     padding: 5px 20px;
     z-index: 1000;
     box-shadow: 0 2px 10px rgba(0, 234, 255, 0.2);
+    /* Optimización de rendimiento: promueve la barra a su propia capa de compositor */
+    transform: translateZ(0);
 }
 
 .titulo-barra {
@@ -67,8 +69,9 @@ body {
         0 0 8px #00eaff,
         0 0 20px rgba(0, 234, 255, 0.6);
     transition:
-        transform 0.5s ease,
-        box-shadow 0.5s ease;
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+    will-change: transform;
 }
 
 .logo-barra:hover {
@@ -91,6 +94,7 @@ body {
     height: 100vh;
     background-color: rgba(17, 17, 17, 0.95);
     backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px); /* Soporte optimizado para Safari/iOS */
     
     display: flex;
     flex-direction: column;
@@ -108,9 +112,10 @@ body {
     transform-origin: top left;
     
     transition: 
-        opacity 0.4s ease,
-        transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
-        visibility 0.4s ease;
+        opacity 0.3s ease,
+        transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+        visibility 0.3s ease;
+    will-change: transform, opacity;
 }
 
 
@@ -143,7 +148,8 @@ body {
     background-color: rgba(0, 234, 255, 0.05);
     border: 1px solid rgba(0, 234, 255, 0.3);
     display: block;
-    transition: 0.3s;
+    transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+    will-change: transform;
 }
 
 
@@ -190,9 +196,10 @@ body {
         0 0 10px #00eaff,
         0 0 15px rgba(0, 234, 255, 0.7);
     transition:
-        transform 0.4s ease,
-        opacity 0.3s ease,
-        width 0.4s ease;
+        transform 0.3s ease,
+        opacity 0.2s ease,
+        width 0.3s ease;
+    will-change: transform;
 }
 
 
@@ -241,8 +248,9 @@ body {
         0 0 25px #00eaff,
         0 0 50px rgba(0, 234, 255, 0.7);
     transition:
-        transform 0.5s ease,
-        box-shadow 0.5s ease;
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+    will-change: transform;
 }
 
 
@@ -272,6 +280,7 @@ body {
             transparent
         );
     filter: blur(10px);
+    -webkit-filter: blur(10px);
     pointer-events: none;
 }
 
@@ -296,7 +305,6 @@ body {
 .inicio p {
     font-size: 20px;
     line-height: 1.5;
-    /* Añadimos este margen negativo para integrar el texto con el difuminado del carrusel */
     margin-top: -50px; 
 }
 
@@ -334,7 +342,8 @@ body {
     justify-content: center;
     align-items: center;
     border-radius: 50%;
-    transition: 0.3s;
+    transition: transform 0.2s ease;
+    will-change: transform;
 }
 
 
@@ -342,7 +351,7 @@ body {
     width: 60px;
     height: 60px;
     object-fit: contain;
-    transition: 0.3s;
+    transition: transform 0.2s ease;
 }
 
 
@@ -440,7 +449,7 @@ body {
     .inicio p {
         font-size: 17px;
         line-height: 1.5;
-        margin-top: -30px; /* Ajuste del margen negativo para celular */
+        margin-top: -30px;
     }
 
     .redes-sociales {
@@ -545,53 +554,50 @@ body {
    CARRUSEL DE IMÁGENES (VERSIÓN FINAL INTEGRADA)
    ========================================= */
 
-/* Contenedor principal de la sección */
 .carrusel-contenedor {
     text-align: center;
     padding: 40px 20px;
-    padding-bottom: 100px; /* Aumentamos el padding inferior para el difuminado */
-    background-color: #121212; /* Color oscuro de fondo */
+    padding-bottom: 100px;
+    background-color: #121212;
     margin-bottom: 0;
-    position: relative; /* Necesario para posicionar el difuminado */
+    position: relative;
 }
 
-/* EL DIFUMINADO CHINGÓN (Pseudo-elemento ::after) */
 .carrusel-contenedor::after {
     content: '';
     position: absolute;
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 150px; /* Altura del difuminado */
+    height: 150px;
     background: linear-gradient(
         to bottom, 
-        rgba(18, 18, 18, 0) 0%,   /* Transparente arriba */
-        rgba(18, 18, 18, 1) 100%  /* Negro #121212 abajo */
+        rgba(18, 18, 18, 0) 0%,   
+        rgba(18, 18, 18, 1) 100%  
     );
-    z-index: 5; /* Por encima del borde, por debajo de las flechas */
-    pointer-events: none; /* Permite hacer clic a través si hay algo debajo */
+    z-index: 5;
+    pointer-events: none;
 }
 
 .carrusel-contenedor h2 {
     margin-bottom: 30px;
-    color: #ffffff; /* Título blanco */
+    color: #ffffff;
 }
 
-/* Contenedor interno que contiene las imágenes y las flechas */
 .carrusel-interno {
     position: relative;
-    max-width: 900px; /* Ancho máximo */
+    max-width: 900px;
     margin: 0 auto;
-    overflow: visible; /* Permite que las flechas salgan de los bordes */
+    overflow: visible;
     background-color: transparent;
     border-radius: 10px;
 }
 
-/* El track de las imágenes */
 .carrusel-track {
     display: flex;
-    transition: transform 0.5s ease-in-out;
+    transition: transform 0.4s ease-in-out;
     width: 100%;
+    will-change: transform;
 }
 
 .carrusel-slide {
@@ -604,57 +610,49 @@ body {
     display: block;
 }
 
-/* Ajuste de la imagen para que se vea completa sin recortar */
 .img-personalizada {
     width: 100%;
     height: auto;
     display: block;
-    max-height: 600px; /* Altura máxima en escritorio */
-    object-fit: contain; /* Muestra la imagen entera, añade bandas negras si es necesario */
+    max-height: 600px;
+    object-fit: contain;
     border-radius: 8px;
 }
-
-/* --- Estilos de los Botones (< >) --- */
 
 .carrusel-boton {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro semitransparente */
-    border: 2px solid rgba(255, 255, 255, 0.5); /* Borde sutil */
-    color: #ffffff; /* Flecha blanca */
+    background-color: rgba(0, 0, 0, 0.5);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    color: #ffffff;
     font-size: 2.5rem;
     padding: 20px;
     cursor: pointer;
-    z-index: 10; /* Por encima de la imagen y el difuminado */
-    transition: all 0.3s ease;
-    border-radius: 50%; /* Botones redondos */
+    z-index: 10;
+    transition: all 0.2s ease;
+    border-radius: 50%;
     line-height: 1;
+    will-change: transform, background-color;
 }
 
 .carrusel-boton:hover {
     background-color: rgba(255, 255, 255, 0.2);
     border-color: #ffffff;
-    color: #00bcd4; /* Color cian al pasar el ratón */
+    color: #00bcd4;
 }
 
-/* --- POSICIONAMIENTO DE LOS BOTONES --- */
-
-/* Escritorio: Botones FUERA de la imagen */
 .carrusel-boton-anterior {
-    right: 102%; /* Separada a la izquierda */
+    right: 102%;
     left: auto;
 }
 
 .carrusel-boton-siguiente {
-    left: 102%; /* Separada a la derecha */
+    left: 102%;
     right: auto;
 }
 
-/* --- Ajustes para Tablets y Móviles (Responsive) --- */
-
 @media (max-width: 1024px) {
-    /* Tablets medianas: Acercamos los botones */
     .carrusel-interno {
         margin: 0 60px;
     }
@@ -669,7 +667,6 @@ body {
 }
 
 @media (max-width: 600px) {
-    /* Celulares: Botones SUPERPUESTOS a la imagen para aprovechar el ancho */
     .carrusel-interno {
         margin: 0;
         border-radius: 0;
@@ -683,17 +680,17 @@ body {
     }
 
     .carrusel-boton-anterior {
-        left: 8px; /* Bien pegados al borde */
+        left: 8px;
         right: auto;
     }
 
     .carrusel-boton-siguiente {
-        right: 8px; /* Bien pegados al borde */
+        right: 8px;
         left: auto;
     }
 
     .img-personalizada {
-        max-height: 350px; /* Altura máxima en celular */
+        max-height: 350px;
         border-radius: 0;
     }
     

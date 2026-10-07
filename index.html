@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Taller Mecánico</title>
+    <title>Taller Mecánico - OMEGA MECHANIC</title>
+    <meta name="description" content="Servicio profesional para el mantenimiento y reparación de tu vehículo en Cuernavaca, Morelos.">
     <!-- Conectamos nuestro archivo CSS -->
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -18,7 +19,7 @@
     <header class="menu">
     
         <!-- 1. BOTÓN HAMBURGUESA (IZQUIERDA) -->
-        <button class="boton-menu" id="botonMenu">
+        <button class="boton-menu" id="botonMenu" aria-label="Abrir menú">
             <span></span>
             <span></span>
             <span></span>
@@ -28,7 +29,7 @@
         <span class="titulo-barra">Bienvenido a nuestro Taller Mecánico</span>
 
         <!-- 3. LOGOTIPO (DERECHA) -->
-        <img src="img/Logotipo_del_taller.jpg" alt="Logo Taller" class="logo-barra">
+        <img src="img/Logotipo_del_taller.jpg" alt="Logo Taller" class="logo-barra" width="60" height="60" loading="eager">
     
         <!-- BOTONES DEL MENÚ (PANTALLA COMPLETA) -->
         <nav id="menuNav">
@@ -49,28 +50,28 @@
 
         <div class="carrusel-interno">
             <!-- Botón Anterior -->
-            <button class="carrusel-boton carrusel-boton-anterior" onclick="moverCarrusel(-1)">&#10094;</button>
+            <button class="carrusel-boton carrusel-boton-anterior" onclick="moverCarrusel(-1)" aria-label="Imagen anterior">&#10094;</button>
 
             <!-- Contenedor de las diapositivas -->
             <div class="carrusel-track">
                 <!-- IMAGEN 1 -->
                 <div class="carrusel-slide activa">
-                    <img src="img/img_muestra1.jpg" alt="Vista general del taller" class="img-personalizada">
+                    <img src="img/img_muestra1.jpg" alt="Vista general del taller" class="img-personalizada" width="800" height="450" loading="eager">
                 </div>
 
                 <!-- IMAGEN 2 -->
                 <div class="carrusel-slide">
-                    <img src="img/img_muestra2.jpg" alt="Mecánico trabajando en un motor" class="img-personalizada">
+                    <img src="img/img_muestra2.jpg" alt="Mecánico trabajando en un motor" class="img-personalizada" width="800" height="450" loading="lazy">
                 </div>
 
                 <!-- IMAGEN 3 -->
                 <div class="carrusel-slide">
-                    <img src="img/img_muestra3.jpg" alt="Herramientas de diagnóstico" class="img-personalizada">
+                    <img src="img/img_muestra3.jpg" alt="Herramientas de diagnóstico" class="img-personalizada" width="800" height="450" loading="lazy">
                 </div>
             </div>
 
             <!-- Botón Siguiente -->
-            <button class="carrusel-boton carrusel-boton-siguiente" onclick="moverCarrusel(1)">&#10095;</button>
+            <button class="carrusel-boton carrusel-boton-siguiente" onclick="moverCarrusel(1)" aria-label="Siguiente imagen">&#10095;</button>
         </div>
     </section>
 
@@ -89,7 +90,7 @@
     </main>
 
     <!-- =========================================
-         REDES SOCIALES
+         REDES SOCIALES (ESTÁTICAS / ADORNO)
          ========================================= -->
     <section class="redes-sociales">
 
@@ -97,33 +98,32 @@
 
         <div class="botones-redes">
 
-            <!-- FACEBOOK -->
-            <a href="https://www.facebook.com/share/19acDv7ADv/" target="_blank" class="boton-red">
-                <img src="img/img_Facebook.webp" alt="Facebook">
-            </a>
+            <!-- FACEBOOK (URL documentada: https://www.facebook.com/share/19acDv7ADv/) -->
+            <div class="boton-red" title="Próximamente disponible">
+                <img src="img/img_Facebook.webp" alt="Facebook" width="40" height="40" loading="lazy">
+            </div>
 
-            <!-- TIKTOK -->
-            <a href="https://www.tiktok.com/@eduardocastillo3609?_r=1&_t=ZS-9A9jFAVWWdp" target="_blank" class="boton-red">
-                <img src="img/img_TikTok.png" alt="TikTok">
-            </a>
+            <!-- TIKTOK (URL documentada: https://www.tiktok.com/@eduardocastillo3609?_r=1&_t=ZS-9A9jFAVWWdp) -->
+            <div class="boton-red" title="Próximamente disponible">
+                <img src="img/img_TikTok.png" alt="TikTok" width="40" height="40" loading="lazy">
+            </div>
 
-            <!-- INSTAGRAM -->
-            <a href="https://www.instagram.com/eduardo.ocampocastillo?stkn=M202bnN5bXpvNXJ1" target="_blank" class="boton-red">
-                <img src="img/img_Instagram.png" alt="Instagram">
-            </a>
+            <!-- INSTAGRAM (URL documentada: https://www.instagram.com/eduardo.ocampocastillo?stkn=M202bnN5bXpvNXJ1) -->
+            <div class="boton-red" title="Próximamente disponible">
+                <img src="img/img_Instagram.png" alt="Instagram" width="40" height="40" loading="lazy">
+            </div>
 
         </div>
 
     </section>
 
     <!-- =========================================
-         INFORMACIÓN DE CONTACTO (ACTUALIZADO)
+         INFORMACIÓN DE CONTACTO
          ========================================= -->
     <section class="contacto">
 
         <h2>Contáctanos</h2>
 
-        <!-- AHORA ES UNA LISTA CENTRADA -->
         <ul class="lista-contacto">
             <li>Teléfono: 777 5041214</li>
             <li>Dirección: Cuernavaca, Morelos, México</li>
@@ -131,7 +131,6 @@
         </ul>
 
     </section>
-
 
     <!-- =========================================
          JavaScript
