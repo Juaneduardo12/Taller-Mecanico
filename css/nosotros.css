@@ -1,69 +1,392 @@
-/* Estilos generales para la sección de la imagen */
+/* --- ESTILOS GENERALES Y FONDO --- */
+body {
+    background-color: #1a1a1a;
+    color: #e0e0e0;
+    margin: 0;
+    font-family: sans-serif;
+    overflow-x: hidden;
+}
+
+/* --- MENÚ PRINCIPAL --- */
+.menu {
+    width: 100%;
+    background-color: #111;
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.nav-botones {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    padding: 0 10px;
+}
+
+.btn-nav {
+    color: #fff;
+    text-decoration: none;
+    font-family: sans-serif;
+    font-weight: bold;
+    padding: 8px 15px;
+    border: 2px solid #00ffcc;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.btn-nav:hover {
+    background-color: #00ffcc;
+    color: #111;
+    box-shadow: 0 0 15px #00ffcc;
+}
+
+/* --- SECCIÓN ¿QUIÉNES SOMOS? --- */
 .imagen-Quienes_somos {
+    background-color: #111;
+    padding: 40px 20px;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 80px 20px; /* Aumentamos el padding superior/inferior para dar espacio al efecto */
-    background-color: #0f172a; /* Fondo oscuro */
-    position: relative; /* Necesario para posicionar el difuminado */
-    overflow: hidden; /* Asegura que el efecto no se salga de la sección */
 }
 
-/* Estilos base para la imagen */
-.imagen-Quienes_somos img {
-    width: 70%;
-    max-width: 700px;
+.img-quienes {
+    box-shadow: 0 0 30px rgba(0, 255, 204, 0.5);
+    border: 2px solid #00ffcc;
+    border-radius: 15px;
+    max-width: 500px;
+    width: 100%;
     height: auto;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    object-fit: cover;
-    border: 2px solid rgba(56, 189, 248, 0.5); /* Borde un poco más visible */
-    position: relative;
-    z-index: 2; /* Asegura que la imagen esté por encima del difuminado */
 }
 
-/* --- EFECTO DE DIFUMINADO "CHINGÓN" --- */
-.imagen-Quienes_somos::after {
-    content: '';
-    position: absolute;
-    bottom: 30px; /* Ajusta qué tan abajo del borde de la imagen empieza el efecto */
-    left: 50%;
-    transform: translateX(-50%); /* Centra el difuminado */
-    width: 600px; /* Un poco más angosto que la imagen para que se vea cónico */
-    height: 100px; /* Altura del resplandor */
-    
-    /* Gradiente para simular el brillo de la plataforma */
-    background: radial-gradient(ellipse at center, 
-                rgba(56, 189, 248, 0.6) 0%, /* Color cian brillante en el centro */
-                rgba(56, 189, 248, 0.2) 40%, /* Se difumina */
-                rgba(15, 23, 42, 0) 80% /* Transparente en los bordes */
-    );
-    
-    filter: blur(15px); /* Aplica el desenfoque para el efecto de neón */
-    z-index: 1; /* Coloca el difuminado detrás de la imagen */
-    opacity: 0.8; /* Ajusta la intensidad general */
-    pointer-events: none; /* Evita que el difuminado interfiera con el mouse */
+/* --- SECCIÓN MASCOTA Y FILOSOFÍA (CRUZ DE ELEMENTOS) --- */
+.contenedor-mascota-seccion {
+    background-color: #111;
+    padding: 40px 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    border-top: 2px solid #00ffcc;
 }
 
-/* Estilos generales para la imagen de la mascota */
-.imagen-mascota {
+.centro-grid {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 80px 20px; /* Aumentamos el padding superior/inferior para dar espacio al efecto */
-    background-color: #0f172a; /* Fondo oscuro */
-    position: relative; /* Necesario para posicionar el difuminado */
-    overflow: hidden; /* Asegura que el efecto no se salga de la sección */
+    gap: 25px;
+    flex-wrap: wrap;
+    max-width: 1100px;
+    width: 100%;
 }
-/* Estilos base para la imagen */
-.imagen-mascota img{
-    width: 30%;
-    max-width: 300px;
-    height: auto;
-    border-radius: 100px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+
+.imagen-contenedor-central {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.img-mascota {
+    border-radius: 50%;
+    width: 220px;
+    height: 220px;
     object-fit: cover;
-    border: 2px solid rgba(56, 189, 248, 0.5); /* Borde un poco más visible */
-    position: relative;
-    z-index: 2; /* Asegura que la imagen esté por encima del difuminado */
+    object-position: center;
+    border: 5px solid #00ffcc;
+    box-shadow: 0 0 30px rgba(0, 255, 204, 0.6);
+    transition: transform 0.3s ease;
+}
+
+.img-mascota:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 40px rgba(0, 255, 204, 0.9);
+}
+
+.info-box {
+    background-color: #1a1a1a;
+    border: 2px solid #00ffcc;
+    border-radius: 12px;
+    padding: 20px;
+    width: 260px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    box-sizing: border-box;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.info-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 20px rgba(0, 255, 204, 0.4);
+}
+
+.info-box h3 {
+    color: #00ffcc;
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+}
+
+.info-box p {
+    color: #e0e0e0;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    margin: 0;
+}
+
+.top-box, .bottom-box {
+    max-width: 500px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* --- SECCIÓN DE LA HISTORIA INTERACTIVA --- */
+.seccion-historia {
+    background-color: #111;
+    padding: 50px 15px;
+    text-align: center;
+    border-top: 2px solid #00ffcc;
+}
+
+.titulo-historia {
+    color: #00ffcc;
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+    text-shadow: 0 0 10px rgba(0, 255, 204, 0.5);
+}
+
+.subtitulo-historia {
+    color: #b0b0b0;
+    font-size: 0.95rem;
+    margin-bottom: 25px;
+    padding: 0 10px;
+}
+
+.historia-contenedor {
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: #1a1a1a;
+    border: 2px solid #00ffcc;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 0 25px rgba(0, 255, 204, 0.3);
+    box-sizing: border-box;
+}
+
+.historia-botones {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+}
+
+.btn-historia {
+    background-color: #111;
+    color: #00ffcc;
+    text-decoration: none;
+    font-family: sans-serif;
+    font-weight: bold;
+    padding: 10px 15px;
+    border: 2px solid #00ffcc;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.btn-historia:hover {
+    background-color: #00ffcc;
+    color: #111;
+    box-shadow: 0 0 15px #00ffcc;
+}
+
+.contenido-historia {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.img-historia {
+    max-width: 350px;
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    border: 2px solid #00ffcc;
+    box-shadow: 0 0 20px rgba(0, 255, 204, 0.4);
+}
+
+.texto-historia {
+    max-width: 450px;
+    text-align: left;
+}
+
+.texto-historia h3 {
+    color: #00ffcc;
+    font-size: 1.3rem;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.texto-historia p {
+    color: #e0e0e0;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+
+/* ========================================== */
+/* --- MEDIA QUERIES PARA CELULARES (RESPONSIVE) --- */
+/* ========================================== */
+
+@media (max-width: 768px) {
+    .contenedor-mascota-seccion {
+        padding: 10px 5px;
+        gap: 8px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* 1. Caja superior (Sonrisas) arriba del todo */
+    .top-box {
+        width: 90%;
+        max-width: 280px;
+        padding: 8px;
+        border-radius: 8px;
+        border-width: 1.5px;
+        text-align: center;
+    }
+
+    /* 2. Fila central que contiene Misión, Mascota y Visión lado a lado en miniatura */
+    .centro-grid {
+        display: flex;
+        flex-direction: row; /* Los pone horizontalmente */
+        justify-content: center;
+        align-items: center;
+        gap: 6px;
+        width: 100%;
+    }
+
+    /* Misión (Izquierda) */
+    .centro-grid .left-box {
+        width: 40%;
+        max-width: 130px;
+        padding: 6px;
+        border-radius: 8px;
+        border-width: 1.5px;
+    }
+
+    /* Mascota en el centro exacto entre Misión y Visión, tamaño pequeño */
+    .centro-grid .imagen-contenedor-central {
+        width: 18%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .img-mascota {
+        width: 45px;
+        height: 45px;
+        border-width: 2px;
+        box-shadow: 0 0 8px rgba(0, 255, 204, 0.6);
+    }
+
+    /* Visión (Derecha) */
+    .centro-grid .right-box {
+        width: 40%;
+        max-width: 130px;
+        padding: 6px;
+        border-radius: 8px;
+        border-width: 1.5px;
+    }
+
+    /* 3. Caja inferior (Valores) abajo del todo */
+    .bottom-box {
+        width: 90%;
+        max-width: 280px;
+        padding: 8px;
+        border-radius: 8px;
+        border-width: 1.5px;
+        text-align: center;
+    }
+
+    /* Textos adaptados para las mini-cajas laterales */
+    .centro-grid .info-box h3 {
+        font-size: 0.65rem;
+        margin-bottom: 2px;
+    }
+
+    .centro-grid .info-box p {
+        font-size: 0.5rem;
+        line-height: 1.1;
+    }
+
+    /* Textos para las cajas superior e inferior (Sonrisas y Valores) */
+    .top-box h3, .bottom-box h3 {
+        font-size: 0.75rem;
+        margin-bottom: 3px;
+    }
+
+    .top-box p, .bottom-box p {
+        font-size: 0.6rem;
+        line-height: 1.2;
+    }
+
+    /* Resto de adaptaciones para móvil en secciones inferiores */
+    .seccion-historia {
+        padding: 20px 10px;
+    }
+
+    .titulo-historia {
+        font-size: 1.2rem;
+    }
+
+    .subtitulo-historia {
+        font-size: 0.7rem;
+        margin-bottom: 15px;
+    }
+
+    .historia-contenedor {
+        padding: 10px;
+        max-width: 95%;
+        border-width: 1px;
+    }
+
+    .btn-historia {
+        padding: 6px 10px;
+        font-size: 0.7rem;
+        border-width: 1px;
+    }
+
+    .contenido-historia {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+
+    .texto-historia {
+        text-align: center;
+        max-width: 100%;
+    }
+
+    .texto-historia h3 {
+        font-size: 0.95rem;
+        margin-bottom: 4px;
+    }
+
+    .texto-historia p {
+        font-size: 0.75rem;
+        line-height: 1.3;
+    }
+
+    .img-historia, .img-quienes {
+        max-width: 160px;
+        border-width: 1px;
+    }
 }

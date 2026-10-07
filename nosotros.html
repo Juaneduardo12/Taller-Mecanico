@@ -1,44 +1,138 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>OMEGA MECHANIC</title>
     <link rel="stylesheet" href="css/nosotros.css">
 </head>
 <body>
     <!-- MENÚ PRINCIPAL -->
     <header class="menu">
-
-        <nav>
-            <a href="index.html">Inicio</a>
-            <a href="nosotros.html">Nosotros</a>
-            <a href="">Botón 3</a>
-            <a href="">Botón 4</a>
-            <a href="">Botón 5</a>
-           <!-- <a href="servicios.html">Servicios</a>
-            <a href="citas.html">Citas</a>
-            <a href="contacto.html">Contacto</a>-->
+        <nav class="nav-botones">
+            <a href="index.html" class="btn-nav">Inicio</a>
+            <a href="nosotros.html" class="btn-nav">Nosotros</a>
+            <a href="#" class="btn-nav">2</a>
+            <a href="#" class="btn-nav">3</a>
+            <a href="#" class="btn-nav">4</a>
         </nav>
-
     </header>
 
     <!-- IMG ¿QUIÉNES SOMOS? -->
     <section class="imagen-Quienes_somos">
+        <img src="img/img_Quienes_somos.jpg" alt="Taller Mecánico" class="img-quienes">
+    </section>
 
-        <img src="img/img_Quienes_somos.jpg" alt="Taller Mecánico">
+    <!-- SECCIÓN MASCOTA Y FILOSOFÍA DE OMEGA MECHANIC -->
+    <section class="contenedor-mascota-seccion">
+
+        <!-- 1. ARRIBA: Sonrisas -->
+        <div class="info-box top-box">
+            <h3>😁 Sonrisas</h3>
+            <p>Nuestro mayor logro: clientes satisfechos con cada motor rugiendo de nuevo.</p>
+        </div>
+
+        <!-- 2. CENTRO: Misión (Izquierda) -> Mascota (Centro) -> Visión (Derecha) -->
+        <div class="centro-grid">
+            <div class="info-box left-box">
+                <h3>🎯 Misión</h3>
+                <p>Brindar diagnóstico y reparación automotriz de alta precisión con un servicio transparente y confiable.</p>
+            </div>
+
+            <div class="imagen-contenedor-central">
+                <img src="img/img_mascota.jpg" alt="Mascota Taller Omega Mechanic" class="img-mascota">
+            </div>
+
+            <div class="info-box right-box">
+                <h3>👁️ Visión</h3>
+                <p>Ser el taller mecánico líder en innovación tecnológica y personalización automotriz de la región.</p>
+            </div>
+        </div>
+
+        <!-- 3. ABAJO: Valores -->
+        <div class="info-box bottom-box">
+            <h3>💎 Valores</h3>
+            <p>Honestidad, Precisión, Innovación, Pasión por los motores y Trabajo en equipo.</p>
+        </div>
 
     </section>
 
-    <!-- IMG MASCOTA -->
-    <section class="imagen-mascota">
+    <!-- SECCIÓN DE LA HISTORIA INTERACTIVA: OMEGA MECHANIC -->
+    <section class="seccion-historia">
+        <h2 class="titulo-historia">El Despertar de Omega Mechanic</h2>
+        <p class="subtitulo-historia">Haz clic en los botones para revelar los capítulos de nuestra leyenda.</p>
 
-        <img src="img/img_mascota.jpg" alt="Taller Mecánico">
+        <!-- Contenedor principal de la historia interactiva -->
+        <div class="historia-contenedor">
 
+            <!-- Botones de navegación de la historia -->
+            <div class="historia-botones">
+                <button class="btn-historia btn-tab" data-target="capitulo1">1. El Origen</button>
+                <button class="btn-historia btn-tab" data-target="capitulo2">2. La Chispa</button>
+                <button class="btn-historia btn-tab" data-target="capitulo3">3. El Futuro</button>
+            </div>
+
+            <!-- Pantallas de contenido (Imágenes y Párrafos que cambian) -->
+            <div class="historia-pantallas">
+
+                <!-- CAPÍTULO 1 -->
+                <div id="capitulo1" class="pantalla activo">
+                    <div class="contenido-historia">
+                        <img src="img/img_historia1.jpg" alt="El Origen" class="img-historia">
+                        <div class="texto-historia">
+                            <h3>El Surgimiento en la Oscuridad</h3>
+                            <p>En los suburbios de la red cibernética, bajo un cielo de neón y asfalto húmedo, nació OMEGA MECHANIC. Lo que empezó como un modesto garaje de diagnóstico automotriz manual se transformó rápidamente en el santuario definitivo de la ingeniería de alta precisión, donde ningún motor dañado se da por vencido.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CAPÍTULO 2 -->
+                <div id="capitulo2" class="pantalla" style="display: none;">
+                    <div class="contenido-historia">
+                        <img src="img/img_historia2.jpg" alt="La Chispa" class="img-historia">
+                        <div class="texto-historia">
+                            <h3>La Llegada de la Inteligencia</h3>
+                            <p>Para proteger y guiar el taller, los fundadores diseñaron a nuestra mascota cibernética. Equipada con núcleos de procesamiento cuántico y una llave de tuercas de aleación ligera, no es solo un robot: es el alma técnica del taller que saluda a cada cliente listo para rugir en la pista.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CAPÍTULO 3 -->
+                <div id="capitulo3" class="pantalla" style="display: none;">
+                    <div class="contenido-historia">
+                        <img src="img/img_historia3.jpg" alt="El Futuro" class="img-historia">
+                        <div class="texto-historia">
+                            <h3>Innovación sin Límites</h3>
+                            <p>Hoy, OMEGA MECHANIC domina la vanguardia de la personalización de vehículos y sistemas computarizados. Cada auto que cruza nuestras puertas sale mejorado, transformándose en una máquina imparable lista para conquistar el mañana.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
     </section>
 
+    <!-- SCRIPT DE INTERACTIVIDAD PARA LOS BOTONES -->
+    <script>
+        const botones = document.querySelectorAll('.btn-tab');
+        const pantallas = document.querySelectorAll('.pantalla');
 
-    
+        botones.forEach(boton => {
+            boton.addEventListener('click', () => {
+                const targetId = boton.getAttribute('data-target');
+
+                // Ocultar todas las pantallas
+                pantallas.forEach(pantalla => {
+                    pantalla.style.display = 'none';
+                });
+
+                // Mostrar la pantalla seleccionada
+                const pantallaActiva = document.getElementById(targetId);
+                if (pantallaActiva) {
+                    pantallaActiva.style.display = 'block';
+                }
+            });
+        });
+    </script>
 </body>
 </html>
