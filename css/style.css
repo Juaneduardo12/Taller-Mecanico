@@ -1,0 +1,256 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+
+/* ==============================
+   MENÚ PRINCIPAL
+   ============================== */
+
+.menu {
+    position: sticky;
+    top: 0;
+
+    width: 100%;
+
+    background-color: #111;
+    color: white;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 20px 50px;
+
+    z-index: 1000;
+}
+
+
+/* ==============================
+   LOGOTIPO
+   ============================== */
+
+.logo {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+
+/* ==============================
+   BOTONES DEL MENÚ
+   ============================== */
+
+nav {
+    display: flex;
+    gap: 30px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+
+    padding: 10px 20px;
+
+    border-radius: 5px;
+
+    transition: 0.3s;
+}
+
+
+/* Cuando pasamos el mouse */
+
+nav a:hover {
+    background-color: #e63946;
+}
+
+
+/* ==============================
+   INICIO
+   ============================== */
+
+.inicio {
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+}
+
+.inicio h1 {
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+
+.inicio p {
+    font-size: 20px;
+}
+
+/* ==============================
+   LOGOTIPO DEL TALLER
+   ============================== */
+
+.imagen-taller {
+    position: relative;
+    top: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+
+/* ==============================
+   IMAGEN REDONDA FUTURISTA
+   ============================== */
+
+.imagen-taller img {
+
+    width: 300px;
+    height: 300px;
+
+    /* Hace la imagen completamente redonda */
+    border-radius: 50%;
+
+    /* Evita que la imagen se deforme */
+    object-fit: cover;
+
+    /* Borde futurista */
+    border: 4px solid #00eaff;
+
+    /* Brillo exterior */
+    box-shadow:
+        0 0 10px #00eaff,
+        0 0 25px #00eaff,
+        0 0 50px rgba(0, 234, 255, 0.7);
+
+    /* Animación */
+    transition: transform 0.5s ease,
+                box-shadow 0.5s ease;
+
+}
+
+
+/* ==============================
+   EFECTO AL PASAR EL MOUSE
+   ============================== */
+
+.imagen-taller img:hover {
+
+    transform: scale(1.05);
+
+    box-shadow:
+        0 0 15px #00eaff,
+        0 0 35px #00eaff,
+        0 0 70px #00eaff;
+
+}
+/* ==============================
+   ESTILO GENERAL Y FONDO DIFUMINADO
+   ============================== */
+
+body {
+    font-family: Arial, sans-serif;
+    /* Fondo con un degradado futurista que va de un gris muy oscuro a negro profundo */
+    background: linear-gradient(to bottom, #1a1a1a, #0b0b0b);
+    color: #ffffff; /* Para que los textos resalten bien con el fondo oscuro */
+    min-height: 100vh;
+}
+/* ==============================
+   LOGOTIPO DEL TALLER CON DIFUMINADO
+   ============================== */
+
+.imagen-taller {
+    margin-top: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding-bottom: 40px; /* Espacio para el efecto */
+}
+
+/* Creamos una barra de difuminado sutil justo debajo de la imagen */
+.imagen-taller::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    width: 60%;
+    height: 40px;
+    /* Difuminado radial o lineal que se funde con el fondo de la página */
+    background: linear-gradient(to bottom, rgba(0, 234, 255, 0.2), transparent);
+    filter: blur(10px);
+    pointer-events: none;
+}
+
+/* ============================= */
+/* REDES SOCIALES */
+/* ============================= */
+
+.redes-sociales {
+    text-align: center;
+    margin-top: 40px;
+    padding: 30px;
+}
+
+.redes-sociales h2 {
+    margin-bottom: 25px;
+}
+
+.botones-redes {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+}
+
+.boton-red {
+    width: 70px;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    transition: 0.3s;
+}
+
+.boton-red img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    transition: 0.3s;
+}
+
+/* Efecto cuando pasas el mouse */
+
+.boton-red:hover {
+    transform: scale(1.15);
+}
+
+.boton-red img:hover {
+    transform: scale(1.05);
+}
+
+/* ============================= */
+/* INFORMACIÓN DE CONTACTO */
+/* ============================= */
+
+.contacto {
+    text-align: center;
+    margin-top: 40px;
+    padding: 40px 20px;
+}
+
+.contacto h2 {
+    margin-bottom: 30px;
+}
