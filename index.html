@@ -18,32 +18,37 @@
     
     <header class="menu">
     
-        <!-- 1. BOTÓN HAMBURGUESA (IZQUIERDA) -->
+        <!-- 1. BOTÓN HAMBURGUESA (IZQUIERDA - SOLO CELULAR) -->
         <button class="boton-menu" id="botonMenu" aria-label="Abrir menú">
             <span></span>
             <span></span>
             <span></span>
         </button>
 
-        <!-- 2. TÍTULO CENTRADO -->
+        <!-- 2. TÍTULO CENTRADO (SOLO CELULAR) -->
         <span class="titulo-barra">Bienvenido a nuestro Taller Mecánico</span>
 
-        <!-- 3. LOGOTIPO (DERECHA) -->
+        <!-- 3. LOGOTIPO DERECHA (SOLO CELULAR) -->
         <img src="img/Logotipo_del_taller.jpg" alt="Logo Taller" class="logo-barra" width="60" height="60" loading="eager">
     
-        <!-- BOTONES DEL MENÚ (PANTALLA COMPLETA) -->
+        <!-- MENÚ DE NAVEGACIÓN -->
         <nav id="menuNav">
             <a href="index.html">Inicio</a>
             <a href="nosotros.html">Nosotros</a>
             <a href="">Botón 3</a>
             <a href="">Botón 4</a>
             <a href="">Botón 5</a>
+
+            <!-- APARTADO DE IMAGEN PARA EL MENÚ (SOLO CELULAR) -->
+            <div class="menu-imagen-contenedor">
+                <img src="img/img_menu.jpg" alt="Imagen del taller en menú" class="img-menu-desplegable" width="200" height="200" loading="lazy">
+            </div>
         </nav>
     
     </header>
 
     <!-- =========================================
-         CARRUSEL DE IMÁGENES
+         CARRUSEL DE IMÁGENES (SE MANTIENE EN CELULAR)
          ========================================= -->
 
     <section class="carrusel-contenedor">
@@ -76,6 +81,15 @@
     </section>
 
     <!-- =========================================
+         SECCIÓN DEL LOGOTIPO Y DIFUMINADO PARA COMPUTADORA
+         ========================================= -->
+    <section class="imagen-taller-pc">
+        <img src="img/Logotipo_del_taller.jpg" alt="Logotipo del Taller" width="300" height="300" loading="eager">
+        <!-- Línea de difuminado a todo lo ancho -->
+        <div class="difuminado-ancho"></div>
+    </section>
+
+    <!-- =========================================
          CONTENIDO PRINCIPAL
          ========================================= -->
     <main>
@@ -90,7 +104,7 @@
     </main>
 
     <!-- =========================================
-         REDES SOCIALES (ESTÁTICAS / ADORNO)
+         REDES SOCIALES
          ========================================= -->
     <section class="redes-sociales">
 
@@ -98,17 +112,17 @@
 
         <div class="botones-redes">
 
-            <!-- FACEBOOK (URL documentada: https://www.facebook.com/share/19acDv7ADv/) -->
+            <!-- FACEBOOK -->
             <div class="boton-red" title="Próximamente disponible">
                 <img src="img/img_Facebook.webp" alt="Facebook" width="40" height="40" loading="lazy">
             </div>
 
-            <!-- TIKTOK (URL documentada: https://www.tiktok.com/@eduardocastillo3609?_r=1&_t=ZS-9A9jFAVWWdp) -->
+            <!-- TIKTOK -->
             <div class="boton-red" title="Próximamente disponible">
                 <img src="img/img_TikTok.png" alt="TikTok" width="40" height="40" loading="lazy">
             </div>
 
-            <!-- INSTAGRAM (URL documentada: https://www.instagram.com/eduardo.ocampocastillo?stkn=M202bnN5bXpvNXJ1) -->
+            <!-- INSTAGRAM -->
             <div class="boton-red" title="Próximamente disponible">
                 <img src="img/img_Instagram.png" alt="Instagram" width="40" height="40" loading="lazy">
             </div>

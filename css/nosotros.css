@@ -63,7 +63,7 @@ body {
     height: auto;
 }
 
-/* --- SECCIÓN MASCOTA Y FILOSOFÍA (CRUZ DE ELEMENTOS) --- */
+/* --- SECCIÓN MASCOTA Y FILOSOFÍA --- */
 .contenedor-mascota-seccion {
     background-color: #111;
     padding: 40px 15px;
@@ -198,7 +198,7 @@ body {
     transition: all 0.3s ease;
 }
 
-.btn-historia:hover {
+.btn-historia:hover, .btn-historia.activo {
     background-color: #00ffcc;
     color: #111;
     box-shadow: 0 0 15px #00ffcc;
@@ -226,6 +226,17 @@ body {
     text-align: left;
 }
 
+.badge-fecha {
+    display: inline-block;
+    background-color: #00ffcc;
+    color: #111;
+    font-weight: bold;
+    font-size: 0.8rem;
+    padding: 3px 8px;
+    border-radius: 4px;
+    margin-bottom: 8px;
+}
+
 .texto-historia h3 {
     color: #00ffcc;
     font-size: 1.3rem;
@@ -239,154 +250,315 @@ body {
     line-height: 1.6;
 }
 
+/* --- SECCIÓN ORGANIGRAMA CON LÍNEAS VECTORIALES SVG --- */
+.seccion-organigrama {
+    background-color: #111;
+    padding: 50px 15px;
+    text-align: center;
+    border-top: 2px solid #00ffcc;
+}
 
-/* ========================================== */
-/* --- MEDIA QUERIES PARA CELULARES (RESPONSIVE) --- */
-/* ========================================== */
+.titulo-organigrama {
+    color: #00ffcc;
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+    text-shadow: 0 0 10px rgba(0, 255, 204, 0.5);
+}
 
+.subtitulo-organigrama {
+    color: #b0b0b0;
+    font-size: 0.95rem;
+    margin-bottom: 30px;
+}
+
+.organigrama-scroll-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 20px 0;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.canvas-organigrama {
+    width: 4200px;
+    height: 1200px;
+    margin: 0 auto;
+    position: relative;
+    background-color: #111;
+}
+
+/* Estilo de las líneas de neón SVG */
+.svg-conectores {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.linea-neon {
+    stroke: #00ffcc;
+    stroke-width: 3px;
+    filter: drop-shadow(0 0 6px #00ffcc);
+}
+
+/* Posicionamiento absoluto de los niveles */
+.nivel-superior {
+    position: absolute;
+    top: 0px;
+    left: 525px;
+    z-index: 2;
+}
+
+.nivel-medio-wrapper {
+    position: absolute;
+    top: 135px;
+    left: 295px;
+    width: 610px;
+    display: flex;
+    justify-content: space-between;
+    z-index: 2;
+}
+
+.columna-izquierda-medio {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.cuadro-derecho-medio {
+    margin-top: 75px;
+}
+
+.nivel-inferior-wrapper {
+    position: absolute;
+    top: 700px;
+    left: 45px;
+    width: 1110px;
+    display: flex;
+    justify-content: space-between;
+    z-index: 2;
+}
+
+.rama-inferior {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.rama-1 .hijo-desplazado,
+.rama-2 .hijo-desplazado {
+    margin-left: 150px;
+}
+
+.rama-3 .columna-apilada-abajo {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* TARJETA INDIVIDUAL Y PESTAÑAS INTERACTIVAS */
+.org-card {
+    background-color: #1a1a1a;
+    border: 2px solid #00ffcc;
+    border-radius: 12px;
+    padding: 12px;
+    width: 150px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.org-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 20px rgba(0, 255, 204, 0.9);
+    z-index: 10;
+}
+
+.org-foto-container {
+    width: 70px;
+    height: 70px;
+    margin: 0 auto 8px auto;
+}
+
+.org-foto {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #00ffcc;
+}
+
+.org-nombre {
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: bold;
+    margin: 5px 0;
+}
+
+/* PESTAÑA LATERAL (CORREO) */
+.pestana-correo {
+    position: absolute;
+    top: 15px;
+    right: -12px;
+    background-color: #00ffcc;
+    color: #111;
+    font-size: 0.7rem;
+    font-weight: bold;
+    padding: 3px 5px;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    box-shadow: 2px 0 5px rgba(0, 255, 204, 0.5);
+}
+
+.tooltip-correo {
+    visibility: hidden;
+    background-color: #111;
+    color: #00ffcc;
+    text-align: center;
+    border-radius: 6px;
+    padding: 6px 10px;
+    position: absolute;
+    z-index: 20;
+    left: 125%;
+    top: 50%;
+    transform: translateY(-50%);
+    white-space: nowrap;
+    border: 1px solid #00ffcc;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    font-size: 0.75rem;
+    box-shadow: 0 0 10px rgba(0,255,204,0.3);
+}
+
+.pestana-correo:hover .tooltip-correo {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* PESTAÑA INFERIOR (PUESTO) */
+.pestana-puesto {
+    position: absolute;
+    bottom: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #00ffcc;
+    color: #111;
+    font-size: 0.65rem;
+    font-weight: bold;
+    padding: 2px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 0 3px 5px rgba(0, 255, 204, 0.4);
+    white-space: nowrap;
+}
+
+.tooltip-puesto {
+    visibility: hidden;
+    background-color: #111;
+    color: #00ffcc;
+    text-align: center;
+    border-radius: 6px;
+    padding: 6px 10px;
+    position: absolute;
+    z-index: 20;
+    top: 130%;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    border: 1px solid #00ffcc;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    font-size: 0.75rem;
+    box-shadow: 0 0 10px rgba(0,255,204,0.3);
+}
+
+.pestana-puesto:hover .tooltip-puesto {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* --- CLASES DE POSICIONAMIENTO ESPECÍFICO --- */
+.carmen-card {
+    position: relative;
+    left: 150px;
+}
+
+.enrique-card {
+    position: relative;
+    left: 200px;
+    top: 0px;
+}
+
+.eder-card {
+    position: relative;
+    left: 200px;
+    top: 0px;
+}
+
+.carmen-card:hover, .enrique-card:hover, .eder-card:hover {
+    transform: translateY(-5px);
+}
+
+/* --- ADAPTACIÓN RESPONSIVA MÓVIL --- */
 @media (max-width: 768px) {
+    /* Sección mascota idéntica a la PC con escala proporcionada */
     .contenedor-mascota-seccion {
-        padding: 10px 5px;
-        gap: 8px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+        transform: scale(0.55);
+        transform-origin: top center;
+        margin-top: -40px;
+        margin-bottom: -280px;
     }
 
-    /* 1. Caja superior (Sonrisas) arriba del todo */
-    .top-box {
-        width: 90%;
-        max-width: 280px;
-        padding: 8px;
-        border-radius: 8px;
-        border-width: 1.5px;
-        text-align: center;
-    }
-
-    /* 2. Fila central que contiene Misión, Mascota y Visión lado a lado en miniatura */
     .centro-grid {
-        display: flex;
-        flex-direction: row; /* Los pone horizontalmente */
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
         justify-content: center;
-        align-items: center;
-        gap: 6px;
+        gap: 15px;
+    }
+
+    .info-box {
+        width: 220px !important;
+        flex-shrink: 0;
+    }
+
+    /* Contenedor con scroll horizontal fluido para el organigrama */
+    .organigrama-scroll-wrapper {
         width: 100%;
+        overflow-x: auto;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+        justify-content: flex-start;
+        padding: 10px 0;
     }
 
-    /* Misión (Izquierda) */
-    .centro-grid .left-box {
-        width: 40%;
-        max-width: 130px;
-        padding: 6px;
-        border-radius: 8px;
-        border-width: 1.5px;
+    /* Lienzo y líneas SVG visibles y con proporciones exactas a PC */
+    .canvas-organigrama {
+        width: 4200px;
+        height: 1200px;
+        position: relative;
+        background-color: #111;
+        transform: none;
     }
 
-    /* Mascota en el centro exacto entre Misión y Visión, tamaño pequeño */
-    .centro-grid .imagen-contenedor-central {
-        width: 18%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+    .svg-conectores {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 4200px;
+        height: 1200px;
+        z-index: 1;
+        pointer-events: none;
+        display: block !important;
     }
 
-    .img-mascota {
-        width: 45px;
-        height: 45px;
-        border-width: 2px;
-        box-shadow: 0 0 8px rgba(0, 255, 204, 0.6);
-    }
-
-    /* Visión (Derecha) */
-    .centro-grid .right-box {
-        width: 40%;
-        max-width: 130px;
-        padding: 6px;
-        border-radius: 8px;
-        border-width: 1.5px;
-    }
-
-    /* 3. Caja inferior (Valores) abajo del todo */
-    .bottom-box {
-        width: 90%;
-        max-width: 280px;
-        padding: 8px;
-        border-radius: 8px;
-        border-width: 1.5px;
-        text-align: center;
-    }
-
-    /* Textos adaptados para las mini-cajas laterales */
-    .centro-grid .info-box h3 {
-        font-size: 0.65rem;
-        margin-bottom: 2px;
-    }
-
-    .centro-grid .info-box p {
-        font-size: 0.5rem;
-        line-height: 1.1;
-    }
-
-    /* Textos para las cajas superior e inferior (Sonrisas y Valores) */
-    .top-box h3, .bottom-box h3 {
-        font-size: 0.75rem;
-        margin-bottom: 3px;
-    }
-
-    .top-box p, .bottom-box p {
-        font-size: 0.6rem;
-        line-height: 1.2;
-    }
-
-    /* Resto de adaptaciones para móvil en secciones inferiores */
-    .seccion-historia {
-        padding: 20px 10px;
-    }
-
-    .titulo-historia {
-        font-size: 1.2rem;
-    }
-
-    .subtitulo-historia {
-        font-size: 0.7rem;
-        margin-bottom: 15px;
-    }
-
-    .historia-contenedor {
-        padding: 10px;
-        max-width: 95%;
-        border-width: 1px;
-    }
-
-    .btn-historia {
-        padding: 6px 10px;
-        font-size: 0.7rem;
-        border-width: 1px;
-    }
-
-    .contenido-historia {
-        flex-direction: column;
-        text-align: center;
-        gap: 10px;
-    }
-
-    .texto-historia {
-        text-align: center;
-        max-width: 100%;
-    }
-
-    .texto-historia h3 {
-        font-size: 0.95rem;
-        margin-bottom: 4px;
-    }
-
-    .texto-historia p {
-        font-size: 0.75rem;
-        line-height: 1.3;
-    }
-
-    .img-historia, .img-quienes {
-        max-width: 160px;
-        border-width: 1px;
+    .linea-neon {
+        stroke: #00ffcc;
+        stroke-width: 3px;
+        filter: drop-shadow(0 0 6px #00ffcc);
     }
 }

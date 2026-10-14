@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OMEGA MECHANIC</title>
+    <title>OMEGA MECHANIC - Nosotros</title>
     <link rel="stylesheet" href="css/nosotros.css">
 </head>
 <body>
@@ -25,14 +25,11 @@
 
     <!-- SECCIÓN MASCOTA Y FILOSOFÍA DE OMEGA MECHANIC -->
     <section class="contenedor-mascota-seccion">
-
-        <!-- 1. ARRIBA: Sonrisas -->
         <div class="info-box top-box">
             <h3>😁 Sonrisas</h3>
             <p>Nuestro mayor logro: clientes satisfechos con cada motor rugiendo de nuevo.</p>
         </div>
 
-        <!-- 2. CENTRO: Misión (Izquierda) -> Mascota (Centro) -> Visión (Derecha) -->
         <div class="centro-grid">
             <div class="info-box left-box">
                 <h3>🎯 Misión</h3>
@@ -40,7 +37,7 @@
             </div>
 
             <div class="imagen-contenedor-central">
-                <img src="img/img_mascota.jpg" alt="Mascota Taller Omega Mechanic" class="img-mascota">
+                <img src="img/img_mascota_negro.jpg" alt="Mascota Taller Omega Mechanic" class="img-mascota">
             </div>
 
             <div class="info-box right-box">
@@ -49,61 +46,204 @@
             </div>
         </div>
 
-        <!-- 3. ABAJO: Valores -->
         <div class="info-box bottom-box">
             <h3>💎 Valores</h3>
             <p>Honestidad, Precisión, Innovación, Pasión por los motores y Trabajo en equipo.</p>
         </div>
-
     </section>
 
-    <!-- SECCIÓN DE LA HISTORIA INTERACTIVA: OMEGA MECHANIC -->
+    <!-- SECCIÓN DE LA HISTORIA -->
     <section class="seccion-historia">
         <h2 class="titulo-historia">El Despertar de Omega Mechanic</h2>
-        <p class="subtitulo-historia">Haz clic en los botones para revelar los capítulos de nuestra leyenda.</p>
+        <p class="subtitulo-historia">Haz clic en las fechas para revelar los capítulos de nuestra leyenda.</p>
 
-        <!-- Contenedor principal de la historia interactiva -->
         <div class="historia-contenedor">
-
-            <!-- Botones de navegación de la historia -->
             <div class="historia-botones">
-                <button class="btn-historia btn-tab" data-target="capitulo1">1. El Origen</button>
-                <button class="btn-historia btn-tab" data-target="capitulo2">2. La Chispa</button>
-                <button class="btn-historia btn-tab" data-target="capitulo3">3. El Futuro</button>
+                <button class="btn-historia btn-tab activo" data-target="capitulo1">
+                    <span class="fecha-etiqueta">2020</span>
+                    <span class="titulo-etiqueta">El Origen</span>
+                </button>
+                <button class="btn-historia btn-tab" data-target="capitulo2">
+                    <span class="fecha-etiqueta">2023</span>
+                    <span class="titulo-etiqueta">La Chispa</span>
+                </button>
+                <button class="btn-historia btn-tab" data-target="capitulo3">
+                    <span class="fecha-etiqueta">2026</span>
+                    <span class="titulo-etiqueta">El Futuro</span>
+                </button>
             </div>
 
-            <!-- Pantallas de contenido (Imágenes y Párrafos que cambian) -->
             <div class="historia-pantallas">
-
-                <!-- CAPÍTULO 1 -->
                 <div id="capitulo1" class="pantalla activo">
                     <div class="contenido-historia">
                         <img src="img/img_historia1.jpg" alt="El Origen" class="img-historia">
                         <div class="texto-historia">
+                            <span class="badge-fecha">Año 2020</span>
                             <h3>El Surgimiento en la Oscuridad</h3>
                             <p>En los suburbios de la red cibernética, bajo un cielo de neón y asfalto húmedo, nació OMEGA MECHANIC. Lo que empezó como un modesto garaje de diagnóstico automotriz manual se transformó rápidamente en el santuario definitivo de la ingeniería de alta precisión, donde ningún motor dañado se da por vencido.</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- CAPÍTULO 2 -->
                 <div id="capitulo2" class="pantalla" style="display: none;">
                     <div class="contenido-historia">
                         <img src="img/img_historia2.jpg" alt="La Chispa" class="img-historia">
                         <div class="texto-historia">
+                            <span class="badge-fecha">Año 2023</span>
                             <h3>La Llegada de la Inteligencia</h3>
                             <p>Para proteger y guiar el taller, los fundadores diseñaron a nuestra mascota cibernética. Equipada con núcleos de procesamiento cuántico y una llave de tuercas de aleación ligera, no es solo un robot: es el alma técnica del taller que saluda a cada cliente listo para rugir en la pista.</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- CAPÍTULO 3 -->
                 <div id="capitulo3" class="pantalla" style="display: none;">
                     <div class="contenido-historia">
                         <img src="img/img_historia3.jpg" alt="El Futuro" class="img-historia">
                         <div class="texto-historia">
+                            <span class="badge-fecha">Año 2026</span>
                             <h3>Innovación sin Límites</h3>
                             <p>Hoy, OMEGA MECHANIC domina la vanguardia de la personalización de vehículos y sistemas computarizados. Cada auto que cruza nuestras puertas sale mejorado, transformándose en una máquina imparable lista para conquistar el mañana.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN ORGANIGRAMA ESTILO PIZARRÓN CON SVG PERFECTO -->
+    <section class="seccion-organigrama">
+        <h2 class="titulo-organigrama">Organigrama Omega Mechanic</h2>
+        <p class="subtitulo-organigrama">Desliza horizontalmente para explorar el organigrama. Pasa el cursor sobre la pestaña lateral para el correo y sobre la inferior para el puesto.</p>
+
+        <div class="organigrama-scroll-wrapper">
+            <div class="canvas-organigrama">
+
+                <!-- LÍNEAS VECTORIALES SVG EXACTAS AL PIZARRÓN -->
+                <svg class="svg-conectores" width="4200" height="1000">
+                    <line x1="600" y1="1050" x2="600" y2="100" class="linea-neon" />
+                    <line x1="800" y1="270" x2="600" y2="270" class="linea-neon" />
+                    <line x1="300" y1="200" x2="600" y2="200" class="linea-neon" />
+                    <line x1="200" y1="200" x2="600" y2="200" class="linea-neon" />
+                    <line x1="200" y1="200" x2="200" y2="500" class="linea-neon" />
+                    <line x1="196" y1="350" x2="300" y2="350" class="linea-neon" />
+                    <line x1="196" y1="500" x2="300" y2="500" class="linea-neon" />
+
+                    <line x1="120" y1="600" x2="1080" y2="600" class="linea-neon" />
+                    <line x1="120" y1="600" x2="120" y2="910" class="linea-neon" />
+                    <line x1="1083" y1="1050" x2="1083" y2="600" class="linea-neon" />
+                    <line x1="117" y1="910" x2="300" y2="910" class="linea-neon" />
+                    <line x1="800" y1="910" x2="600" y2="910" class="linea-neon" />
+                    <line x1="800" y1="1050" x2="600" y2="1050" class="linea-neon" />
+                    <line x1="1200" y1="910" x2="1085" y2="910" class="linea-neon" />
+                    <line x1="1200" y1="1050" x2="1085" y2="1050" class="linea-neon" />
+                </svg>
+
+                <!-- 1. DIRECTOR GENERAL -->
+                <div class="nivel-superior">
+                    <div class="org-card">
+                        <div class="pestana-correo">@<span class="tooltip-correo">juaneduardoocampocastillo@gmail.com</span></div>
+                        <div class="org-foto-container"><img src="img/img_mia.jpg" alt="Director General" class="org-foto"></div>
+                        <h4 class="org-nombre">Juan Eduardo Ocampo Castillo</h4>
+                        <div class="pestana-puesto">Puesto<span class="tooltip-puesto">Director General</span></div>
+                    </div>
+                </div>
+
+                <!-- 2. NIVEL MEDIO -->
+                <div class="nivel-medio-wrapper">
+                    <div class="columna-izquierda-medio">
+                        <div class="org-card">
+                            <div class="pestana-correo">@<span class="tooltip-correo">luisjoaquin@gmail.com</span></div>
+                            <div class="org-foto-container"><img src="img/img_Persona2.jpeg" alt="Gerente de Operaciones" class="org-foto"></div>
+                            <h4 class="org-nombre">Luis Joaquin Landa</h4>
+                            <div class="pestana-puesto">Puesto<span class="tooltip-puesto">Gerente de Operaciones</span></div>
+                        </div>
+                        <div class="org-card">
+                            <div class="pestana-correo">@<span class="tooltip-correo">eduardoharrison@gmail.com</span></div>
+                            <div class="org-foto-container"><img src="img/img_Persona3.jpeg" alt="Gerente Técnico" class="org-foto"></div>
+                            <h4 class="org-nombre">Eduardo Harrison</h4>
+                            <div class="pestana-puesto">Puesto<span class="tooltip-puesto">Gerente Técnico</span></div>
+                        </div>
+                        <div class="org-card">
+                            <div class="pestana-correo">@<span class="tooltip-correo">marcusostos@gmail.com</span></div>
+                            <div class="org-foto-container"><img src="img/img_Persona4.jpeg" alt="Gerente de Innovación" class="org-foto"></div>
+                            <h4 class="org-nombre">Marcus Ostos</h4>
+                            <div class="pestana-puesto">Puesto<span class="tooltip-puesto">Gerente de Innovación</span></div>
+                        </div>
+                    </div>
+
+                    <div class="cuadro-derecho-medio">
+                        <div class="org-card">
+                            <div class="pestana-correo">@<span class="tooltip-correo">romangutierrez@gmail.com</span></div>
+                            <div class="org-foto-container"><img src="img/img_Persona5.jpeg" alt="Sup. Diagnóstico" class="org-foto"></div>
+                            <h4 class="org-nombre">Roman Gutierrez</h4>
+                            <div class="pestana-puesto">Puesto<span class="tooltip-puesto">Sup. Diagnóstico</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. NIVEL INFERIOR -->
+                <div class="nivel-inferior-wrapper">
+                    <!-- Rama 1 -->
+                    <div class="rama-inferior rama-1">
+                        <div class="org-card">
+                            <div class="pestana-correo">@<span class="tooltip-correo">emiliano@gmail.com</span></div>
+                            <div class="org-foto-container"><img src="img/img_Persona6.jpeg" alt="Sup. Mecánica" class="org-foto"></div>
+                            <h4 class="org-nombre">Emiliano</h4>
+                            <div class="pestana-puesto">Puesto<span class="tooltip-puesto">Sup. Mecánica</span></div>
+                        </div>
+                        <div class="org-card hijo-desplazado">
+                            <div class="pestana-correo">@<span class="tooltip-correo">fernanda@gmail.com</span></div>
+                            <div class="org-foto-container"><img src="img/img_Persona7.jpeg" alt="Especialista IA" class="org-foto"></div>
+                            <h4 class="org-nombre">Fernada</h4>
+                            <div class="pestana-puesto">Puesto<span class="tooltip-puesto">Especialista IA</span></div>
+                        </div>
+                    </div>
+
+                    <!-- Rama 2 -->
+                    <div class="rama-inferior rama-2">
+                        <div class="org-card">
+                            <div class="pestana-correo">@<span class="tooltip-correo">fani@gmail.com</span></div>
+                            <div class="org-foto-container"><img src="img/img_Persona9.jpeg" alt="Atención al Cliente" class="org-foto"></div>
+                            <h4 class="org-nombre">Fani</h4>
+                            <div class="pestana-puesto">Puesto<span class="tooltip-puesto">Atención al Cliente</span></div>
+                        </div>
+                        <div class="org-card hijo-desplazado">
+                            <div class="pestana-correo">@<span class="tooltip-correo">ismaelflores@gmail.com</span></div>
+                            <div class="org-foto-container"><img src="img/img_Persona10.jpeg" alt="Mecánico A" class="org-foto"></div>
+                            <h4 class="org-nombre">Ismael Flores Flores</h4>
+                            <div class="pestana-puesto">Puesto<span class="tooltip-puesto">Mecánico A</span></div>
+                        </div>
+                        <div class="org-card carmen-card">
+                            <div class="pestana-correo">@<span class="tooltip-correo">carmenvarajas@gmail.com</span></div>
+                            <div class="org-foto-container"><img src="img/img_Persona14.jpeg" alt="Logística" class="org-foto"></div>
+                            <h4 class="org-nombre">Carmen Varajas</h4>
+                            <div class="pestana-puesto">Puesto<span class="tooltip-puesto">Logística</span></div>
+                        </div>
+                    </div>
+
+                    <!-- Rama 3 -->
+                    <div class="rama-inferior rama-3">
+                        <div class="org-card">
+                            <div class="pestana-correo">@<span class="tooltip-correo">erostapia@gmail.com</span></div>
+                            <div class="org-foto-container"><img src="img/img_Persona11.jpeg" alt="Mecánico B" class="org-foto"></div>
+                            <h4 class="org-nombre">Eros Tapia</h4>
+                            <div class="pestana-puesto">Puesto<span class="tooltip-puesto">Mecánico B</span></div>
+                        </div>
+                        <div class="columna-apilada-abajo">
+                            <!-- Enrrique (Persona 13) con clase enrique-card -->
+                            <div class="org-card enrique-card">
+                                <div class="pestana-correo">@<span class="tooltip-correo">enriquebeserril@gmail.com</span></div>
+                                <div class="org-foto-container"><img src="img/img_Persona13.jpeg" alt="Sistemas" class="org-foto"></div>
+                                <h4 class="org-nombre">Enrrique Becerril</h4>
+                                <div class="pestana-puesto">Puesto<span class="tooltip-puesto">Sistemas</span></div>
+                            </div>
+                            <!-- Eder (Persona 12) con clase eder-card -->
+                            <div class="org-card eder-card">
+                                <div class="pestana-correo">@<span class="tooltip-correo">eder@gmail.com</span></div>
+                                <div class="org-foto-container"><img src="img/img_Persona12.jpeg" alt="Electricista" class="org-foto"></div>
+                                <h4 class="org-nombre">Eder</h4>
+                                <div class="pestana-puesto">Puesto<span class="tooltip-puesto">Electricista</span></div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -112,7 +252,7 @@
         </div>
     </section>
 
-    <!-- SCRIPT DE INTERACTIVIDAD PARA LOS BOTONES -->
+    <!-- SCRIPT DE INTERACTIVIDAD DE LA HISTORIA -->
     <script>
         const botones = document.querySelectorAll('.btn-tab');
         const pantallas = document.querySelectorAll('.pantalla');
@@ -121,12 +261,13 @@
             boton.addEventListener('click', () => {
                 const targetId = boton.getAttribute('data-target');
 
-                // Ocultar todas las pantallas
+                botones.forEach(btn => btn.classList.remove('activo'));
+                boton.classList.add('activo');
+
                 pantallas.forEach(pantalla => {
                     pantalla.style.display = 'none';
                 });
 
-                // Mostrar la pantalla seleccionada
                 const pantallaActiva = document.getElementById(targetId);
                 if (pantallaActiva) {
                     pantallaActiva.style.display = 'block';
