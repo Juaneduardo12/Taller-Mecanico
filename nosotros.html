@@ -3,19 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OMEGA MECHANIC - Nosotros</title>
+    <title>Taller Mecánico - OMEGA MECHANIC</title>
     <link rel="stylesheet" href="css/nosotros.css">
 </head>
 <body>
-    <!-- MENÚ PRINCIPAL -->
+
+    <!-- =========================================
+         BARRA SUPERIOR Y MENÚ
+         ========================================= -->
     <header class="menu">
-        <nav class="nav-botones">
+    
+        <!-- 1. BOTÓN HAMBURGUESA (IZQUIERDA - SOLO CELULAR) -->
+        <button class="boton-menu" id="botonMenu" aria-label="Abrir menú">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <!-- 2. TÍTULO CENTRADO (SOLO CELULAR) -->
+        <span class="titulo-barra">Bienvenido a nuestro Taller Mecánico</span>
+
+        <!-- 3. LOGOTIPO DERECHA (SOLO CELULAR) -->
+        <img src="img/Logotipo_del_taller.jpg" alt="Logo Taller" class="logo-barra" width="50" height="50" loading="eager">
+    
+        <!-- 4. MENÚ DE NAVEGACIÓN (HORIZONTAL EN PC / DESPLEGABLE EN MÓVIL) -->
+        <nav class="nav-botones" id="menuNav">
+            
+            <!-- BOTÓN DE CERRAR "X" (SOLO VISIBLE EN MÓVIL DENTRO DEL DESPLEGABLE) -->
+            <button class="boton-cerrar" id="botonCerrar" aria-label="Cerrar menú">✕</button>
+
             <a href="index.html" class="btn-nav">Inicio</a>
-            <a href="nosotros.html" class="btn-nav">Nosotros</a>
-            <a href="#" class="btn-nav">2</a>
-            <a href="#" class="btn-nav">3</a>
-            <a href="#" class="btn-nav">4</a>
+            <a href="nosotros.html" class="btn-nav activo">Nosotros</a>
+            <a href="#" class="btn-nav">Botón 3</a>
+            <a href="#" class="btn-nav">Botón 4</a>
+            <a href="#" class="btn-nav">Botón 5</a>
+
+            <!-- IMAGEN DEL MENÚ DESPLEGABLE (SOLO CELULAR) -->
+            <div class="menu-imagen-contenedor">
+                <img src="img/img_menu.jpg" alt="Imagen del taller en menú" class="img-menu-desplegable" width="180" height="180" loading="lazy">
+            </div>
         </nav>
+    
     </header>
 
     <!-- IMG ¿QUIÉNES SOMOS? -->
@@ -214,9 +242,9 @@
                             <div class="pestana-puesto">Puesto<span class="tooltip-puesto">Mecánico A</span></div>
                         </div>
                         <div class="org-card carmen-card">
-                            <div class="pestana-correo">@<span class="tooltip-correo">carmenvarajas@gmail.com</span></div>
-                            <div class="org-foto-container"><img src="img/img_Persona14.jpeg" alt="Logística" class="org-foto"></div>
-                            <h4 class="org-nombre">Carmen Varajas</h4>
+                            <div class="pestana-correo">@<span class="tooltip-correo">nikolasgiles@gmail.com</span></div>
+                            <div class="org-foto-container"><img src="img/img_Persona1.jpeg" alt="Logística" class="org-foto"></div>
+                            <h4 class="org-nombre">Nikolas Giles</h4>
                             <div class="pestana-puesto">Puesto<span class="tooltip-puesto">Logística</span></div>
                         </div>
                     </div>
@@ -230,14 +258,12 @@
                             <div class="pestana-puesto">Puesto<span class="tooltip-puesto">Mecánico B</span></div>
                         </div>
                         <div class="columna-apilada-abajo">
-                            <!-- Enrrique (Persona 13) con clase enrique-card -->
                             <div class="org-card enrique-card">
                                 <div class="pestana-correo">@<span class="tooltip-correo">enriquebeserril@gmail.com</span></div>
                                 <div class="org-foto-container"><img src="img/img_Persona13.jpeg" alt="Sistemas" class="org-foto"></div>
                                 <h4 class="org-nombre">Enrrique Becerril</h4>
                                 <div class="pestana-puesto">Puesto<span class="tooltip-puesto">Sistemas</span></div>
                             </div>
-                            <!-- Eder (Persona 12) con clase eder-card -->
                             <div class="org-card eder-card">
                                 <div class="pestana-correo">@<span class="tooltip-correo">eder@gmail.com</span></div>
                                 <div class="org-foto-container"><img src="img/img_Persona12.jpeg" alt="Electricista" class="org-foto"></div>
@@ -252,28 +278,7 @@
         </div>
     </section>
 
-    <!-- SCRIPT DE INTERACTIVIDAD DE LA HISTORIA -->
-    <script>
-        const botones = document.querySelectorAll('.btn-tab');
-        const pantallas = document.querySelectorAll('.pantalla');
-
-        botones.forEach(boton => {
-            boton.addEventListener('click', () => {
-                const targetId = boton.getAttribute('data-target');
-
-                botones.forEach(btn => btn.classList.remove('activo'));
-                boton.classList.add('activo');
-
-                pantallas.forEach(pantalla => {
-                    pantalla.style.display = 'none';
-                });
-
-                const pantallaActiva = document.getElementById(targetId);
-                if (pantallaActiva) {
-                    pantallaActiva.style.display = 'block';
-                }
-            });
-        });
-    </script>
+    <!-- SCRIPT DE INTERACTIVIDAD -->
+    <script src="js/nosotros.js"></script>
 </body>
 </html>

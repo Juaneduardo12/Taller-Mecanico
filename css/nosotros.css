@@ -1,48 +1,111 @@
 /* --- ESTILOS GENERALES Y FONDO --- */
 body {
-    background-color: #1a1a1a;
+    background-color: #121212;
     color: #e0e0e0;
     margin: 0;
     font-family: sans-serif;
     overflow-x: hidden;
 }
 
-/* --- MENÚ PRINCIPAL --- */
+/* =========================================
+   MENÚ PRINCIPAL (BARRA SUPERIOR)
+   ========================================= */
+
 .menu {
-    width: 100%;
-    background-color: #111;
-    padding: 15px 0;
     position: sticky;
     top: 0;
+    width: 100%;
+    height: 70px;
+    min-height: 70px;
+    background-color: #0d1117;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 20px;
     z-index: 1000;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 2px 10px rgba(0, 234, 255, 0.2);
+    box-sizing: border-box;
 }
 
+/* Ocultos en PC por defecto */
+.titulo-barra,
+.logo-barra,
+.boton-menu,
+.boton-cerrar,
+.menu-imagen-contenedor {
+    display: none;
+}
+
+/* Botones horizontales en PC */
 .nav-botones {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 15px;
-    flex-wrap: wrap;
-    padding: 0 10px;
 }
 
 .btn-nav {
-    color: #fff;
+    color: #ffffff;
     text-decoration: none;
-    font-family: sans-serif;
     font-weight: bold;
-    padding: 8px 15px;
-    border: 2px solid #00ffcc;
-    border-radius: 5px;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
+    padding: 10px 22px;
+    border: 1px solid rgba(0, 234, 255, 0.4);
+    border-radius: 12px;
+    background-color: rgba(15, 23, 30, 0.8);
     transition: all 0.3s ease;
+    box-shadow: inset 0 0 10px rgba(0, 234, 255, 0.1);
 }
 
-.btn-nav:hover {
-    background-color: #00ffcc;
-    color: #111;
-    box-shadow: 0 0 15px #00ffcc;
+.btn-nav:hover,
+.btn-nav.activo {
+    border-color: #00eaff;
+    background-color: rgba(0, 234, 255, 0.15);
+    color: #ffffff;
+    box-shadow: 0 0 12px rgba(0, 234, 255, 0.5);
+}
+
+
+/* =========================================
+   LOGOTIPO Y DIFUMINADO DE COMPUTADORA
+   ========================================= */
+
+.imagen-taller-pc {
+    display: none;
+    text-align: center;
+    padding: 50px 20px 20px;
+    position: relative;
+    width: 100%;
+}
+
+.imagen-taller-pc img {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #00eaff;
+    box-shadow: 0 0 15px #00eaff, 0 0 35px rgba(0, 234, 255, 0.7);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    z-index: 2;
+}
+
+.imagen-taller-pc img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px #00eaff, 0 0 50px rgba(0, 234, 255, 0.9);
+}
+
+.difuminado-ancho {
+    position: absolute;
+    bottom: 25px;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background: linear-gradient(to bottom, rgba(0, 234, 255, 0.6), transparent);
+    filter: blur(15px);
+    -webkit-filter: blur(15px);
+    pointer-events: none;
+    z-index: 1;
 }
 
 /* --- SECCIÓN ¿QUIÉNES SOMOS? --- */
@@ -288,7 +351,6 @@ body {
     background-color: #111;
 }
 
-/* Estilo de las líneas de neón SVG */
 .svg-conectores {
     position: absolute;
     top: 0;
@@ -305,7 +367,6 @@ body {
     filter: drop-shadow(0 0 6px #00ffcc);
 }
 
-/* Posicionamiento absoluto de los niveles */
 .nivel-superior {
     position: absolute;
     top: 0px;
@@ -360,7 +421,6 @@ body {
     gap: 20px;
 }
 
-/* TARJETA INDIVIDUAL Y PESTAÑAS INTERACTIVAS */
 .org-card {
     background-color: #1a1a1a;
     border: 2px solid #00ffcc;
@@ -400,7 +460,7 @@ body {
     margin: 5px 0;
 }
 
-/* PESTAÑA LATERAL (CORREO) */
+/* PESTAÑA LATERAL (CORREO) - Soporta Hover (PC) y clase .activo (Móvil) */
 .pestana-correo {
     position: absolute;
     top: 15px;
@@ -435,12 +495,13 @@ body {
     box-shadow: 0 0 10px rgba(0,255,204,0.3);
 }
 
-.pestana-correo:hover .tooltip-correo {
+.pestana-correo:hover .tooltip-correo,
+.pestana-correo.activo .tooltip-correo {
     visibility: visible;
     opacity: 1;
 }
 
-/* PESTAÑA INFERIOR (PUESTO) */
+/* PESTAÑA INFERIOR (PUESTO) - Soporta Hover (PC) y clase .activo (Móvil) */
 .pestana-puesto {
     position: absolute;
     bottom: -12px;
@@ -477,12 +538,12 @@ body {
     box-shadow: 0 0 10px rgba(0,255,204,0.3);
 }
 
-.pestana-puesto:hover .tooltip-puesto {
+.pestana-puesto:hover .tooltip-puesto,
+.pestana-puesto.activo .tooltip-puesto {
     visibility: visible;
     opacity: 1;
 }
 
-/* --- CLASES DE POSICIONAMIENTO ESPECÍFICO --- */
 .carmen-card {
     position: relative;
     left: 150px;
@@ -504,9 +565,133 @@ body {
     transform: translateY(-5px);
 }
 
-/* --- ADAPTACIÓN RESPONSIVA MÓVIL --- */
+
+/* =========================================
+   ADAPTACIÓN RESPONSIVA MÓVIL (EXCLUSIVA MÓVIL)
+   ========================================= */
+
 @media (max-width: 768px) {
-    /* Sección mascota idéntica a la PC con escala proporcionada */
+    .menu {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 8px 15px;
+    }
+
+    .titulo-barra {
+        display: block;
+        font-size: 0.85rem;
+        font-weight: bold;
+        color: #ffffff;
+        position: static;
+        transform: none;
+        text-align: center;
+    }
+
+    .logo-barra {
+        display: block;
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid #00eaff;
+        box-shadow: 0 0 10px #00eaff;
+    }
+
+    .boton-menu {
+        display: flex;
+        width: 38px;
+        height: 38px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 5px;
+        padding: 0;
+    }
+
+    .boton-menu span {
+        display: block;
+        width: 32px;
+        height: 5px;
+        background-color: #00eaff;
+        border-radius: 3px;
+        box-shadow: 0 0 8px #00eaff;
+    }
+
+    .nav-botones {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: #0b1116;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 30px 20px 40px;
+        box-sizing: border-box;
+        z-index: 3000;
+        overflow-y: auto;
+    }
+
+    .nav-botones.activo {
+        display: flex;
+    }
+
+    .boton-cerrar {
+        display: block;
+        align-self: flex-start;
+        background: transparent;
+        border: none;
+        color: #00eaff;
+        font-size: 2.2rem;
+        font-weight: bold;
+        cursor: pointer;
+        margin-bottom: 20px;
+        text-shadow: 0 0 12px #00eaff;
+    }
+
+    .btn-nav {
+        width: 90%;
+        max-width: 340px;
+        text-align: center;
+        padding: 14px 0;
+        margin-bottom: 15px;
+        font-size: 1.1rem;
+        background-color: #121c24;
+        border: 1px solid rgba(0, 234, 255, 0.4);
+        border-radius: 12px;
+        color: #ffffff;
+        box-shadow: inset 0 0 8px rgba(0, 234, 255, 0.1);
+    }
+
+    .btn-nav:hover,
+    .btn-nav.activo {
+        border-color: #00eaff;
+        background-color: rgba(0, 234, 255, 0.15);
+        box-shadow: 0 0 15px rgba(0, 234, 255, 0.4);
+    }
+
+    .menu-imagen-contenedor {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 15px;
+    }
+
+    .img-menu-desplegable {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 3px solid #00eaff;
+        box-shadow: 0 0 25px rgba(0, 234, 255, 0.8);
+    }
+
     .contenedor-mascota-seccion {
         transform: scale(0.55);
         transform-origin: top center;
@@ -526,7 +711,6 @@ body {
         flex-shrink: 0;
     }
 
-    /* Contenedor con scroll horizontal fluido para el organigrama */
     .organigrama-scroll-wrapper {
         width: 100%;
         overflow-x: auto;
@@ -536,13 +720,11 @@ body {
         padding: 10px 0;
     }
 
-    /* Lienzo y líneas SVG visibles y con proporciones exactas a PC */
     .canvas-organigrama {
         width: 4200px;
         height: 1200px;
         position: relative;
         background-color: #111;
-        transform: none;
     }
 
     .svg-conectores {
