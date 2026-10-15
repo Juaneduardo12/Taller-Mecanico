@@ -1,16 +1,24 @@
-/* --- ESTILOS GENERALES Y FONDO --- */
+/* --- ESTILOS GENERALES Y RENDIMIENTO --- */
 body {
     background-color: #121212;
     color: #e0e0e0;
     margin: 0;
     font-family: sans-serif;
     overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Optimización de secciones pesadas con content-visibility */
+.seccion-organigrama, 
+.seccion-historia, 
+.contenedor-mascota-seccion {
+    content-visibility: auto;
+    contain-intrinsic-size: 800px;
 }
 
 /* =========================================
    MENÚ PRINCIPAL (BARRA SUPERIOR)
    ========================================= */
-
 .menu {
     position: sticky;
     top: 0;
@@ -27,7 +35,6 @@ body {
     box-sizing: border-box;
 }
 
-/* Ocultos en PC por defecto */
 .titulo-barra,
 .logo-barra,
 .boton-menu,
@@ -36,7 +43,6 @@ body {
     display: none;
 }
 
-/* Botones horizontales en PC */
 .nav-botones {
     display: flex;
     justify-content: center;
@@ -53,7 +59,7 @@ body {
     border: 1px solid rgba(0, 234, 255, 0.4);
     border-radius: 12px;
     background-color: rgba(15, 23, 30, 0.8);
-    transition: all 0.3s ease;
+    transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
     box-shadow: inset 0 0 10px rgba(0, 234, 255, 0.1);
 }
 
@@ -63,49 +69,6 @@ body {
     background-color: rgba(0, 234, 255, 0.15);
     color: #ffffff;
     box-shadow: 0 0 12px rgba(0, 234, 255, 0.5);
-}
-
-
-/* =========================================
-   LOGOTIPO Y DIFUMINADO DE COMPUTADORA
-   ========================================= */
-
-.imagen-taller-pc {
-    display: none;
-    text-align: center;
-    padding: 50px 20px 20px;
-    position: relative;
-    width: 100%;
-}
-
-.imagen-taller-pc img {
-    width: 250px;
-    height: 250px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 4px solid #00eaff;
-    box-shadow: 0 0 15px #00eaff, 0 0 35px rgba(0, 234, 255, 0.7);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    position: relative;
-    z-index: 2;
-}
-
-.imagen-taller-pc img:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 20px #00eaff, 0 0 50px rgba(0, 234, 255, 0.9);
-}
-
-.difuminado-ancho {
-    position: absolute;
-    bottom: 25px;
-    left: 0;
-    width: 100%;
-    height: 60px;
-    background: linear-gradient(to bottom, rgba(0, 234, 255, 0.6), transparent);
-    filter: blur(15px);
-    -webkit-filter: blur(15px);
-    pointer-events: none;
-    z-index: 1;
 }
 
 /* --- SECCIÓN ¿QUIÉNES SOMOS? --- */
@@ -147,12 +110,6 @@ body {
     width: 100%;
 }
 
-.imagen-contenedor-central {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 .img-mascota {
     border-radius: 50%;
     width: 220px;
@@ -161,12 +118,12 @@ body {
     object-position: center;
     border: 5px solid #00ffcc;
     box-shadow: 0 0 30px rgba(0, 255, 204, 0.6);
-    transition: transform 0.3s ease;
+    transition: transform 0.2s ease;
+    will-change: transform;
 }
 
 .img-mascota:hover {
     transform: scale(1.05);
-    box-shadow: 0 0 40px rgba(0, 255, 204, 0.9);
 }
 
 .info-box {
@@ -178,7 +135,8 @@ body {
     text-align: center;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
     box-sizing: border-box;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    will-change: transform;
 }
 
 .info-box:hover {
@@ -250,7 +208,6 @@ body {
 .btn-historia {
     background-color: #111;
     color: #00ffcc;
-    text-decoration: none;
     font-family: sans-serif;
     font-weight: bold;
     padding: 10px 15px;
@@ -258,7 +215,7 @@ body {
     border-radius: 8px;
     cursor: pointer;
     font-size: 0.9rem;
-    transition: all 0.3s ease;
+    transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .btn-historia:hover, .btn-historia.activo {
@@ -313,7 +270,7 @@ body {
     line-height: 1.6;
 }
 
-/* --- SECCIÓN ORGANIGRAMA CON LÍNEAS VECTORIALES SVG --- */
+/* --- SECCIÓN ORGANIGRAMA --- */
 .seccion-organigrama {
     background-color: #111;
     padding: 50px 15px;
@@ -430,7 +387,8 @@ body {
     text-align: center;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
     position: relative;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    will-change: transform;
 }
 
 .org-card:hover {
@@ -460,7 +418,6 @@ body {
     margin: 5px 0;
 }
 
-/* PESTAÑA LATERAL (CORREO) - Soporta Hover (PC) y clase .activo (Móvil) */
 .pestana-correo {
     position: absolute;
     top: 15px;
@@ -490,7 +447,7 @@ body {
     white-space: nowrap;
     border: 1px solid #00ffcc;
     opacity: 0;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.2s ease;
     font-size: 0.75rem;
     box-shadow: 0 0 10px rgba(0,255,204,0.3);
 }
@@ -501,7 +458,6 @@ body {
     opacity: 1;
 }
 
-/* PESTAÑA INFERIOR (PUESTO) - Soporta Hover (PC) y clase .activo (Móvil) */
 .pestana-puesto {
     position: absolute;
     bottom: -12px;
@@ -533,7 +489,7 @@ body {
     white-space: nowrap;
     border: 1px solid #00ffcc;
     opacity: 0;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.2s ease;
     font-size: 0.75rem;
     box-shadow: 0 0 10px rgba(0,255,204,0.3);
 }
@@ -544,32 +500,13 @@ body {
     opacity: 1;
 }
 
-.carmen-card {
-    position: relative;
-    left: 150px;
-}
-
-.enrique-card {
-    position: relative;
-    left: 200px;
-    top: 0px;
-}
-
-.eder-card {
-    position: relative;
-    left: 200px;
-    top: 0px;
-}
-
-.carmen-card:hover, .enrique-card:hover, .eder-card:hover {
-    transform: translateY(-5px);
-}
-
+.carmen-card { position: relative; left: 150px; }
+.enrique-card { position: relative; left: 200px; }
+.eder-card { position: relative; left: 200px; }
 
 /* =========================================
-   ADAPTACIÓN RESPONSIVA MÓVIL (EXCLUSIVA MÓVIL)
+   ADAPTACIÓN RESPONSIVA MÓVIL
    ========================================= */
-
 @media (max-width: 768px) {
     .menu {
         display: flex;
@@ -583,8 +520,6 @@ body {
         font-size: 0.85rem;
         font-weight: bold;
         color: #ffffff;
-        position: static;
-        transform: none;
         text-align: center;
     }
 
@@ -607,7 +542,6 @@ body {
         cursor: pointer;
         flex-direction: column;
         justify-content: center;
-        align-items: flex-start;
         gap: 5px;
         padding: 0;
     }
@@ -652,7 +586,6 @@ body {
         font-weight: bold;
         cursor: pointer;
         margin-bottom: 20px;
-        text-shadow: 0 0 12px #00eaff;
     }
 
     .btn-nav {
@@ -663,17 +596,6 @@ body {
         margin-bottom: 15px;
         font-size: 1.1rem;
         background-color: #121c24;
-        border: 1px solid rgba(0, 234, 255, 0.4);
-        border-radius: 12px;
-        color: #ffffff;
-        box-shadow: inset 0 0 8px rgba(0, 234, 255, 0.1);
-    }
-
-    .btn-nav:hover,
-    .btn-nav.activo {
-        border-color: #00eaff;
-        background-color: rgba(0, 234, 255, 0.15);
-        box-shadow: 0 0 15px rgba(0, 234, 255, 0.4);
     }
 
     .menu-imagen-contenedor {
@@ -689,7 +611,6 @@ body {
         border-radius: 50%;
         object-fit: cover;
         border: 3px solid #00eaff;
-        box-shadow: 0 0 25px rgba(0, 234, 255, 0.8);
     }
 
     .contenedor-mascota-seccion {
@@ -716,7 +637,6 @@ body {
         overflow-x: auto;
         overflow-y: hidden;
         -webkit-overflow-scrolling: touch;
-        justify-content: flex-start;
         padding: 10px 0;
     }
 
@@ -724,7 +644,6 @@ body {
         width: 4200px;
         height: 1200px;
         position: relative;
-        background-color: #111;
     }
 
     .svg-conectores {
@@ -733,14 +652,6 @@ body {
         left: 0;
         width: 4200px;
         height: 1200px;
-        z-index: 1;
-        pointer-events: none;
         display: block !important;
-    }
-
-    .linea-neon {
-        stroke: #00ffcc;
-        stroke-width: 3px;
-        filter: drop-shadow(0 0 6px #00ffcc);
     }
 }

@@ -1,23 +1,20 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Taller Mecánico - OMEGA MECHANIC</title>
     <meta name="description" content="Servicio profesional para el mantenimiento y reparación de tu vehículo en Cuernavaca, Morelos.">
-    <!-- Conectamos nuestro archivo CSS -->
+    
+    <!-- Preconexión y carga de estilos optimizada -->
     <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body>
 
     <!-- =========================================
          MENÚ PRINCIPAL Y BARRA SUPERIOR
          ========================================= -->
-    
     <header class="menu">
-    
         <!-- 1. BOTÓN HAMBURGUESA (IZQUIERDA - SOLO CELULAR) -->
         <button class="boton-menu" id="botonMenu" aria-label="Abrir menú">
             <span></span>
@@ -29,53 +26,42 @@
         <span class="titulo-barra">Bienvenido a nuestro Taller Mecánico</span>
 
         <!-- 3. LOGOTIPO DERECHA (SOLO CELULAR) -->
-        <img src="img/Logotipo_del_taller.jpg" alt="Logo Taller" class="logo-barra" width="60" height="60" loading="eager">
+        <img src="img/Logotipo_del_taller.jpg" alt="Logo Taller" class="logo-barra" width="60" height="60" fetchpriority="high">
     
         <!-- MENÚ DE NAVEGACIÓN -->
         <nav id="menuNav">
             <a href="index.html">Inicio</a>
             <a href="nosotros.html">Nosotros</a>
-            <a href="">Botón 3</a>
-            <a href="">Botón 4</a>
-            <a href="">Botón 5</a>
+            <a>Botón 3</a>
+            <a>Botón 4</a>
+            <a>Botón 5</a>
 
             <!-- APARTADO DE IMAGEN PARA EL MENÚ (SOLO CELULAR) -->
             <div class="menu-imagen-contenedor">
-                <img src="img/img_menu.jpg" alt="Imagen del taller en menú" class="img-menu-desplegable" width="200" height="200" loading="lazy">
+                <img src="img/img_menu.jpg" alt="Imagen del taller en menú" class="img-menu-desplegable" width="120" height="120" loading="lazy">
             </div>
         </nav>
-    
     </header>
 
     <!-- =========================================
          CARRUSEL DE IMÁGENES (SE MANTIENE EN CELULAR)
          ========================================= -->
-
     <section class="carrusel-contenedor">
-
         <div class="carrusel-interno">
-            <!-- Botón Anterior -->
             <button class="carrusel-boton carrusel-boton-anterior" onclick="moverCarrusel(-1)" aria-label="Imagen anterior">&#10094;</button>
 
-            <!-- Contenedor de las diapositivas -->
             <div class="carrusel-track">
-                <!-- IMAGEN 1 -->
                 <div class="carrusel-slide activa">
-                    <img src="img/img_muestra1.jpg" alt="Vista general del taller" class="img-personalizada" width="800" height="450" loading="eager">
+                    <img src="img/img_muestra1.jpg" alt="Vista general del taller" class="img-personalizada" width="800" height="450" fetchpriority="high">
                 </div>
-
-                <!-- IMAGEN 2 -->
                 <div class="carrusel-slide">
                     <img src="img/img_muestra2.jpg" alt="Mecánico trabajando en un motor" class="img-personalizada" width="800" height="450" loading="lazy">
                 </div>
-
-                <!-- IMAGEN 3 -->
                 <div class="carrusel-slide">
                     <img src="img/img_muestra3.jpg" alt="Herramientas de diagnóstico" class="img-personalizada" width="800" height="450" loading="lazy">
                 </div>
             </div>
 
-            <!-- Botón Siguiente -->
             <button class="carrusel-boton carrusel-boton-siguiente" onclick="moverCarrusel(1)" aria-label="Siguiente imagen">&#10095;</button>
         </div>
     </section>
@@ -84,8 +70,7 @@
          SECCIÓN DEL LOGOTIPO Y DIFUMINADO PARA COMPUTADORA
          ========================================= -->
     <section class="imagen-taller-pc">
-        <img src="img/Logotipo_del_taller.jpg" alt="Logotipo del Taller" width="300" height="300" loading="eager">
-        <!-- Línea de difuminado a todo lo ancho -->
+        <img src="img/Logotipo_del_taller.jpg" alt="Logotipo del Taller" width="250" height="250" loading="lazy">
         <div class="difuminado-ancho"></div>
     </section>
 
@@ -93,64 +78,44 @@
          CONTENIDO PRINCIPAL
          ========================================= -->
     <main>
-
         <section class="inicio">
-            <p>
-                Servicio profesional para el mantenimiento
-                y reparación de tu vehículo.
-            </p>
+            <p>Servicio profesional para el mantenimiento y reparación de tu vehículo.</p>
         </section>
-
     </main>
 
     <!-- =========================================
          REDES SOCIALES
          ========================================= -->
     <section class="redes-sociales">
-
         <h2>Síguenos en nuestras redes sociales</h2>
-
         <div class="botones-redes">
-
-            <!-- FACEBOOK -->
             <div class="boton-red" title="Próximamente disponible">
-                <img src="img/img_Facebook.webp" alt="Facebook" width="40" height="40" loading="lazy">
+                <img src="img/img_Facebook.webp" alt="Facebook" width="50" height="50" loading="lazy">
             </div>
-
-            <!-- TIKTOK -->
             <div class="boton-red" title="Próximamente disponible">
-                <img src="img/img_TikTok.png" alt="TikTok" width="40" height="40" loading="lazy">
+                <img src="img/img_TikTok.png" alt="TikTok" width="50" height="50" loading="lazy">
             </div>
-
-            <!-- INSTAGRAM -->
             <div class="boton-red" title="Próximamente disponible">
-                <img src="img/img_Instagram.png" alt="Instagram" width="40" height="40" loading="lazy">
+                <img src="img/img_Instagram.png" alt="Instagram" width="50" height="50" loading="lazy">
             </div>
-
         </div>
-
     </section>
 
     <!-- =========================================
          INFORMACIÓN DE CONTACTO
          ========================================= -->
-    <section class="contacto">
-
+    <section class="contacto" id="contacto">
         <h2>Contáctanos</h2>
-
         <ul class="lista-contacto">
             <li>Teléfono: 777 5041214</li>
             <li>Dirección: Cuernavaca, Morelos, México</li>
             <li>Correo electrónico: juaneduardoocampocastillo5@gmail.com</li>
         </ul>
-
     </section>
 
     <!-- =========================================
-         JavaScript
+         JavaScript Optimizado (Defer)
          ========================================= -->
-    <script src="js/script.js"></script>
-
+    <script src="js/script.js" defer></script>
 </body>
-
 </html>
