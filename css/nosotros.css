@@ -89,7 +89,7 @@ body {
     height: auto;
 }
 
-/* --- SECCIÓN MASCOTA Y FILOSOFÍA --- */
+/* --- SECCIÓN MASCOTA Y FILOSOFÍA (ESCRITORIO / GENERAL) --- */
 .contenedor-mascota-seccion {
     background-color: #111;
     padding: 40px 15px;
@@ -504,8 +504,9 @@ body {
 .enrique-card { position: relative; left: 200px; }
 .eder-card { position: relative; left: 200px; }
 
+
 /* =========================================
-   ADAPTACIÓN RESPONSIVA MÓVIL
+   ADAPTACIÓN RESPONSIVA MÓVIL (PANTALLAS <= 768px)
    ========================================= */
 @media (max-width: 768px) {
     .menu {
@@ -613,25 +614,69 @@ body {
         border: 3px solid #00eaff;
     }
 
+    /* --- SECCIÓN MASCOTA EN CRUZ (COMPACTA Y PROPORCIONAL EN MÓVIL) --- */
     .contenedor-mascota-seccion {
-        transform: scale(0.55);
-        transform-origin: top center;
-        margin-top: -40px;
-        margin-bottom: -280px;
+        transform: none !important;
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+        padding: 15px 5px !important;
+        gap: 8px !important;
+        width: 100% !important;
+        box-sizing: border-box;
     }
 
     .centro-grid {
+        display: flex !important;
         flex-direction: row !important;
         flex-wrap: nowrap !important;
-        justify-content: center;
-        gap: 15px;
+        justify-content: center !important;
+        align-items: center !important;
+        gap: 6px !important;
+        width: 100% !important;
+    }
+
+    .left-box, 
+    .right-box {
+        flex: 1 1 0% !important;
+        min-width: 0 !important;
+        width: auto !important;
+        padding: 8px 6px !important;
+    }
+
+    .top-box, 
+    .bottom-box {
+        width: 96% !important;
+        max-width: 360px !important;
+        padding: 8px 10px !important;
     }
 
     .info-box {
-        width: 220px !important;
-        flex-shrink: 0;
+        border-width: 1.5px !important;
+        border-radius: 8px !important;
     }
 
+    .info-box h3 {
+        font-size: 0.82rem !important;
+        margin-bottom: 3px !important;
+    }
+
+    .info-box p {
+        font-size: 0.70rem !important;
+        line-height: 1.25 !important;
+    }
+
+    .imagen-contenedor-central {
+        flex-shrink: 0 !important;
+    }
+
+    .img-mascota {
+        width: 75px !important;
+        height: 75px !important;
+        border-width: 2.5px !important;
+        box-shadow: 0 0 12px rgba(0, 255, 204, 0.6) !important;
+    }
+
+    /* --- ORGANIGRAMA EN MÓVIL --- */
     .organigrama-scroll-wrapper {
         width: 100%;
         overflow-x: auto;
