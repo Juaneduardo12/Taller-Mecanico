@@ -1,0 +1,181 @@
+/* =========================================
+   PÁGINA DE LOGIN
+   ========================================= */
+.menu nav a[aria-current="page"] {
+    border-color: #00eaff;
+    background-color: rgba(0, 234, 255, 0.15);
+}
+
+.login-pagina {
+    min-height: calc(100vh - 70px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 16px;
+}
+
+.login-tarjeta {
+    width: 100%;
+    max-width: 400px;
+    background-color: #1a1a1a;
+    border: 2px solid #00eaff;
+    border-radius: 16px;
+    padding: 28px 24px;
+    box-shadow: 0 0 25px rgba(0, 234, 255, 0.25);
+    text-align: center;
+}
+
+.login-logo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #00eaff;
+    box-shadow: 0 0 12px rgba(0, 234, 255, 0.6);
+    margin-bottom: 12px;
+}
+
+.login-titulo {
+    font-size: 1.6rem;
+    color: #00eaff;
+    margin-bottom: 6px;
+}
+
+.login-subtitulo {
+    font-size: 0.9rem;
+    color: #b0b0b0;
+    margin-bottom: 22px;
+}
+
+/* --- Campos --- */
+.campo {
+    text-align: left;
+    margin-bottom: 16px;
+}
+
+.campo label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: bold;
+    margin-bottom: 6px;
+    color: #e0e0e0;
+}
+
+.campo input {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px; /* evita el zoom automático en iPhone */
+    color: #ffffff;
+    background-color: #0d1117;
+    border: 1px solid rgba(0, 234, 255, 0.4);
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.campo input::placeholder {
+    color: #6b7280;
+}
+
+.campo input:focus {
+    border-color: #00eaff;
+    box-shadow: 0 0 8px rgba(0, 234, 255, 0.5);
+}
+
+.campo-contrasena {
+    position: relative;
+}
+
+.campo-contrasena input {
+    padding-right: 84px;
+}
+
+.boton-ver {
+    position: absolute;
+    top: 50%;
+    right: 8px;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    color: #00eaff;
+    font-size: 0.8rem;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 6px 8px;
+}
+
+/* --- Turnstile --- */
+.turnstile-contenedor {
+    display: flex;
+    justify-content: center;
+    margin: 6px 0 14px;
+}
+
+/* --- Mensajes --- */
+.mensaje-login {
+    min-height: 1.2em;
+    font-size: 0.85rem;
+    margin-bottom: 12px;
+}
+
+.mensaje-login.error {
+    color: #ff6b6b;
+}
+
+.mensaje-login.ok {
+    color: #2ecc71;
+}
+
+/* --- Botón --- */
+.boton-entrar {
+    width: 100%;
+    padding: 13px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #0b0b0b;
+    background-color: #00eaff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.boton-entrar:hover {
+    background-color: #e63946;
+    color: #ffffff;
+}
+
+.boton-entrar:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* --- Enlaces inferiores --- */
+.login-enlaces {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 16px;
+    font-size: 0.8rem;
+}
+
+.login-enlaces a {
+    color: #00eaff;
+    text-decoration: none;
+}
+
+.login-enlaces a:hover {
+    text-decoration: underline;
+}
+
+/* --- Celulares pequeños --- */
+@media (max-width: 400px) {
+    .login-pagina {
+        padding: 20px 10px;
+    }
+
+    .login-tarjeta {
+        padding: 24px 14px;
+    }
+}

@@ -89,7 +89,7 @@ body {
     height: auto;
 }
 
-/* --- SECCIÓN MASCOTA Y FILOSOFÍA (ESCRITORIO / GENERAL) --- */
+/* --- SECCIÓN MASCOTA Y FILOSOFÍA (ESTILO BASE / ESCRITORIO) --- */
 .contenedor-mascota-seccion {
     background-color: #111;
     padding: 40px 15px;
@@ -98,6 +98,8 @@ body {
     align-items: center;
     gap: 25px;
     border-top: 2px solid #00ffcc;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .centro-grid {
@@ -105,7 +107,7 @@ body {
     justify-content: center;
     align-items: center;
     gap: 25px;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     max-width: 1100px;
     width: 100%;
 }
@@ -120,6 +122,7 @@ body {
     box-shadow: 0 0 30px rgba(0, 255, 204, 0.6);
     transition: transform 0.2s ease;
     will-change: transform;
+    flex-shrink: 0;
 }
 
 .img-mascota:hover {
@@ -137,6 +140,7 @@ body {
     box-sizing: border-box;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     will-change: transform;
+    flex-shrink: 0;
 }
 
 .info-box:hover {
@@ -289,6 +293,13 @@ body {
     color: #b0b0b0;
     font-size: 0.95rem;
     margin-bottom: 30px;
+}
+
+.organigrama-escritorio {
+    display: block;
+}
+.organigrama-movil {
+    display: none;
 }
 
 .organigrama-scroll-wrapper {
@@ -614,89 +625,202 @@ body {
         border: 3px solid #00eaff;
     }
 
-    /* --- SECCIÓN MASCOTA EN CRUZ (COMPACTA Y PROPORCIONAL EN MÓVIL) --- */
+    /* --- AJUSTE COMPACTO Y PROPORCIONAL PARA LA SECCIÓN MASCOTA EN CELULARES --- */
     .contenedor-mascota-seccion {
-        transform: none !important;
-        margin-top: 0 !important;
-        margin-bottom: 0 !important;
-        padding: 15px 5px !important;
-        gap: 8px !important;
-        width: 100% !important;
-        box-sizing: border-box;
+        padding: 20px 5px;
+        gap: 10px;
     }
 
     .centro-grid {
-        display: flex !important;
-        flex-direction: row !important;
-        flex-wrap: nowrap !important;
-        justify-content: center !important;
-        align-items: center !important;
-        gap: 6px !important;
-        width: 100% !important;
-    }
-
-    .left-box, 
-    .right-box {
-        flex: 1 1 0% !important;
-        min-width: 0 !important;
-        width: auto !important;
-        padding: 8px 6px !important;
-    }
-
-    .top-box, 
-    .bottom-box {
-        width: 96% !important;
-        max-width: 360px !important;
-        padding: 8px 10px !important;
-    }
-
-    .info-box {
-        border-width: 1.5px !important;
-        border-radius: 8px !important;
-    }
-
-    .info-box h3 {
-        font-size: 0.82rem !important;
-        margin-bottom: 3px !important;
-    }
-
-    .info-box p {
-        font-size: 0.70rem !important;
-        line-height: 1.25 !important;
-    }
-
-    .imagen-contenedor-central {
-        flex-shrink: 0 !important;
+        gap: 8px;
     }
 
     .img-mascota {
-        width: 75px !important;
-        height: 75px !important;
-        border-width: 2.5px !important;
-        box-shadow: 0 0 12px rgba(0, 255, 204, 0.6) !important;
+        width: 110px;
+        height: 110px;
+        border-width: 3px;
+        box-shadow: 0 0 15px rgba(0, 255, 204, 0.5);
+    }
+
+    .info-box {
+        padding: 10px 8px;
+        width: 115px;
+        border-width: 1.5px;
+        border-radius: 8px;
+    }
+
+    .info-box h3 {
+        font-size: 0.8rem;
+        margin-bottom: 4px;
+    }
+
+    .info-box p {
+        font-size: 0.65rem;
+        line-height: 1.2;
+    }
+
+    .top-box, .bottom-box {
+        width: 92%;
+        max-width: 320px;
+        padding: 10px;
     }
 
     /* --- ORGANIGRAMA EN MÓVIL --- */
-    .organigrama-scroll-wrapper {
-        width: 100%;
+    .seccion-organigrama {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .organigrama-escritorio {
+        display: none;
+    }
+
+    .organigrama-movil {
+        display: block;
         overflow-x: auto;
-        overflow-y: hidden;
-        -webkit-overflow-scrolling: touch;
-        padding: 10px 0;
+        padding: 0 0 20px;
     }
 
-    .canvas-organigrama {
-        width: 4200px;
-        height: 1200px;
+    .subtitulo-organigrama {
+        font-size: 0.85rem;
+        padding: 0 15px;
+        margin-bottom: 20px;
+    }
+
+    /* Lienzo donde se colocan tarjetas y líneas por coordenadas */
+    .movil-lienzo {
         position: relative;
+        width: 340px;
+        height: 1010px;   /* si agregas tarjetas abajo, aumenta este valor */
+        margin: 0 auto;
+        overflow: visible;
     }
 
-    .svg-conectores {
+    .movil-lineas {
         position: absolute;
         top: 0;
         left: 0;
-        width: 4200px;
-        height: 1200px;
-        display: block !important;
+        z-index: 1;
+        pointer-events: none;
+        overflow: visible;
+    }
+
+    .movil-lineas .linea-neon {
+        stroke-width: 2px;
+    }
+
+    /* Tarjeta de cada persona */
+    .m-nodo {
+        position: absolute;
+        left: var(--x);
+        top: var(--y);
+        width: 128px;
+        height: 60px;
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 0 8px;
+        background-color: #1a1a1a;
+        border: 2px solid #00ffcc;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        text-align: left;
+        cursor: pointer;
+        z-index: 2;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .m-nodo.nivel-1 {
+        background: linear-gradient(135deg, #1a1a1a, #0d2b27);
+        box-shadow: 0 0 15px rgba(0, 255, 204, 0.3);
+    }
+
+    .m-nodo .org-foto {
+        width: 40px;
+        height: 40px;
+        flex-shrink: 0;
+    }
+
+    .m-nombre {
+        color: #ffffff;
+        font-size: 0.66rem;
+        font-weight: bold;
+        line-height: 1.15;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    /* Tarjetita a la derecha con puesto y correo */
+    .m-tarjeta {
+        position: absolute;
+        left: calc(100% + 8px);
+        top: 50%;
+        transform: translateY(-50%) translateX(-6px);
+        width: 114px;
+        box-sizing: border-box;
+        padding: 6px 8px;
+        background-color: #0d1117;
+        border: 1px solid #00ffcc;
+        border-radius: 6px;
+        box-shadow: 0 0 10px rgba(0, 255, 204, 0.4);
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+    }
+
+    /* Flechita que apunta a la tarjeta */
+    .m-tarjeta::before {
+        content: "";
+        position: absolute;
+        left: -6px;
+        top: 50%;
+        transform: translateY(-50%);
+        border-top: 6px solid transparent;
+        border-bottom: 6px solid transparent;
+        border-right: 6px solid #00ffcc;
+    }
+
+    .m-puesto {
+        display: block;
+        color: #00ffcc;
+        font-size: 0.68rem;
+        font-weight: bold;
+        margin-bottom: 3px;
+    }
+
+    .m-correo {
+        display: block;
+        color: #e0e0e0;
+        font-size: 0.6rem;
+        line-height: 1.25;
+        word-break: break-all;
+    }
+
+    /* Mostrar al tocar (celular) */
+    .m-nodo.activo {
+        z-index: 20;
+    }
+
+    .m-nodo.activo .m-tarjeta {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(-50%) translateX(0);
+    }
+
+    /* Mostrar al pasar el cursor (cuando hay mouse) */
+    @media (hover: hover) {
+        .m-nodo:hover {
+            z-index: 20;
+        }
+
+        .m-nodo:hover .m-tarjeta {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(-50%) translateX(0);
+        }
     }
 }

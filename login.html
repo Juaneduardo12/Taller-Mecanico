@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex">
+    <title>Iniciar sesión - OMEGA MECHANIC</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/login.css">
+
+    <!-- Turnstile (anti-bots de Cloudflare). Déjalo; solo se usa cuando lo activas -->
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+</head>
+<body>
+
+    <!-- =========================================
+         MENÚ PRINCIPAL Y BARRA SUPERIOR
+         ========================================= -->
+    <header class="menu">
+        <button class="boton-menu" id="botonMenu" aria-label="Abrir menú" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <span class="titulo-barra">Bienvenido a nuestro Taller Mecánico</span>
+
+        <img src="img/Logotipo_del_taller.jpg" alt="Logo Taller" class="logo-barra" width="60" height="60">
+
+        <nav id="menuNav">
+            <a href="index.html">Inicio</a>
+            <a href="nosotros.html">Nosotros</a>
+            <a href="login.html" aria-current="page">Login</a>
+            <a>Botón 4</a>
+            <a>Botón 5</a>
+
+            <div class="menu-imagen-contenedor">
+                <img src="img/img_menu.jpg" alt="Imagen del taller en menú" class="img-menu-desplegable" width="120" height="120" loading="lazy">
+            </div>
+        </nav>
+    </header>
+
+    <!-- =========================================
+         LOGIN
+         ========================================= -->
+    <main class="login-pagina">
+        <section class="login-tarjeta">
+
+            <img src="img/Logotipo_del_taller.jpg" alt="Logo Omega Mechanic" class="login-logo" width="80" height="80">
+            <h1 class="login-titulo">Iniciar sesión</h1>
+            <p class="login-subtitulo">Acceso exclusivo para el personal de OMEGA MECHANIC</p>
+
+            <form id="formLogin">
+
+                <!-- Correo -->
+                <div class="campo">
+                    <label for="correo">Correo electrónico</label>
+                    <input type="email" id="correo" name="correo"
+                           placeholder="tucorreo@ejemplo.com"
+                           autocomplete="email" inputmode="email"
+                           maxlength="254" required>
+                </div>
+
+                <!-- Contraseña -->
+                <div class="campo">
+                    <label for="contrasena">Contraseña</label>
+                    <div class="campo-contrasena">
+                        <input type="password" id="contrasena" name="contrasena"
+                               placeholder="Tu contraseña"
+                               autocomplete="current-password"
+                               maxlength="128" required>
+                        <button type="button" id="botonVerContrasena" class="boton-ver" aria-pressed="false">Mostrar</button>
+                    </div>
+                </div>
+
+                <!-- =====================================================
+                     VERIFICACIÓN ANTI-BOTS (Cloudflare Turnstile)
+                     Para activarla:
+                     1) Quita las marcas de comentario de este bloque
+                     2) Cambia TU_SITE_KEY por tu Site Key de Cloudflare
+                     3) En js/login.js pon TURNSTILE_ACTIVO = true
+                     4) Activa CAPTCHA en Supabase con tu Secret Key
+                     ===================================================== -->
+                <!--
+                <div class="turnstile-contenedor">
+                    <div class="cf-turnstile" data-sitekey="TU_SITE_KEY" data-theme="dark" data-size="flexible"></div>
+                </div>
+                -->
+
+                <!-- Mensajes de error o éxito -->
+                <p id="mensajeLogin" class="mensaje-login" role="alert" aria-live="polite"></p>
+
+                <button type="submit" id="botonEntrar" class="boton-entrar">Entrar</button>
+
+            </form>
+
+        </section>
+    </main>
+
+    <!-- El orden de estos scripts es importante -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase.js"></script>
+    <script src="js/script.js" defer></script>
+    <script src="js/login.js" defer></script>
+</body>
+</html>

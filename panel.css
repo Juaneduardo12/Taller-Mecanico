@@ -1,0 +1,63 @@
+/* =========================================
+   PANEL DEL PERSONAL
+   ========================================= */
+.menu nav a[aria-current="page"] {
+    border-color: #00eaff;
+    background-color: rgba(0, 234, 255, 0.15);
+}
+
+.panel-pagina {
+    min-height: calc(100vh - 70px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 16px;
+}
+
+.panel-tarjeta {
+    width: 100%;
+    max-width: 480px;
+    background-color: #1a1a1a;
+    border: 2px solid #00eaff;
+    border-radius: 16px;
+    padding: 28px 24px;
+    box-shadow: 0 0 25px rgba(0, 234, 255, 0.25);
+    text-align: center;
+}
+
+.panel-titulo {
+    font-size: 1.6rem;
+    color: #00eaff;
+    margin-bottom: 10px;
+}
+
+.panel-texto {
+    font-size: 0.9rem;
+    color: #b0b0b0;
+}
+
+.panel-correo {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #ffffff;
+    margin: 6px 0 22px;
+    word-break: break-all;
+}
+
+.boton-cerrar-sesion {
+    width: 100%;
+    padding: 13px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #0b0b0b;
+    background-color: #00eaff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.boton-cerrar-sesion:hover {
+    background-color: #e63946;
+    color: #ffffff;
+}

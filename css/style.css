@@ -246,12 +246,14 @@ body {
         transform: translateY(-9px) rotate(-45deg);
     }
 
+    /* --- Panel a pantalla completa: se abre en abanico hacia la derecha --- */
     .menu nav {
         position: fixed;
         top: 0;
         left: 0;
         width: 100vw;
         height: 100vh;
+        height: 100dvh;
         background-color: rgba(17, 17, 17, 0.98);
         backdrop-filter: blur(8px);
         display: flex;
@@ -260,21 +262,36 @@ body {
         align-items: center;
         gap: 15px;
         padding: 80px 15px 30px;
+        overflow-y: auto;
         z-index: 1500;
+
+        /* Punto de giro: esquina inferior izquierda */
+        transform-origin: 0 100%;
+        transform: rotate(-90deg);
         opacity: 0;
         visibility: hidden;
         pointer-events: none;
-        transform: scale(0.95);
-        transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+
+        /* Cierre (la X): lento, regresa hacia la izquierda */
+        transition:
+            transform 1s cubic-bezier(0.55, 0, 0.45, 1),
+            opacity 0.4s ease 0.6s,
+            visibility 0s linear 1s;
     }
 
+    /* Apertura (hamburguesa): lenta, se despliega hacia la derecha */
     .menu nav.menu-abierto {
+        transform: rotate(0deg);
         opacity: 1;
         visibility: visible;
         pointer-events: auto;
-        transform: scale(1);
+        transition:
+            transform 1.4s cubic-bezier(0.22, 0.9, 0.3, 1),
+            opacity 0.3s ease,
+            visibility 0s;
     }
 
+    /* Cada botón se abre en abanico, uno tras otro */
     .menu nav a {
         color: white;
         text-decoration: none;
@@ -287,12 +304,46 @@ body {
         border-radius: 8px;
         background-color: rgba(0, 234, 255, 0.05);
         border: 1px solid rgba(0, 234, 255, 0.3);
+
+        opacity: 0;
+        transform-origin: left bottom;
+        transform: rotate(-35deg) translateX(-30px);
+        transition:
+            transform 0.6s ease var(--d, 0s),
+            opacity 0.45s ease var(--d, 0s),
+            background-color 0.2s ease;
     }
 
+    .menu nav.menu-abierto a {
+        opacity: 1;
+        transform: none;
+    }
+
+    .menu nav.menu-abierto a:nth-child(1) { --d: 0.6s; }
+    .menu nav.menu-abierto a:nth-child(2) { --d: 0.8s; }
+    .menu nav.menu-abierto a:nth-child(3) { --d: 1s; }
+    .menu nav.menu-abierto a:nth-child(4) { --d: 1.2s; }
+    .menu nav.menu-abierto a:nth-child(5) { --d: 1.4s; }
+
+    .menu nav a:active {
+        background-color: #e63946;
+        border-color: #e63946;
+    }
+
+    /* --- Imagen dentro del menú --- */
     .menu-imagen-contenedor {
         margin-top: 10px;
         display: flex;
         justify-content: center;
+        opacity: 0;
+        transform: scale(0.6);
+        transition: transform 0.5s ease var(--d, 0s), opacity 0.4s ease var(--d, 0s);
+    }
+
+    .menu nav.menu-abierto .menu-imagen-contenedor {
+        --d: 1.7s;
+        opacity: 1;
+        transform: scale(1);
     }
 
     .img-menu-desplegable {

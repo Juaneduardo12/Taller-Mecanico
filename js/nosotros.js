@@ -58,4 +58,24 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('click', () => {
         pestanasOrg.forEach(p => p.classList.remove('activo'));
     });
+
+    // --- 4. TARJETITA DEL ORGANIGRAMA MÓVIL (al tocar el cuadro) ---
+    const nodosMovil = document.querySelectorAll('.m-nodo');
+
+    nodosMovil.forEach(nodo => {
+        nodo.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const estaActivo = nodo.classList.contains('activo');
+
+            nodosMovil.forEach(n => n.classList.remove('activo'));
+
+            if (!estaActivo) {
+                nodo.classList.add('activo');
+            }
+        });
+    });
+
+    document.addEventListener('click', () => {
+        nodosMovil.forEach(n => n.classList.remove('activo'));
+    });
 });

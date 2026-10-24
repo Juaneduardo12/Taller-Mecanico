@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex">
+    <title>Panel - OMEGA MECHANIC</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/panel.css">
+</head>
+<body>
+
+    <header class="menu">
+        <button class="boton-menu" id="botonMenu" aria-label="Abrir menú" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <span class="titulo-barra">Panel del personal</span>
+
+        <img src="img/Logotipo_del_taller.jpg" alt="Logo Taller" class="logo-barra" width="60" height="60">
+
+        <nav id="menuNav">
+            <a href="index.html">Inicio</a>
+            <a href="nosotros.html">Nosotros</a>
+            <a href="panel.html" aria-current="page">Panel</a>
+            <a href="#" onclick="cerrarSesion(); return false;">Cerrar sesión</a>
+
+            <div class="menu-imagen-contenedor">
+                <img src="img/img_menu.jpg" alt="Imagen del taller en menú" class="img-menu-desplegable" width="120" height="120" loading="lazy">
+            </div>
+        </nav>
+    </header>
+
+    <main class="panel-pagina">
+        <section class="panel-tarjeta">
+            <h1 class="panel-titulo">Bienvenido</h1>
+            <p class="panel-texto">Sesión iniciada como:</p>
+            <p class="panel-correo" id="correoUsuario">...</p>
+
+            <button type="button" class="boton-cerrar-sesion" onclick="cerrarSesion()">Cerrar sesión</button>
+        </section>
+    </main>
+
+    <!-- El orden de estos scripts es importante -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase.js"></script>
+    <script src="js/guard.js"></script>
+    <script src="js/script.js" defer></script>
+</body>
+</html>

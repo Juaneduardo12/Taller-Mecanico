@@ -27,7 +27,7 @@
 
             <a href="index.html" class="btn-nav">Inicio</a>
             <a href="nosotros.html" class="btn-nav activo">Nosotros</a>
-            <a href="#" class="btn-nav">Botón 3</a>
+            <a href="login.html" class="btn-nav">Login</a>
             <a href="#" class="btn-nav">Botón 4</a>
             <a href="#" class="btn-nav">Botón 5</a>
 
@@ -56,7 +56,7 @@
             </div>
 
             <div class="imagen-contenedor-central">
-                <img src="img/img_mascota_negro.jpg" alt="Mascota Taller Omega Mechanic" class="img-mascota" width="220" height="220" loading="lazy">
+                <img src="img/img_mascota_transparente.png" alt="Mascota Taller Omega Mechanic" class="img-mascota" width="220" height="220" loading="lazy">
             </div>
 
             <div class="info-box right-box">
@@ -132,131 +132,284 @@
     <!-- SECCIÓN ORGANIGRAMA -->
     <section class="seccion-organigrama">
         <h2 class="titulo-organigrama">Organigrama Omega Mechanic</h2>
-        <p class="subtitulo-organigrama">Desliza horizontalmente para explorar el organigrama. Pasa el cursor sobre la pestaña lateral para el correo y sobre la inferior para el puesto.</p>
+        <p class="subtitulo-organigrama">Conoce la estructura jerárquica de nuestro equipo de trabajo.</p>
 
-        <div class="organigrama-scroll-wrapper">
-            <div class="canvas-organigrama">
+        <!-- VERSIÓN ESCRITORIO (Estructura original de 4,200px con líneas de neón) -->
+        <div class="organigrama-escritorio">
+            <div class="organigrama-scroll-wrapper">
+                <div class="canvas-organigrama">
 
-                <svg class="svg-conectores" width="4200" height="1000">
-                    <line x1="600" y1="1050" x2="600" y2="100" class="linea-neon" />
-                    <line x1="800" y1="270" x2="600" y2="270" class="linea-neon" />
-                    <line x1="300" y1="200" x2="600" y2="200" class="linea-neon" />
-                    <line x1="200" y1="200" x2="600" y2="200" class="linea-neon" />
-                    <line x1="200" y1="200" x2="200" y2="500" class="linea-neon" />
-                    <line x1="196" y1="350" x2="300" y2="350" class="linea-neon" />
-                    <line x1="196" y1="500" x2="300" y2="500" class="linea-neon" />
-                    <line x1="120" y1="600" x2="1080" y2="600" class="linea-neon" />
-                    <line x1="120" y1="600" x2="120" y2="910" class="linea-neon" />
-                    <line x1="1083" y1="1050" x2="1083" y2="600" class="linea-neon" />
-                    <line x1="117" y1="910" x2="300" y2="910" class="linea-neon" />
-                    <line x1="800" y1="910" x2="600" y2="910" class="linea-neon" />
-                    <line x1="800" y1="1050" x2="600" y2="1050" class="linea-neon" />
-                    <line x1="1200" y1="910" x2="1085" y2="910" class="linea-neon" />
-                    <line x1="1200" y1="1050" x2="1085" y2="1050" class="linea-neon" />
+                    <svg class="svg-conectores" width="4200" height="1000">
+                        <line x1="600" y1="1050" x2="600" y2="100" class="linea-neon" />
+                        <line x1="800" y1="270" x2="600" y2="270" class="linea-neon" />
+                        <line x1="300" y1="200" x2="600" y2="200" class="linea-neon" />
+                        <line x1="200" y1="200" x2="600" y2="200" class="linea-neon" />
+                        <line x1="200" y1="200" x2="200" y2="500" class="linea-neon" />
+                        <line x1="200" y1="350" x2="390" y2="350" class="linea-neon" />
+                        <line x1="200" y1="500" x2="390" y2="500" class="linea-neon" />
+                        <line x1="120" y1="600" x2="1080" y2="600" class="linea-neon" />
+                        <line x1="120" y1="600" x2="120" y2="910" class="linea-neon" />
+                        <line x1="1083" y1="1050" x2="1083" y2="600" class="linea-neon" />
+                        <line x1="117" y1="910" x2="300" y2="910" class="linea-neon" />
+                        <line x1="800" y1="910" x2="600" y2="910" class="linea-neon" />
+                        <line x1="800" y1="1050" x2="600" y2="1050" class="linea-neon" />
+                        <line x1="1200" y1="910" x2="1085" y2="910" class="linea-neon" />
+                        <line x1="1200" y1="1050" x2="1085" y2="1050" class="linea-neon" />
+                    </svg>
+
+                    <!-- 1. DIRECTOR GENERAL -->
+                    <div class="nivel-superior">
+                        <div class="org-card">
+                            <div class="pestana-correo">@<span class="tooltip-correo">juaneduardoocampocastillo@gmail.com</span></div>
+                            <div class="org-foto-container"><img src="img/img_mia.jpg" alt="Director General" class="org-foto" width="70" height="70" loading="lazy"></div>
+                            <h4 class="org-nombre">Juan Eduardo Ocampo Castillo</h4>
+                            <div class="pestana-puesto">Puesto<span class="tooltip-puesto">Director General</span></div>
+                        </div>
+                    </div>
+
+                    <!-- 2. NIVEL MEDIO -->
+                    <div class="nivel-medio-wrapper">
+                        <div class="columna-izquierda-medio">
+                            <div class="org-card">
+                                <div class="pestana-correo">@<span class="tooltip-correo">luisjoaquin@gmail.com</span></div>
+                                <div class="org-foto-container"><img src="img/img_Persona2.jpeg" alt="Gerente de Operaciones" class="org-foto" width="70" height="70" loading="lazy"></div>
+                                <h4 class="org-nombre">Luis Joaquin Landa</h4>
+                                <div class="pestana-puesto">Puesto<span class="tooltip-puesto">Gerente de Operaciones</span></div>
+                            </div>
+                            <div class="org-card" style="transform: translate(90px, 0px);">
+                                <div class="pestana-correo">@<span class="tooltip-correo">eduardoharrison@gmail.com</span></div>
+                                <div class="org-foto-container"><img src="img/img_Persona3.jpeg" alt="Gerente Técnico" class="org-foto" width="70" height="70" loading="lazy"></div>
+                                <h4 class="org-nombre">Eduardo Harrison</h4>
+                                <div class="pestana-puesto">Puesto<span class="tooltip-puesto">Gerente Técnico</span></div>
+                            </div>
+                            <div class="org-card" style="transform: translate(90px, 10px);">
+                                <div class="pestana-correo">@<span class="tooltip-correo">marcusostos@gmail.com</span></div>
+                                <div class="org-foto-container"><img src="img/img_Persona4.jpeg" alt="Gerente de Innovación" class="org-foto" width="70" height="70" loading="lazy"></div>
+                                <h4 class="org-nombre">Marcus Ostos</h4>
+                                <div class="pestana-puesto">Puesto<span class="tooltip-puesto">Gerente de Innovación</span></div>
+                            </div>
+                        </div>
+
+                        <div class="cuadro-derecho-medio">
+                            <div class="org-card">
+                                <div class="pestana-correo">@<span class="tooltip-correo">romangutierrez@gmail.com</span></div>
+                                <div class="org-foto-container"><img src="img/img_Persona5.jpeg" alt="Sup. Diagnóstico" class="org-foto" width="70" height="70" loading="lazy"></div>
+                                <h4 class="org-nombre">Roman Gutierrez</h4>
+                                <div class="pestana-puesto">Puesto<span class="tooltip-puesto">Sup. Diagnóstico</span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3. NIVEL INFERIOR -->
+                    <div class="nivel-inferior-wrapper">
+                        <div class="rama-inferior rama-1">
+                            <div class="org-card">
+                                <div class="pestana-correo">@<span class="tooltip-correo">emiliano@gmail.com</span></div>
+                                <div class="org-foto-container"><img src="img/img_Persona6.jpeg" alt="Sup. Mecánica" class="org-foto" width="70" height="70" loading="lazy"></div>
+                                <h4 class="org-nombre">Emiliano</h4>
+                                <div class="pestana-puesto">Puesto<span class="tooltip-puesto">Sup. Mecánica</span></div>
+                            </div>
+                            <div class="org-card hijo-desplazado">
+                                <div class="pestana-correo">@<span class="tooltip-correo">fernanda@gmail.com</span></div>
+                                <div class="org-foto-container"><img src="img/img_Persona7.jpeg" alt="Especialista IA" class="org-foto" width="70" height="70" loading="lazy"></div>
+                                <h4 class="org-nombre">Fernada</h4>
+                                <div class="pestana-puesto">Puesto<span class="tooltip-puesto">Especialista IA</span></div>
+                            </div>
+                        </div>
+
+                        <div class="rama-inferior rama-2">
+                            <div class="org-card">
+                                <div class="pestana-correo">@<span class="tooltip-correo">fani@gmail.com</span></div>
+                                <div class="org-foto-container"><img src="img/img_Persona9.jpeg" alt="Atención al Cliente" class="org-foto" width="70" height="70" loading="lazy"></div>
+                                <h4 class="org-nombre">Fani</h4>
+                                <div class="pestana-puesto">Puesto<span class="tooltip-puesto">Atención al Cliente</span></div>
+                            </div>
+                            <div class="org-card hijo-desplazado">
+                                <div class="pestana-correo">@<span class="tooltip-correo">ismaelflores@gmail.com</span></div>
+                                <div class="org-foto-container"><img src="img/img_Persona10.jpeg" alt="Mecánico A" class="org-foto" width="70" height="70" loading="lazy"></div>
+                                <h4 class="org-nombre">Ismael Flores Flores</h4>
+                                <div class="pestana-puesto">Puesto<span class="tooltip-puesto">Mecánico A</span></div>
+                            </div>
+                            <div class="org-card carmen-card">
+                                <div class="pestana-correo">@<span class="tooltip-correo">nikolasgiles@gmail.com</span></div>
+                                <div class="org-foto-container"><img src="img/img_Persona1.jpeg" alt="Logística" class="org-foto" width="70" height="70" loading="lazy"></div>
+                                <h4 class="org-nombre">Nikolas Giles</h4>
+                                <div class="pestana-puesto">Puesto<span class="tooltip-puesto">Logística</span></div>
+                            </div>
+                        </div>
+
+                        <div class="rama-inferior rama-3">
+                            <div class="org-card">
+                                <div class="pestana-correo">@<span class="tooltip-correo">erostapia@gmail.com</span></div>
+                                <div class="org-foto-container"><img src="img/img_Persona11.jpeg" alt="Mecánico B" class="org-foto" width="70" height="70" loading="lazy"></div>
+                                <h4 class="org-nombre">Eros Tapia</h4>
+                                <div class="pestana-puesto">Puesto<span class="tooltip-puesto">Mecánico B</span></div>
+                            </div>
+                            <div class="columna-apilada-abajo">
+                                <div class="org-card enrique-card">
+                                    <div class="pestana-correo">@<span class="tooltip-correo">enriquebeserril@gmail.com</span></div>
+                                    <div class="org-foto-container"><img src="img/img_Persona13.jpeg" alt="Sistemas" class="org-foto" width="70" height="70" loading="lazy"></div>
+                                    <h4 class="org-nombre">Enrrique Becerril</h4>
+                                    <div class="pestana-puesto">Puesto<span class="tooltip-puesto">Sistemas</span></div>
+                                </div>
+                                <div class="org-card eder-card">
+                                    <div class="pestana-correo">@<span class="tooltip-correo">eder@gmail.com</span></div>
+                                    <div class="org-foto-container"><img src="img/img_Persona12.jpeg" alt="Electricista" class="org-foto" width="70" height="70" loading="lazy"></div>
+                                    <h4 class="org-nombre">Eder</h4>
+                                    <div class="pestana-puesto">Puesto<span class="tooltip-puesto">Electricista</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- VERSIÓN MÓVIL (lienzo con tarjetas y líneas por coordenadas) -->
+        <div class="organigrama-movil">
+            <div class="movil-lienzo">
+
+                <!-- LÍNEAS: cada <line> va de (x1,y1) a (x2,y2) -->
+                <svg class="movil-lineas" width="340" height="1010" viewBox="0 0 340 1010" aria-hidden="true">
+                    <!-- Línea principal que baja desde el Director -->
+                    <line x1="170" y1="70" x2="170" y2="600" class="linea-neon" />
+
+                    <!-- Ramales hacia cada tarjeta del nivel 2 -->
+                    <line x1="125" y1="130" x2="220" y2="130" class="linea-neon" />  <!-- Luis -->
+                    <line x1="170" y1="210" x2="220" y2="210" class="linea-neon" />  <!-- Eduardo -->
+                    <line x1="-20" y1="130" x2="5" y2="130" class="linea-neon" />  <!-- Roman -->
+                    <line x1="-20" y1="130" x2="-20" y2="330" class="linea-neon" />
+                    <line x1="-20" y1="210" x2="5" y2="210" class="linea-neon" />
+                    <line x1="-20" y1="330" x2="5" y2="330" class="linea-neon" />
+                    <line x1="330" y1="210" x2="360" y2="210" class="linea-neon" />  <!-- Emiliano -->
+                    <line x1="330" y1="290" x2="360" y2="290" class="linea-neon" />
+                    <line x1="360" y1="210" x2="360" y2="290" class="linea-neon" />
+                    <line x1="170" y1="375" x2="220" y2="375" class="linea-neon" />
+                    <line x1="330" y1="375" x2="360" y2="375" class="linea-neon" />
+                    <line x1="330" y1="460" x2="360" y2="460" class="linea-neon" />
+                    <line x1="330" y1="540" x2="360" y2="540" class="linea-neon" />
+                    <line x1="360" y1="375" x2="360" y2="540" class="linea-neon" />
+                    <line x1="-20" y1="460" x2="5" y2="460" class="linea-neon" />
+                    <line x1="-20" y1="540" x2="5" y2="540" class="linea-neon" />
+                    <line x1="-20" y1="460" x2="-20" y2="540" class="linea-neon" />
                 </svg>
 
-                <!-- 1. DIRECTOR GENERAL -->
-                <div class="nivel-superior">
-                    <div class="org-card">
-                        <div class="pestana-correo">@<span class="tooltip-correo">juaneduardoocampocastillo@gmail.com</span></div>
-                        <div class="org-foto-container"><img src="img/img_mia.jpg" alt="Director General" class="org-foto" width="70" height="70" loading="lazy"></div>
-                        <h4 class="org-nombre">Juan Eduardo Ocampo Castillo</h4>
-                        <div class="pestana-puesto">Puesto<span class="tooltip-puesto">Director General</span></div>
+                <!-- TARJETAS: --x y --y son su posición en píxeles dentro del lienzo -->
+                <div class="m-nodo nivel-1" style="--x:105px; --y:10px;">
+                    <img src="img/img_mia.jpg" alt="Director General" class="org-foto" width="40" height="40" loading="lazy">
+                    <span class="m-nombre">Juan Eduardo Ocampo Castillo</span>
+                    <div class="m-tarjeta">
+                        <span class="m-puesto">Director General</span>
+                        <span class="m-correo">juaneduardoocampocastillo@gmail.com</span>
                     </div>
                 </div>
 
-                <!-- 2. NIVEL MEDIO -->
-                <div class="nivel-medio-wrapper">
-                    <div class="columna-izquierda-medio">
-                        <div class="org-card">
-                            <div class="pestana-correo">@<span class="tooltip-correo">luisjoaquin@gmail.com</span></div>
-                            <div class="org-foto-container"><img src="img/img_Persona2.jpeg" alt="Gerente de Operaciones" class="org-foto" width="70" height="70" loading="lazy"></div>
-                            <h4 class="org-nombre">Luis Joaquin Landa</h4>
-                            <div class="pestana-puesto">Puesto<span class="tooltip-puesto">Gerente de Operaciones</span></div>
-                        </div>
-                        <div class="org-card">
-                            <div class="pestana-correo">@<span class="tooltip-correo">eduardoharrison@gmail.com</span></div>
-                            <div class="org-foto-container"><img src="img/img_Persona3.jpeg" alt="Gerente Técnico" class="org-foto" width="70" height="70" loading="lazy"></div>
-                            <h4 class="org-nombre">Eduardo Harrison</h4>
-                            <div class="pestana-puesto">Puesto<span class="tooltip-puesto">Gerente Técnico</span></div>
-                        </div>
-                        <div class="org-card">
-                            <div class="pestana-correo">@<span class="tooltip-correo">marcusostos@gmail.com</span></div>
-                            <div class="org-foto-container"><img src="img/img_Persona4.jpeg" alt="Gerente de Innovación" class="org-foto" width="70" height="70" loading="lazy"></div>
-                            <h4 class="org-nombre">Marcus Ostos</h4>
-                            <div class="pestana-puesto">Puesto<span class="tooltip-puesto">Gerente de Innovación</span></div>
-                        </div>
-                    </div>
-
-                    <div class="cuadro-derecho-medio">
-                        <div class="org-card">
-                            <div class="pestana-correo">@<span class="tooltip-correo">romangutierrez@gmail.com</span></div>
-                            <div class="org-foto-container"><img src="img/img_Persona5.jpeg" alt="Sup. Diagnóstico" class="org-foto" width="70" height="70" loading="lazy"></div>
-                            <h4 class="org-nombre">Roman Gutierrez</h4>
-                            <div class="pestana-puesto">Puesto<span class="tooltip-puesto">Sup. Diagnóstico</span></div>
-                        </div>
+                <div class="m-nodo" style="--x:00px; --y:100px;">
+                    <img src="img/img_Persona2.jpeg" alt="Gerente de Operaciones" class="org-foto" width="40" height="40" loading="lazy">
+                    <span class="m-nombre">Luis Joaquin Landa</span>
+                    <div class="m-tarjeta">
+                        <span class="m-puesto">Gerente de Operaciones</span>
+                        <span class="m-correo">luisjoaquin@gmail.com</span>
                     </div>
                 </div>
 
-                <!-- 3. NIVEL INFERIOR -->
-                <div class="nivel-inferior-wrapper">
-                    <div class="rama-inferior rama-1">
-                        <div class="org-card">
-                            <div class="pestana-correo">@<span class="tooltip-correo">emiliano@gmail.com</span></div>
-                            <div class="org-foto-container"><img src="img/img_Persona6.jpeg" alt="Sup. Mecánica" class="org-foto" width="70" height="70" loading="lazy"></div>
-                            <h4 class="org-nombre">Emiliano</h4>
-                            <div class="pestana-puesto">Puesto<span class="tooltip-puesto">Sup. Mecánica</span></div>
-                        </div>
-                        <div class="org-card hijo-desplazado">
-                            <div class="pestana-correo">@<span class="tooltip-correo">fernanda@gmail.com</span></div>
-                            <div class="org-foto-container"><img src="img/img_Persona7.jpeg" alt="Especialista IA" class="org-foto" width="70" height="70" loading="lazy"></div>
-                            <h4 class="org-nombre">Fernada</h4>
-                            <div class="pestana-puesto">Puesto<span class="tooltip-puesto">Especialista IA</span></div>
-                        </div>
+                <div class="m-nodo" style="--x:210px; --y:100px;">
+                    <img src="img/img_Persona3.jpeg" alt="Gerente Técnico" class="org-foto" width="40" height="40" loading="lazy">
+                    <span class="m-nombre">Eduardo Harrison</span>
+                    <div class="m-tarjeta">
+                        <span class="m-puesto">Gerente Técnico</span>
+                        <span class="m-correo">eduardoharrison@gmail.com</span>
                     </div>
+                </div>
 
-                    <div class="rama-inferior rama-2">
-                        <div class="org-card">
-                            <div class="pestana-correo">@<span class="tooltip-correo">fani@gmail.com</span></div>
-                            <div class="org-foto-container"><img src="img/img_Persona9.jpeg" alt="Atención al Cliente" class="org-foto" width="70" height="70" loading="lazy"></div>
-                            <h4 class="org-nombre">Fani</h4>
-                            <div class="pestana-puesto">Puesto<span class="tooltip-puesto">Atención al Cliente</span></div>
-                        </div>
-                        <div class="org-card hijo-desplazado">
-                            <div class="pestana-correo">@<span class="tooltip-correo">ismaelflores@gmail.com</span></div>
-                            <div class="org-foto-container"><img src="img/img_Persona10.jpeg" alt="Mecánico A" class="org-foto" width="70" height="70" loading="lazy"></div>
-                            <h4 class="org-nombre">Ismael Flores Flores</h4>
-                            <div class="pestana-puesto">Puesto<span class="tooltip-puesto">Mecánico A</span></div>
-                        </div>
-                        <div class="org-card carmen-card">
-                            <div class="pestana-correo">@<span class="tooltip-correo">nikolasgiles@gmail.com</span></div>
-                            <div class="org-foto-container"><img src="img/img_Persona1.jpeg" alt="Logística" class="org-foto" width="70" height="70" loading="lazy"></div>
-                            <h4 class="org-nombre">Nikolas Giles</h4>
-                            <div class="pestana-puesto">Puesto<span class="tooltip-puesto">Logística</span></div>
-                        </div>
+                <div class="m-nodo" style="--x:00px; --y:180px;">
+                    <img src="img/img_Persona4.jpeg" alt="Gerente de Innovación" class="org-foto" width="40" height="40" loading="lazy">
+                    <span class="m-nombre">Marcus Ostos</span>
+                    <div class="m-tarjeta">
+                        <span class="m-puesto">Gerente de Innovación</span>
+                        <span class="m-correo">marcusostos@gmail.com</span>
                     </div>
+                </div>
 
-                    <div class="rama-inferior rama-3">
-                        <div class="org-card">
-                            <div class="pestana-correo">@<span class="tooltip-correo">erostapia@gmail.com</span></div>
-                            <div class="org-foto-container"><img src="img/img_Persona11.jpeg" alt="Mecánico B" class="org-foto" width="70" height="70" loading="lazy"></div>
-                            <h4 class="org-nombre">Eros Tapia</h4>
-                            <div class="pestana-puesto">Puesto<span class="tooltip-puesto">Mecánico B</span></div>
-                        </div>
-                        <div class="columna-apilada-abajo">
-                            <div class="org-card enrique-card">
-                                <div class="pestana-correo">@<span class="tooltip-correo">enriquebeserril@gmail.com</span></div>
-                                <div class="org-foto-container"><img src="img/img_Persona13.jpeg" alt="Sistemas" class="org-foto" width="70" height="70" loading="lazy"></div>
-                                <h4 class="org-nombre">Enrrique Becerril</h4>
-                                <div class="pestana-puesto">Puesto<span class="tooltip-puesto">Sistemas</span></div>
-                            </div>
-                            <div class="org-card eder-card">
-                                <div class="pestana-correo">@<span class="tooltip-correo">eder@gmail.com</span></div>
-                                <div class="org-foto-container"><img src="img/img_Persona12.jpeg" alt="Electricista" class="org-foto" width="70" height="70" loading="lazy"></div>
-                                <h4 class="org-nombre">Eder</h4>
-                                <div class="pestana-puesto">Puesto<span class="tooltip-puesto">Electricista</span></div>
-                            </div>
-                        </div>
+                <div class="m-nodo" style="--x:210px; --y:180px;">
+                    <img src="img/img_Persona5.jpeg" alt="Sup. Diagnóstico" class="org-foto" width="40" height="40" loading="lazy">
+                    <span class="m-nombre">Roman Gutierrez</span>
+                    <div class="m-tarjeta">
+                        <span class="m-puesto">Sup. Diagnóstico</span>
+                        <span class="m-correo">romangutierrez@gmail.com</span>
+                    </div>
+                </div>
+
+                <div class="m-nodo" style="--x:00px; --y:300px;">
+                    <img src="img/img_Persona6.jpeg" alt="Sup. Mecánica" class="org-foto" width="40" height="40" loading="lazy">
+                    <span class="m-nombre">Emiliano</span>
+                    <div class="m-tarjeta">
+                        <span class="m-puesto">Sup. Mecánica</span>
+                        <span class="m-correo">emiliano@gmail.com</span>
+                    </div>
+                </div>
+
+                <div class="m-nodo" style="--x:210px; --y:260px;">
+                    <img src="img/img_Persona7.jpeg" alt="Especialista IA" class="org-foto" width="40" height="40" loading="lazy">
+                    <span class="m-nombre">Fernanda</span>
+                    <div class="m-tarjeta">
+                        <span class="m-puesto">Especialista IA</span>
+                        <span class="m-correo">fernanda@gmail.com</span>
+                    </div>
+                </div>
+
+                <div class="m-nodo" style="--x:210px; --y:350px;">
+                    <img src="img/img_Persona9.jpeg" alt="Atención al Cliente" class="org-foto" width="40" height="40" loading="lazy">
+                    <span class="m-nombre">Fani</span>
+                    <div class="m-tarjeta">
+                        <span class="m-puesto">Atención al Cliente</span>
+                        <span class="m-correo">fani@gmail.com</span>
+                    </div>
+                </div>
+
+                <div class="m-nodo" style="--x:210px; --y:430px;">
+                    <img src="img/img_Persona10.jpeg" alt="Mecánico A" class="org-foto" width="40" height="40" loading="lazy">
+                    <span class="m-nombre">Ismael Flores Flores</span>
+                    <div class="m-tarjeta">
+                        <span class="m-puesto">Mecánico A</span>
+                        <span class="m-correo">ismaelflores@gmail.com</span>
+                    </div>
+                </div>
+
+                <div class="m-nodo" style="--x:210px; --y:510px;">
+                    <img src="img/img_Persona1.jpeg" alt="Logística" class="org-foto" width="40" height="40" loading="lazy">
+                    <span class="m-nombre">Nikolas Giles</span>
+                    <div class="m-tarjeta">
+                        <span class="m-puesto">Logística</span>
+                        <span class="m-correo">nikolasgiles@gmail.com</span>
+                    </div>
+                </div>
+
+                <div class="m-nodo" style="--x:00px; --y:430px;">
+                    <img src="img/img_Persona11.jpeg" alt="Mecánico B" class="org-foto" width="40" height="40" loading="lazy">
+                    <span class="m-nombre">Eros Tapia</span>
+                    <div class="m-tarjeta">
+                        <span class="m-puesto">Mecánico B</span>
+                        <span class="m-correo">erostapia@gmail.com</span>
+                    </div>
+                </div>
+
+                <div class="m-nodo" style="--x:00px; --y:510px;">
+                    <img src="img/img_Persona13.jpeg" alt="Sistemas" class="org-foto" width="40" height="40" loading="lazy">
+                    <span class="m-nombre">Enrrique Becerril</span>
+                    <div class="m-tarjeta">
+                        <span class="m-puesto">Sistemas</span>
+                        <span class="m-correo">enriquebeserril@gmail.com</span>
+                    </div>
+                </div>
+
+                <div class="m-nodo" style="--x:100px; --y:600px;">
+                    <img src="img/img_Persona12.jpeg" alt="Electricista" class="org-foto" width="40" height="40" loading="lazy">
+                    <span class="m-nombre">Eder</span>
+                    <div class="m-tarjeta">
+                        <span class="m-puesto">Electricista</span>
+                        <span class="m-correo">eder@gmail.com</span>
                     </div>
                 </div>
 
