@@ -8,15 +8,15 @@
 
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/login.css">
-
-    <!-- Turnstile (anti-bots de Cloudflare). Déjalo; solo se usa cuando lo activas -->
-    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+    <link rel="stylesheet" href="css/menu-activo.css">
+    <!-- Menú de celular: tarjeta que se desliza como cortina -->
+    <link rel="stylesheet" href="css/menu-cortina.css">
+    <link rel="stylesheet" href="css/seguridad.css">
+    <!-- Verificación anti-robots (Cloudflare Turnstile) -->
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async defer></script>
 </head>
 <body>
 
-    <!-- =========================================
-         MENÚ PRINCIPAL Y BARRA SUPERIOR
-         ========================================= -->
     <header class="menu">
         <button class="boton-menu" id="botonMenu" aria-label="Abrir menú" aria-expanded="false">
             <span></span>
@@ -31,7 +31,7 @@
         <nav id="menuNav">
             <a href="index.html">Inicio</a>
             <a href="nosotros.html">Nosotros</a>
-            <a href="login.html" aria-current="page">Login</a>
+            <a href="login.html" class="activo" aria-current="page">Login</a>
             <a>Botón 4</a>
             <a>Botón 5</a>
 
@@ -41,67 +41,54 @@
         </nav>
     </header>
 
-    <!-- =========================================
-         LOGIN
-         ========================================= -->
     <main class="login-pagina">
         <section class="login-tarjeta">
 
             <img src="img/Logotipo_del_taller.jpg" alt="Logo Omega Mechanic" class="login-logo" width="80" height="80">
             <h1 class="login-titulo">Iniciar sesión</h1>
-            <p class="login-subtitulo">Acceso exclusivo para el personal de OMEGA MECHANIC</p>
+            <p class="login-subtitulo">Acceso al sistema de OMEGA MECHANIC</p>
 
             <form id="formLogin">
-
-                <!-- Correo -->
+                <!-- Campo de correo electrónico -->
                 <div class="campo">
                     <label for="correo">Correo electrónico</label>
                     <input type="email" id="correo" name="correo"
                            placeholder="tucorreo@ejemplo.com"
-                           autocomplete="email" inputmode="email"
-                           maxlength="254" required>
+                           autocomplete="email" inputmode="email" maxlength="254" required>
                 </div>
 
-                <!-- Contraseña -->
+                <!-- Campo de contraseña con botón Mostrar / Ocultar -->
                 <div class="campo">
                     <label for="contrasena">Contraseña</label>
                     <div class="campo-contrasena">
                         <input type="password" id="contrasena" name="contrasena"
                                placeholder="Tu contraseña"
-                               autocomplete="current-password"
-                               maxlength="128" required>
-                        <button type="button" id="botonVerContrasena" class="boton-ver" aria-pressed="false">Mostrar</button>
+                               autocomplete="current-password" maxlength="128" required>
+                        <button type="button" class="boton-ver" id="togglePassword">Mostrar</button>
                     </div>
                 </div>
 
-                <!-- =====================================================
-                     VERIFICACIÓN ANTI-BOTS (Cloudflare Turnstile)
-                     Para activarla:
-                     1) Quita las marcas de comentario de este bloque
-                     2) Cambia TU_SITE_KEY por tu Site Key de Cloudflare
-                     3) En js/login.js pon TURNSTILE_ACTIVO = true
-                     4) Activa CAPTCHA en Supabase con tu Secret Key
-                     ===================================================== -->
-                <!--
-                <div class="turnstile-contenedor">
-                    <div class="cf-turnstile" data-sitekey="TU_SITE_KEY" data-theme="dark" data-size="flexible"></div>
-                </div>
-                -->
+                <!-- Verificación anti-robots -->
+                <div class="captcha-contenedor" id="captchaLogin"></div>
 
-                <!-- Mensajes de error o éxito -->
                 <p id="mensajeLogin" class="mensaje-login" role="alert" aria-live="polite"></p>
 
                 <button type="submit" id="botonEntrar" class="boton-entrar">Entrar</button>
-
             </form>
+
+            <div class="login-enlaces">
+                <a href="aviso-privacidad.html" target="_blank" rel="noopener">Aviso de Privacidad</a>
+            </div>
 
         </section>
     </main>
 
-    <!-- El orden de estos scripts es importante -->
+    <!-- Carga de scripts -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="js/supabase.js"></script>
+    <script src="js/captcha.js"></script>
     <script src="js/script.js" defer></script>
+    <script src="js/cookies.js" defer></script>
     <script src="js/login.js" defer></script>
 </body>
 </html>

@@ -12,6 +12,8 @@
     justify-content: center;
     align-items: center;
     padding: 30px 16px;
+    position: relative;
+    z-index: 4;
 }
 
 .login-tarjeta {
@@ -82,12 +84,15 @@
     box-shadow: 0 0 8px rgba(0, 234, 255, 0.5);
 }
 
+/* --- Contenedor de Contraseña y Botón Mostrar --- */
 .campo-contrasena {
     position: relative;
+    width: 100%;
 }
 
 .campo-contrasena input {
-    padding-right: 84px;
+    width: 100%;
+    padding-right: 75px; /* Espacio reservado para que el texto no se encime al botón */
 }
 
 .boton-ver {
@@ -95,20 +100,22 @@
     top: 50%;
     right: 8px;
     transform: translateY(-50%);
-    background: transparent;
-    border: none;
+    background: rgba(0, 234, 255, 0.1);
+    border: 1px solid rgba(0, 234, 255, 0.4);
     color: #00eaff;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     font-weight: bold;
     cursor: pointer;
-    padding: 6px 8px;
+    padding: 6px 10px;
+    border-radius: 6px;
+    transition: all 0.2s ease;
 }
 
-/* --- Turnstile --- */
-.turnstile-contenedor {
-    display: flex;
-    justify-content: center;
-    margin: 6px 0 14px;
+.boton-ver:hover {
+    background: rgba(0, 234, 255, 0.25);
+    border-color: #00eaff;
+    box-shadow: 0 0 8px rgba(0, 234, 255, 0.4);
+    color: #ffffff;
 }
 
 /* --- Mensajes --- */
@@ -126,7 +133,7 @@
     color: #2ecc71;
 }
 
-/* --- Botón --- */
+/* --- Botón Entrar --- */
 .boton-entrar {
     width: 100%;
     padding: 13px;
@@ -137,12 +144,13 @@
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.2s ease, color 0.2s ease;
+    transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .boton-entrar:hover {
     background-color: #e63946;
     color: #ffffff;
+    box-shadow: 0 0 10px rgba(230, 57, 70, 0.5);
 }
 
 .boton-entrar:disabled {
@@ -150,13 +158,33 @@
     cursor: not-allowed;
 }
 
-/* --- Enlaces inferiores --- */
-.login-enlaces {
-    display: flex;
-    justify-content: space-between;
-    gap: 10px;
-    flex-wrap: wrap;
+/* --- Enlaces y Pie de Login --- */
+.login-pie {
     margin-top: 16px;
+    font-size: 0.85rem;
+}
+
+.login-pregunta {
+    color: #b0b0b0;
+    margin-bottom: 4px;
+}
+
+.login-pie a {
+    color: #00eaff;
+    text-decoration: none;
+    font-weight: 500;
+    text-shadow: 0 0 6px rgba(0, 234, 255, 0.3);
+    transition: all 0.2s ease;
+}
+
+.login-pie a:hover {
+    color: #ffffff;
+    text-decoration: underline;
+    text-shadow: 0 0 10px rgba(0, 234, 255, 0.7);
+}
+
+.login-enlaces {
+    margin-top: 12px;
     font-size: 0.8rem;
 }
 

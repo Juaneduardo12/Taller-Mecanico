@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex">
+    <title>Mi cuenta - OMEGA MECHANIC</title>
+
+    <link rel="stylesheet" href="css/panel.css">
+    <link rel="stylesheet" href="css/cliente.css">
+    <link rel="stylesheet" href="css/citas.css">
+</head>
+<body data-roles="cliente" data-login="login.html">
+
+    <!-- BARRA SUPERIOR (Sin nombre de usuario al lado del botón) -->
+    <header class="barra-superior">
+        <button type="button" class="boton-hamburguesa" id="botonMenu"
+                aria-label="Abrir menú" aria-expanded="false" aria-controls="menuLateral">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <div class="barra-usuario">
+            <button type="button" class="boton-salir" id="botonSalir" aria-label="Cerrar sesión">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M12 2v10"/>
+                    <path d="M18.4 6.6a9 9 0 1 1-12.8 0"/>
+                </svg>
+                <span class="texto-salir">Cerrar sesión</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Fondo oscuro al abrir el menú en móviles -->
+    <div class="fondo-menu" id="fondoMenu"></div>
+
+    <!-- MENÚ LATERAL IZQUIERDO -->
+    <aside class="menu-lateral" id="menuLateral" aria-label="Menú principal">
+        <!-- Botón con la "X" para cerrar el menú en móvil -->
+        <button type="button" class="menu-cerrar" id="menuCerrar" aria-label="Cerrar menú">&times;</button>
+
+        <div class="menu-lateral-logo">
+            <img src="img/Logotipo_del_taller.jpg" alt="Logotipo Empresa" width="50" height="50">
+        </div>
+        <nav>
+            <button type="button" class="item-menu activo" data-vista="inicio">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M3 11 12 3l9 8"/>
+                    <path d="M5 10v10h14V10"/>
+                    <path d="M10 20v-6h4v6"/>
+                </svg>
+                <span>Inicio</span>
+            </button>
+            <button type="button" class="item-menu" data-vista="citas">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <rect width="18" height="18" x="3" y="4" rx="2" ry="2"/>
+                    <path d="M16 2v4M8 2v4M3 10h18"/>
+                </svg>
+                <span>Citas</span>
+            </button>
+        </nav>
+    </aside>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="contenido">
+        <section class="vista activa" id="vista-inicio">
+            <div class="bienvenida-tarjeta">
+                <h1 class="bienvenida-titulo">Bienvenido</h1>
+                <p class="nombre-cliente-destacado" id="nombreCliente">...</p>
+                <div class="circulo-avatar-container">
+                    <img src="img/img_mascota_transparente.png" alt="Foto de perfil" class="circulo-avatar" width="90" height="90">
+                </div>
+            </div>
+        </section>
+
+        <section class="vista" id="vista-citas">
+            <h1 class="vista-titulo">Mis Citas</h1>
+
+            <div class="citas-barra">
+                <p class="estado-tabla" id="estadoMisCitas" role="status" aria-live="polite"></p>
+                <button type="button" class="boton-secundario" id="botonPdfCitas" disabled>Descargar mis citas (PDF)</button>
+            </div>
+
+            <h2 class="citas-subtitulo">Próximas</h2>
+            <div class="citas-lista" id="listaProximas"></div>
+
+            <h2 class="citas-subtitulo">Historial</h2>
+            <div class="citas-lista" id="listaHistorial"></div>
+        </section>
+    </main>
+
+    <!-- Confirmación para cancelar una cita -->
+    <dialog class="dialogo dialogo-chico" id="dialogoCancelarCita" aria-labelledby="tituloCancelarCita">
+        <form method="dialog">
+            <h2 class="dialogo-titulo" id="tituloCancelarCita">Cancelar cita</h2>
+            <p class="dialogo-texto" id="textoCancelarCita"></p>
+            <div class="dialogo-acciones">
+                <button type="submit" value="no" class="boton-secundario">Conservar cita</button>
+                <button type="submit" value="si" class="boton-peligro">Sí, cancelar</button>
+            </div>
+        </form>
+    </dialog>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase.js"></script>
+    <script src="js/guard.js"></script>
+    <script src="js/cliente.js"></script>
+    <!-- Generador de PDF para descargar las citas -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
+    <script src="js/cliente-citas.js"></script>
+</body>
+</html>

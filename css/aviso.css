@@ -1,0 +1,104 @@
+/* =========================================
+   AVISO DE PRIVACIDAD
+   ========================================= */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Segoe UI", Roboto, Arial, sans-serif;
+    line-height: 1.6;
+    color: #e0e0e0;
+    background-color: #0b0b0b;
+}
+
+.aviso-barra {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    background-color: #111111;
+    border-bottom: 2px solid #00eaff;
+    box-shadow: 0 0 14px rgba(0, 234, 255, 0.25);
+}
+
+.aviso-barra img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #00eaff;
+}
+
+.aviso-marca {
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: #00eaff;
+}
+
+.aviso-volver {
+    margin-left: auto;
+    padding: 8px 14px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    text-decoration: none;
+    color: #00eaff;
+    border: 1px solid #00eaff;
+    border-radius: 8px;
+}
+
+.aviso-volver:hover {
+    background-color: #00eaff;
+    color: #0b0b0b;
+}
+
+.aviso {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 28px 18px 48px;
+}
+
+.aviso h1 {
+    margin: 0 0 4px;
+    font-size: 1.9rem;
+    color: #00eaff;
+}
+
+.aviso h2 {
+    margin: 28px 0 8px;
+    font-size: 1.15rem;
+    color: #00eaff;
+}
+
+.aviso p,
+.aviso li {
+    font-size: 0.97rem;
+}
+
+.aviso ul {
+    padding-left: 22px;
+}
+
+.aviso li {
+    margin-bottom: 6px;
+}
+
+.aviso-fecha {
+    margin: 0 0 8px;
+    font-size: 0.85rem;
+    color: #b0b0b0;
+}
+
+/* Textos que el dueño del taller debe completar */
+.pendiente {
+    padding: 1px 6px;
+    color: #111111;
+    background-color: #ffd23f;
+    border-radius: 4px;
+}
+
+/* Al llegar desde el aviso de cookies, el título no queda pegado arriba */
+.aviso h2[id] {
+    scroll-margin-top: 80px;
+}

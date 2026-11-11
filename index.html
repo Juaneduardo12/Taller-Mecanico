@@ -8,6 +8,13 @@
     
     <!-- Preconexión y carga de estilos optimizada -->
     <link rel="stylesheet" href="css/style.css">
+    <!-- Efectos: niebla del logotipo y botón presionado (va después de style.css) -->
+    <link rel="stylesheet" href="css/efectos.css">
+    <!-- Botón de la página actual (igual en todas las páginas) -->
+    <link rel="stylesheet" href="css/menu-activo.css">
+    <!-- Menú de celular: tarjeta que se desliza como cortina -->
+    <link rel="stylesheet" href="css/menu-cortina.css">
+    <link rel="stylesheet" href="css/seguridad.css">
 </head>
 <body>
 
@@ -30,7 +37,7 @@
     
         <!-- MENÚ DE NAVEGACIÓN -->
         <nav id="menuNav">
-            <a href="index.html">Inicio</a>
+            <a href="index.html" aria-current="page">Inicio</a>
             <a href="nosotros.html">Nosotros</a>
             <a href="login.html">Login</a>
             <a>Botón 4</a>
@@ -117,5 +124,9 @@
          JavaScript Optimizado (Defer)
          ========================================= -->
     <script src="js/script.js" defer></script>
+    <!-- Niebla del logotipo: se aclara al bajar -->
+    <script src="js/niebla.js" defer></script>
+    <!-- Aviso de cookies -->
+    <script src="js/cookies.js" defer></script>
 </body>
 </html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex">
+    <title>Acceso de clientes - OMEGA MECHANIC</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/menu-activo.css">
+    <!-- Menú de celular: tarjeta que se desliza como cortina -->
+    <link rel="stylesheet" href="css/menu-cortina.css">
+    <link rel="stylesheet" href="css/seguridad.css">
+    <!-- Verificación anti-robots (Cloudflare Turnstile) -->
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async defer></script>
+</head>
+<body>
+
+    <!--
+      Página de acceso para clientes. Se llega desde el botón "Entrar como cliente" de login.html.
+      Solo permite iniciar sesión: las cuentas de clientes las crea el administrador desde el panel.
+    -->
+
+    <header class="menu">
+        <button class="boton-menu" id="botonMenu" aria-label="Abrir menú" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <span class="titulo-barra">Bienvenido a nuestro Taller Mecánico</span>
+
+        <img src="img/Logotipo_del_taller.jpg" alt="Logo Taller" class="logo-barra" width="60" height="60">
+
+        <nav id="menuNav">
+            <a href="index.html">Inicio</a>
+            <a href="nosotros.html">Nosotros</a>
+            <a href="login.html" class="activo">Login</a>
+            <a>Botón 4</a>
+            <a>Botón 5</a>
+
+            <div class="menu-imagen-contenedor">
+                <img src="img/img_menu.jpg" alt="Imagen del taller en menú" class="img-menu-desplegable" width="120" height="120" loading="lazy">
+            </div>
+        </nav>
+    </header>
+
+    <main class="login-pagina">
+        <section class="login-tarjeta">
+
+            <img src="img/Logotipo_del_taller.jpg" alt="Logo Omega Mechanic" class="login-logo" width="80" height="80">
+            <h1 class="login-titulo">Acceso de clientes</h1>
+            <p class="login-subtitulo">Inicia sesión con tu usuario y contraseña</p>
+
+            <!-- El usuario del cliente es su correo electrónico -->
+            <form id="formEntrar">
+                <div class="campo">
+                    <label for="entrarCorreo">Usuario (tu correo electrónico)</label>
+                    <input type="email" id="entrarCorreo" name="correo"
+                           placeholder="tucorreo@ejemplo.com"
+                           autocomplete="email" inputmode="email" maxlength="254" required>
+                </div>
+
+                <div class="campo">
+                    <label for="entrarClave">Contraseña</label>
+                    <input type="password" id="entrarClave" name="clave"
+                           placeholder="Tu contraseña"
+                           autocomplete="current-password" maxlength="128" required>
+                </div>
+
+                <!-- Verificación anti-robots -->
+                <div class="captcha-contenedor" id="captchaCliente"></div>
+
+                <p id="entrarMensaje" class="mensaje-login" role="alert" aria-live="polite"></p>
+                <button type="submit" id="entrarBoton" class="boton-entrar">Entrar</button>
+            </form>
+
+            <div class="login-enlaces">
+                <a href="aviso-privacidad.html" target="_blank" rel="noopener">Aviso de Privacidad</a>
+            </div>
+
+        </section>
+    </main>
+
+    <!-- El orden de estos scripts es importante -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase.js"></script>
+    <script src="js/captcha.js"></script>
+    <script src="js/script.js" defer></script>
+    <script src="js/cookies.js" defer></script>
+    <script src="js/acceso-cliente.js" defer></script>
+</body>
+</html>

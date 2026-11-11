@@ -1,0 +1,757 @@
+/* =========================================
+   DASHBOARD - OMEGA MECHANIC
+   ========================================= */
+:root {
+    --cian: #00eaff;
+    --rojo: #e63946;
+    --fondo: #0b0b0b;
+    --superficie: #1a1a1a;
+    --campo: #0d1117;
+    --texto: #e0e0e0;
+    --gris: #b0b0b0;
+    --alto-barra: 64px;
+    --ancho-menu: 240px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Segoe UI", Roboto, Arial, sans-serif;
+    background-color: var(--fondo);
+    color: var(--texto);
+}
+
+button {
+    font-family: inherit;
+}
+
+/* --- Barra superior --- */
+.barra-superior {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: var(--alto-barra);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0 16px;
+    background-color: #111111;
+    border-bottom: 2px solid var(--cian);
+    box-shadow: 0 0 14px rgba(0, 234, 255, 0.25);
+    z-index: 30;
+}
+
+.boton-hamburguesa {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 40px;
+    height: 40px;
+    padding: 8px;
+    background: transparent;
+    border: 1px solid rgba(0, 234, 255, 0.4);
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.boton-hamburguesa span {
+    display: block;
+    height: 3px;
+    background-color: var(--cian);
+    border-radius: 2px;
+}
+
+.boton-hamburguesa:hover {
+    background-color: rgba(0, 234, 255, 0.12);
+}
+
+.barra-logo {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--cian);
+}
+
+.barra-titulo {
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: var(--cian);
+    white-space: nowrap;
+}
+
+.barra-usuario {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+}
+
+.nombre-usuario {
+    font-size: 0.9rem;
+    color: #ffffff;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 260px;
+}
+
+.boton-salir {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 12px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    color: var(--cian);
+    background: transparent;
+    border: 1px solid var(--cian);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.boton-salir:hover {
+    background-color: var(--rojo);
+    border-color: var(--rojo);
+    color: #ffffff;
+}
+
+/* --- Menú lateral --- */
+.menu-lateral {
+    position: fixed;
+    top: var(--alto-barra);
+    left: 0;
+    bottom: 0;
+    width: var(--ancho-menu);
+    padding: 16px 12px;
+    background-color: var(--superficie);
+    border-right: 1px solid rgba(0, 234, 255, 0.3);
+    transform: translateX(-100%);
+    transition: transform 0.25s ease;
+    z-index: 20;
+    overflow-y: auto;
+}
+
+body.menu-abierto .menu-lateral {
+    transform: translateX(0);
+}
+
+.item-menu {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    padding: 12px 14px;
+    margin-bottom: 8px;
+    font-size: 1rem;
+    color: var(--texto);
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: left;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.item-menu:hover {
+    background-color: rgba(0, 234, 255, 0.1);
+}
+
+.item-menu.activo {
+    color: var(--cian);
+    border-color: var(--cian);
+    background-color: rgba(0, 234, 255, 0.15);
+}
+
+.fondo-menu {
+    display: none;
+    position: fixed;
+    inset: var(--alto-barra) 0 0 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 15;
+}
+
+/* --- Contenido --- */
+.contenido {
+    padding: calc(var(--alto-barra) + 24px) 24px 32px;
+    transition: margin-left 0.25s ease;
+}
+
+body.menu-abierto .contenido {
+    margin-left: var(--ancho-menu);
+}
+
+.vista {
+    display: none;
+}
+
+.vista.activa {
+    display: block;
+}
+
+.vista-titulo {
+    margin: 0 0 20px;
+    font-size: 1.6rem;
+    color: var(--cian);
+}
+
+/* Encabezado de tabla: nombre + imagen + botón Nuevo */
+.vista-encabezado {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+}
+
+.vista-encabezado .vista-titulo {
+    margin: 0;
+}
+
+.encabezado-imagen {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    overflow: hidden;
+    color: var(--cian);
+    background-color: var(--campo);
+    border: 1px solid rgba(0, 234, 255, 0.45);
+    border-radius: 12px;
+}
+
+.encabezado-imagen img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.boton-nuevo {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 16px;
+    font-size: 0.95rem;
+    font-weight: bold;
+    color: #0b0b0b;
+    background-color: var(--cian);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.boton-nuevo:hover {
+    background-color: var(--rojo);
+    color: #ffffff;
+}
+
+/* --- Tarjetas --- */
+.tarjetas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
+    max-width: 800px;
+}
+
+.tarjeta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    padding: 24px 16px;
+    color: var(--texto);
+    background-color: var(--superficie);
+    border: 2px solid rgba(0, 234, 255, 0.45);
+    border-radius: 16px;
+    box-shadow: 0 0 16px rgba(0, 234, 255, 0.12);
+}
+
+.tarjeta-icono {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 96px;
+    height: 96px;
+    color: var(--cian);
+    background-color: var(--campo);
+    border: 1px solid rgba(0, 234, 255, 0.4);
+    border-radius: 14px;
+}
+
+.tarjeta-nombre {
+    font-size: 1.05rem;
+    font-weight: bold;
+}
+
+.tarjeta-boton {
+    cursor: pointer;
+    font-size: inherit;
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tarjeta-boton:hover,
+.tarjeta-boton:focus-visible {
+    transform: translateY(-3px);
+    border-color: var(--cian);
+    box-shadow: 0 0 22px rgba(0, 234, 255, 0.4);
+    outline: none;
+}
+
+.insignia {
+    position: absolute;
+    right: -10px;
+    bottom: -10px;
+    min-width: 30px;
+    padding: 3px 8px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-align: center;
+    color: #0b0b0b;
+    background-color: var(--cian);
+    border-radius: 999px;
+}
+
+/* --- Tablas --- */
+.estado-tabla {
+    min-height: 1.2em;
+    margin: 4px 0 12px;
+    font-size: 0.9rem;
+    color: var(--gris);
+}
+
+.tabla-contenedor {
+    overflow-x: auto;
+    border: 1px solid rgba(0, 234, 255, 0.35);
+    border-radius: 12px;
+    background-color: var(--superficie);
+}
+
+.tabla {
+    width: 100%;
+    min-width: 760px;
+    border-collapse: collapse;
+}
+
+.tabla-ancha {
+    min-width: 1500px;
+}
+
+.tabla th,
+.tabla td {
+    padding: 12px 14px;
+    text-align: left;
+    vertical-align: middle;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.tabla th {
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    color: var(--cian);
+    background-color: var(--campo);
+}
+
+.tabla tbody tr:hover {
+    background-color: rgba(0, 234, 255, 0.07);
+}
+
+.tabla tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.celda-larga {
+    max-width: 220px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.stock-bajo {
+    color: #ff6b6b;
+    font-weight: bold;
+}
+
+/* Producto deshabilitado: se atenúa todo menos los botones */
+.tabla tr.deshabilitado td:not(.celda-acciones) {
+    opacity: 0.45;
+}
+
+.etiqueta-estado {
+    margin-left: 6px;
+    padding: 2px 8px;
+    font-size: 0.7rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #ffb4b4;
+    border: 1px solid #ff6b6b;
+    border-radius: 999px;
+}
+
+/* Fila resaltada al llegar desde el inventario */
+.tabla tr.resaltada td {
+    animation: destello 2.4s ease;
+}
+
+@keyframes destello {
+    0%, 60% {
+        background-color: rgba(0, 234, 255, 0.35);
+    }
+    100% {
+        background-color: transparent;
+    }
+}
+
+/* Proveedor dentro de la tabla de inventario (botón con apariencia de enlace) */
+.enlace-proveedor {
+    padding: 0;
+    font-size: inherit;
+    font-weight: bold;
+    color: var(--cian);
+    background: none;
+    border: none;
+    border-bottom: 1px dashed var(--cian);
+    cursor: pointer;
+}
+
+.enlace-proveedor:hover {
+    color: #ffffff;
+    border-bottom-color: #ffffff;
+}
+
+/* --- Botones con icono (acciones) --- */
+.acciones {
+    display: flex;
+    gap: 6px;
+}
+
+.boton-icono {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    padding: 0;
+    color: var(--cian);
+    background: transparent;
+    border: 1px solid rgba(0, 234, 255, 0.5);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.boton-icono:hover:not(:disabled) {
+    background-color: var(--cian);
+    color: #0b0b0b;
+}
+
+.boton-icono.peligro:hover:not(:disabled) {
+    background-color: var(--rojo);
+    border-color: var(--rojo);
+    color: #ffffff;
+}
+
+.boton-icono:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+/* --- Botones generales --- */
+.boton-primario,
+.boton-secundario,
+.boton-peligro {
+    padding: 10px 18px;
+    font-size: 0.95rem;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.boton-primario {
+    color: #0b0b0b;
+    background-color: var(--cian);
+    border: 1px solid var(--cian);
+}
+
+.boton-primario:hover:not(:disabled) {
+    background-color: #ffffff;
+    border-color: #ffffff;
+}
+
+.boton-primario:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.boton-secundario {
+    color: var(--cian);
+    background: transparent;
+    border: 1px solid var(--cian);
+}
+
+.boton-secundario:hover {
+    background-color: var(--cian);
+    color: #0b0b0b;
+}
+
+.boton-peligro {
+    color: #ffffff;
+    background-color: var(--rojo);
+    border: 1px solid var(--rojo);
+}
+
+.boton-peligro:hover {
+    background-color: #ff4d5a;
+}
+
+/* --- Ventanas (formulario y confirmación) --- */
+.dialogo {
+    width: min(680px, calc(100vw - 24px));
+    max-height: calc(100vh - 24px);
+    padding: 22px;
+    overflow-y: auto;
+    color: var(--texto);
+    background-color: var(--superficie);
+    border: 2px solid var(--cian);
+    border-radius: 16px;
+    box-shadow: 0 0 30px rgba(0, 234, 255, 0.3);
+}
+
+.dialogo-chico {
+    width: min(420px, calc(100vw - 24px));
+}
+
+.dialogo::backdrop {
+    background-color: rgba(0, 0, 0, 0.75);
+}
+
+.dialogo-titulo {
+    margin: 0 0 16px;
+    font-size: 1.3rem;
+    color: var(--cian);
+}
+
+.dialogo-texto {
+    margin: 0;
+    line-height: 1.5;
+}
+
+.dialogo-error {
+    min-height: 1.2em;
+    margin: 12px 0 0;
+    font-size: 0.85rem;
+    color: #ff6b6b;
+}
+
+.dialogo-acciones {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 16px;
+}
+
+.formulario-campos {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+}
+
+.campo-form.ancho-completo {
+    grid-column: 1 / -1;
+}
+
+.campo-form label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 0.82rem;
+    font-weight: bold;
+    color: var(--texto);
+}
+
+.campo-form input,
+.campo-form select,
+.campo-form textarea {
+    width: 100%;
+    padding: 11px;
+    font-family: inherit;
+    font-size: 16px; /* evita el zoom automático en iPhone */
+    color: #ffffff;
+    background-color: var(--campo);
+    border: 1px solid rgba(0, 234, 255, 0.4);
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.campo-form textarea {
+    resize: vertical;
+}
+
+.campo-form input:focus,
+.campo-form select:focus,
+.campo-form textarea:focus {
+    border-color: var(--cian);
+    box-shadow: 0 0 8px rgba(0, 234, 255, 0.5);
+}
+
+.campo-form select option {
+    background-color: var(--campo);
+    color: #ffffff;
+}
+
+/* --- Celulares y pantallas pequeñas --- */
+@media (max-width: 767px) {
+    body.menu-abierto .contenido {
+        margin-left: 0;
+    }
+
+    body.menu-abierto .fondo-menu {
+        display: block;
+    }
+
+    .contenido {
+        padding: calc(var(--alto-barra) + 16px) 14px 24px;
+    }
+
+    .barra-titulo,
+    .texto-salir {
+        display: none;
+    }
+
+    .nombre-usuario {
+        max-width: 150px;
+        font-size: 0.8rem;
+    }
+
+    .formulario-campos {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* --- Elementos ocultos por rol (hidden debe ganar a display:flex) --- */
+[hidden] {
+    display: none !important;
+}
+
+/* --- Etiqueta de cuenta en la tabla de clientes --- */
+.etiqueta-cuenta {
+    display: inline-block;
+    padding: 2px 10px;
+    font-size: 0.72rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    white-space: nowrap;
+    color: var(--gris);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 999px;
+}
+
+.etiqueta-cuenta.con-cuenta {
+    color: var(--cian);
+    border-color: var(--cian);
+}
+
+/* --- Formulario de alta de cliente (dentro de la página) --- */
+.tarjeta-formulario {
+    max-width: 760px;
+    padding: 22px;
+    background-color: var(--superficie);
+    border: 1px solid rgba(0, 234, 255, 0.35);
+    border-radius: 12px;
+}
+
+.mensaje-alta {
+    min-height: 1.3em;
+    margin: 14px 0 0;
+    font-size: 0.9rem;
+}
+
+.mensaje-alta.ok {
+    color: #2ecc71;
+}
+
+.mensaje-alta.error {
+    color: #ff6b6b;
+}
+
+.formulario-pie {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 16px;
+}
+
+.grupo-botones {
+    display: flex;
+    gap: 10px;
+}
+
+/* --- Acceso del cliente dentro del formulario de alta --- */
+.cuenta-cliente {
+    margin-top: 18px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(0, 234, 255, 0.25);
+}
+
+#bloqueCuenta {
+    margin-top: 12px;
+}
+
+.ayuda-cuenta {
+    margin: 0 0 12px;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: var(--gris);
+}
+
+.casilla {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin: 12px 0 0;
+    font-size: 0.9rem;
+    color: var(--texto);
+    cursor: pointer;
+}
+
+.casilla input {
+    flex: none;
+    width: 18px;
+    height: 18px;
+    margin-top: 2px;
+    accent-color: var(--cian);
+}
+
+.casilla a {
+    color: var(--cian);
+}
+
+.cuenta-cliente > .casilla:first-child {
+    margin-top: 0;
+}
+
+.cuenta-titulo {
+    margin: 0 0 6px;
+    font-size: 1.05rem;
+    color: var(--cian);
+}
+
+.campo-form input[readonly] {
+    opacity: 0.75;
+    cursor: default;
+}

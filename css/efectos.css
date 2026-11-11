@@ -1,0 +1,74 @@
+/* =========================================
+   EFECTOS: NIEBLA DELANTE DEL LOGOTIPO
+   Cargar DESPUÉS de style.css (reemplaza el
+   difuminado anterior sin tocar style.css).
+   El botón de la página actual está en css/menu-activo.css
+   ========================================= */
+
+/* ---------- NIEBLA DELANTE DEL LOGOTIPO (solo computadora) ---------- */
+/* Cubre el logotipo y se va aclarando al bajar con el scroll:
+   js/niebla.js cambia la variable --niebla de 1 (niebla completa) a 0 (sin niebla) */
+.difuminado-ancho {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    /* Neblina base más translúcida para no ocultar la imagen */
+    background: radial-gradient(ellipse 50% 60% at 50% 50%, rgba(0, 234, 255, 0.15), transparent 75%);
+    filter: blur(22px);
+    overflow: hidden;
+    opacity: var(--niebla, 1);
+    transition: opacity 0.15s linear;
+    pointer-events: none;   /* no estorba al pasar el mouse sobre el logotipo */
+    z-index: 3;             /* delante de la imagen (que tiene z-index 2) */
+}
+
+/* Dos capas de nubes que se desplazan lento en sentidos contrarios */
+.difuminado-ancho::before,
+.difuminado-ancho::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -25%;
+    width: 150%;
+    will-change: transform;
+}
+
+.difuminado-ancho::before {
+    background:
+        radial-gradient(ellipse 20% 50% at 28% 52%, rgba(0, 234, 255, 0.18), transparent 70%),
+        radial-gradient(ellipse 22% 56% at 42% 40%, rgba(140, 242, 255, 0.12), transparent 70%),
+        radial-gradient(ellipse 20% 52% at 58% 60%, rgba(0, 234, 255, 0.16), transparent 70%),
+        radial-gradient(ellipse 18% 48% at 73% 46%, rgba(90, 225, 255, 0.12), transparent 70%);
+    animation: niebla-derecha 35s ease-in-out infinite alternate;
+}
+
+.difuminado-ancho::after {
+    background:
+        radial-gradient(ellipse 24% 54% at 33% 56%, rgba(0, 234, 255, 0.14), transparent 70%),
+        radial-gradient(ellipse 20% 46% at 49% 38%, rgba(150, 245, 255, 0.10), transparent 70%),
+        radial-gradient(ellipse 22% 56% at 64% 54%, rgba(0, 234, 255, 0.15), transparent 70%),
+        radial-gradient(ellipse 16% 44% at 78% 62%, rgba(100, 230, 255, 0.10), transparent 70%);
+    animation: niebla-izquierda 48s ease-in-out infinite alternate;
+}
+
+@keyframes niebla-derecha {
+    from { transform: translateX(-5%) scale(1); }
+    to   { transform: translateX(5%) scale(1.04); }
+}
+
+@keyframes niebla-izquierda {
+    from { transform: translateX(5%) scale(1.02); }
+    to   { transform: translateX(-5%) scale(1); }
+}
+
+/* Para quien tiene activada la opción de "reducir movimiento" en su sistema */
+@media (prefers-reduced-motion: reduce) {
+    .difuminado-ancho::before,
+    .difuminado-ancho::after {
+        animation: none;
+    }
+}

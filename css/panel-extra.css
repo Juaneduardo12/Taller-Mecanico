@@ -1,0 +1,58 @@
+/* =========================================
+   PANEL: AJUSTES EXTRA
+   Cargar DESPUÉS de panel.css
+   ========================================= */
+
+/* ---------- Etiquetas de rol en la tabla de usuarios ---------- */
+.etiqueta-rol {
+    display: inline-block;
+    padding: 2px 10px;
+    font-size: 0.72rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    white-space: nowrap;
+    color: #b0b0b0;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 999px;
+}
+
+.etiqueta-rol.admin {
+    color: #ffd23f;
+    border-color: #ffd23f;
+}
+
+.etiqueta-rol.empleado {
+    color: #00eaff;
+    border-color: #00eaff;
+}
+
+.etiqueta-rol.cliente {
+    color: #8be28b;
+    border-color: #8be28b;
+}
+
+/* ---------- CELULAR: el menú ocupa toda la pantalla ---------- */
+@media (max-width: 767px) {
+    /* Cubre todo el ancho; la barra de arriba se queda para poder cerrarlo con la hamburguesa */
+    .menu-lateral {
+        width: 100%;
+        max-width: none;
+        border-right: none;
+    }
+
+    /* Botones más grandes para el dedo */
+    .item-menu {
+        padding: 16px 18px;
+        font-size: 1.1rem;
+    }
+
+    /* Ya no hace falta el fondo oscuro: el menú tapa toda la pantalla */
+    .fondo-menu {
+        display: none !important;
+    }
+
+    /* Con el menú abierto, la página de atrás no se desplaza */
+    body.menu-abierto {
+        overflow: hidden;
+    }
+}

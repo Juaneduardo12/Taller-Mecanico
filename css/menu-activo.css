@@ -1,0 +1,68 @@
+/* =========================================
+   BOTÓN DE LA PÁGINA ACTUAL (igual en todas las páginas)
+
+   Todos los botones del menú se ven iguales; solo el de la
+   página en la que estás se ve seleccionado (presionado).
+
+   - Se marca con aria-current="page" (o con la clase "activo").
+   - Cargar este archivo DESPUÉS de los demás CSS de cada página.
+   ========================================= */
+
+/* ---------- Botón seleccionado ---------- */
+header.menu #menuNav a[aria-current="page"],
+header.menu #menuNav a.activo {
+    color: #00eaff;
+    background-color: rgba(0, 234, 255, 0.16);
+    border-color: #00eaff;
+    box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.65), 0 0 10px rgba(0, 234, 255, 0.35);
+}
+
+/* Seleccionado: al pasar el mouse no "sube", solo se ilumina un poco */
+header.menu #menuNav a[aria-current="page"]:hover,
+header.menu #menuNav a.activo:hover {
+    background-color: rgba(0, 234, 255, 0.24);
+    border-color: #00eaff;
+}
+
+@media (min-width: 601px) {
+    /* Botones normales: con relieve (sobresalen) */
+    header.menu #menuNav a {
+        box-shadow: 0 3px 0 rgba(0, 234, 255, 0.28);
+    }
+
+    /* Al hacer clic en cualquier botón se hunde */
+    header.menu #menuNav a:active {
+        transform: translateY(2px) scale(0.97);
+        box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.65);
+    }
+
+    /* El botón de la página actual se hunde al cargar y se queda presionado */
+    header.menu #menuNav a[aria-current="page"],
+    header.menu #menuNav a.activo {
+        animation: presionar 0.6s ease-out 0.25s both;
+    }
+}
+
+@keyframes presionar {
+    0% {
+        transform: translateY(0) scale(1);
+        box-shadow: 0 3px 0 rgba(0, 234, 255, 0.28), 0 0 12px rgba(0, 234, 255, 0.25);
+    }
+    45% {
+        transform: translateY(4px) scale(0.95);
+        box-shadow: inset 0 5px 12px rgba(0, 0, 0, 0.8), 0 0 4px rgba(0, 234, 255, 0.2);
+    }
+    100% {
+        transform: translateY(2px) scale(0.98);
+        box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.65), 0 0 10px rgba(0, 234, 255, 0.35);
+    }
+}
+
+/* Para quien tiene activada la opción de "reducir movimiento" en su sistema */
+@media (prefers-reduced-motion: reduce) {
+    header.menu #menuNav a[aria-current="page"],
+    header.menu #menuNav a.activo {
+        animation: none;
+        transform: translateY(2px) scale(0.98);
+    }
+}

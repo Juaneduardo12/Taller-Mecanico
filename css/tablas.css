@@ -1,0 +1,166 @@
+/* =========================================
+   TABLAS DEL PANEL: COMPACTAS Y ADAPTADAS A CADA PANTALLA
+   (Inventario, Proveedores, Clientes, Usuarios y Citas)
+
+   - Computadora: más pequeñas y ajustadas al ancho disponible.
+   - Celular: cada fila se muestra como una tarjeta (sin desplazarse a los lados).
+
+   Cargar DESPUÉS de panel.css, citas.css y panel-extra.css.
+   Los títulos de cada dato en celular los pone js/tablas.js.
+   ========================================= */
+
+/* ---------- Medidas (cámbialas aquí para hacer las tablas más grandes o más chicas) ---------- */
+:root {
+    --tabla-fuente: 0.85rem;
+    --tabla-fuente-titulo: 0.7rem;
+    --tabla-relleno-y: 8px;
+    --tabla-relleno-x: 10px;
+}
+
+/* =========================================
+   COMPUTADORA (768px o más)
+   ========================================= */
+@media (min-width: 768px) {
+
+    /* Se ajustan al ancho disponible en lugar de forzar un ancho mínimo grande */
+    .tabla-contenedor .tabla,
+    .tabla-contenedor .tabla.tabla-ancha,
+    .tabla-contenedor .tabla.tabla-citas {
+        width: 100%;
+        min-width: 0;
+        font-size: var(--tabla-fuente);
+    }
+
+    .tabla-contenedor .tabla th,
+    .tabla-contenedor .tabla td {
+        padding: var(--tabla-relleno-y) var(--tabla-relleno-x);
+        line-height: 1.3;
+    }
+
+    .tabla-contenedor .tabla th {
+        font-size: var(--tabla-fuente-titulo);
+        letter-spacing: 0.3px;
+    }
+
+    /* Los textos largos se recortan con "..." (al pasar el mouse se ven completos) */
+    .tabla-contenedor .tabla .celda-larga {
+        max-width: clamp(110px, 12vw, 200px);
+    }
+
+    /* Botones de acciones y etiquetas más pequeños */
+    .tabla-contenedor .tabla .boton-icono {
+        width: 30px;
+        height: 30px;
+    }
+
+    .tabla-contenedor .tabla .boton-icono svg {
+        width: 16px;
+        height: 16px;
+    }
+
+    .tabla-contenedor .tabla .acciones {
+        gap: 4px;
+    }
+
+    .tabla-contenedor .tabla .estado-cita,
+    .tabla-contenedor .tabla .etiqueta-rol,
+    .tabla-contenedor .tabla .etiqueta-cuenta,
+    .tabla-contenedor .tabla .etiqueta-estado {
+        padding: 1px 8px;
+        font-size: 0.66rem;
+    }
+}
+
+/* =========================================
+   CELULAR (hasta 767px): cada fila es una tarjeta
+   ========================================= */
+@media (max-width: 767px) {
+
+    /* Sin marco: las tarjetas ya tienen el suyo */
+    .tabla-contenedor {
+        overflow: visible;
+        background: transparent;
+        border: none;
+    }
+
+    .tabla-contenedor .tabla,
+    .tabla-contenedor .tabla.tabla-ancha,
+    .tabla-contenedor .tabla.tabla-citas {
+        display: block;
+        width: 100%;
+        min-width: 0;
+        font-size: var(--tabla-fuente);
+    }
+
+    .tabla-contenedor .tabla tbody,
+    .tabla-contenedor .tabla tr,
+    .tabla-contenedor .tabla td {
+        display: block;
+    }
+
+    /* Los títulos de columna se ocultan a la vista; cada dato lleva su propio título */
+    .tabla-contenedor .tabla thead {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip: rect(0 0 0 0);
+    }
+
+    .tabla-contenedor .tabla tbody tr {
+        margin-bottom: 12px;
+        padding: 6px 14px;
+        background-color: var(--superficie, #1a1a1a);
+        border: 1px solid rgba(0, 234, 255, 0.35);
+        border-radius: 12px;
+    }
+
+    .tabla-contenedor .tabla tbody tr:hover {
+        background-color: var(--superficie, #1a1a1a);
+    }
+
+    .tabla-contenedor .tabla td {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+        padding: 7px 0;
+        text-align: right;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+        word-break: break-word;
+    }
+
+    .tabla-contenedor .tabla tbody tr td:last-child {
+        border-bottom: none;
+    }
+
+    /* El título del dato (lo llena js/tablas.js) */
+    .tabla-contenedor .tabla td::before {
+        content: attr(data-label);
+        flex: none;
+        max-width: 42%;
+        text-align: left;
+        font-size: var(--tabla-fuente-titulo);
+        font-weight: bold;
+        letter-spacing: 0.3px;
+        text-transform: uppercase;
+        color: var(--cian, #00eaff);
+    }
+
+    /* Aquí no hace falta recortar los textos largos */
+    .tabla-contenedor .tabla .celda-larga {
+        max-width: none;
+        overflow: visible;
+        text-overflow: clip;
+        white-space: normal;
+    }
+
+    .tabla-contenedor .tabla .acciones {
+        justify-content: flex-end;
+    }
+
+    /* Un producto deshabilitado se atenúa completo, menos sus botones (igual que en computadora) */
+    .tabla-contenedor .tabla tr.deshabilitado td:not(.celda-acciones) {
+        opacity: 0.5;
+    }
+}

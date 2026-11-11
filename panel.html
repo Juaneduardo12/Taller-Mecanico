@@ -4,50 +4,505 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex">
-    <title>Panel - OMEGA MECHANIC</title>
+    <title>Dashboard - OMEGA MECHANIC</title>
 
-    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/panel.css">
+    <link rel="stylesheet" href="css/seguridad.css">
+    <!-- Ajustes extra: menú a pantalla completa en celular y etiquetas de rol -->
+    <link rel="stylesheet" href="css/panel-extra.css">
+    <!-- Menú de celular: tarjeta que se desliza como cortina (va después de panel-extra.css) -->
+    <link rel="stylesheet" href="css/panel-cortina.css">
+    <link rel="stylesheet" href="css/citas.css">
+    <!-- Tablas compactas y adaptadas a computadora y celular -->
+    <link rel="stylesheet" href="css/tablas.css">
+    <!-- Verificación anti-robots (Cloudflare Turnstile) -->
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async defer></script>
 </head>
-<body>
+<body data-roles="admin,empleado" data-login="login.html">
 
-    <header class="menu">
-        <button class="boton-menu" id="botonMenu" aria-label="Abrir menú" aria-expanded="false">
+    <!-- =========================================
+         BARRA SUPERIOR: hamburguesa, logo, usuario y cerrar sesión
+         ========================================= -->
+    <header class="barra-superior">
+        <button type="button" class="boton-hamburguesa" id="botonMenu"
+                aria-label="Abrir o cerrar menú" aria-expanded="false" aria-controls="menuLateral">
             <span></span>
             <span></span>
             <span></span>
         </button>
 
-        <span class="titulo-barra">Panel del personal</span>
+        <img src="img/Logotipo_del_taller.jpg" alt="Logo Omega Mechanic" class="barra-logo" width="40" height="40">
+        <span class="barra-titulo">OMEGA MECHANIC</span>
 
-        <img src="img/Logotipo_del_taller.jpg" alt="Logo Taller" class="logo-barra" width="60" height="60">
-
-        <nav id="menuNav">
-            <a href="index.html">Inicio</a>
-            <a href="nosotros.html">Nosotros</a>
-            <a href="panel.html" aria-current="page">Panel</a>
-            <a href="#" onclick="cerrarSesion(); return false;">Cerrar sesión</a>
-
-            <div class="menu-imagen-contenedor">
-                <img src="img/img_menu.jpg" alt="Imagen del taller en menú" class="img-menu-desplegable" width="120" height="120" loading="lazy">
-            </div>
-        </nav>
+        <div class="barra-usuario">
+            <span class="nombre-usuario" id="nombreUsuario">Cargando...</span>
+            <button type="button" class="boton-salir" id="botonSalir" aria-label="Cerrar sesión">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M12 2v10"/>
+                    <path d="M18.4 6.6a9 9 0 1 1-12.8 0"/>
+                </svg>
+                <span class="texto-salir">Cerrar sesión</span>
+            </button>
+        </div>
     </header>
 
-    <main class="panel-pagina">
-        <section class="panel-tarjeta">
-            <h1 class="panel-titulo">Bienvenido</h1>
-            <p class="panel-texto">Sesión iniciada como:</p>
-            <p class="panel-correo" id="correoUsuario">...</p>
+    <!-- Fondo oscuro que cubre la página cuando el menú está abierto en celular -->
+    <div class="fondo-menu" id="fondoMenu"></div>
 
-            <button type="button" class="boton-cerrar-sesion" onclick="cerrarSesion()">Cerrar sesión</button>
+    <!-- =========================================
+         MENÚ LATERAL: Inicio, Inventario, Proveedores, Clientes, Citas
+         ========================================= -->
+    <aside class="menu-lateral" id="menuLateral" aria-label="Menú principal">
+        <!-- Botón con la "X" para cerrar el menú en celular -->
+        <button type="button" class="menu-cerrar" id="menuCerrar" aria-label="Cerrar menú">&times;</button>
+
+        <nav>
+            <button type="button" class="item-menu activo" data-vista="inicio">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M3 11 12 3l9 8"/>
+                    <path d="M5 10v10h14V10"/>
+                    <path d="M10 20v-6h4v6"/>
+                </svg>
+                <span>Inicio</span>
+            </button>
+            <button type="button" class="item-menu" data-vista="inventario">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M21 8 12 3 3 8v8l9 5 9-5V8Z"/>
+                    <path d="m3 8 9 5 9-5"/>
+                    <path d="M12 13v8"/>
+                </svg>
+                <span>Inventario</span>
+            </button>
+            <button type="button" class="item-menu" data-vista="proveedores">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M1 6h13v10H1z"/>
+                    <path d="M14 10h4l4 3v3h-8"/>
+                    <circle cx="6" cy="18" r="2"/>
+                    <circle cx="17" cy="18" r="2"/>
+                </svg>
+                <span>Proveedores</span>
+            </button>
+            <!-- Solo lo ve el administrador -->
+            <button type="button" class="item-menu" data-vista="alta-cliente" id="menuClientes" hidden>
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <circle cx="9" cy="8" r="3.5"/>
+                    <path d="M2 20c0-3.9 3.1-7 7-7s7 3.1 7 7"/>
+                    <path d="M16 4.6a3.5 3.5 0 0 1 0 6.8"/>
+                    <path d="M18 13.3c2.3.8 4 3.1 4 5.7"/>
+                </svg>
+                <span>Clientes</span>
+            </button>
+            <!-- Botón de Citas en el menú -->
+            <button type="button" class="item-menu" data-vista="citas" id="menuCitas">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <rect width="18" height="18" x="3" y="4" rx="2" ry="2"/>
+                    <path d="M16 2v4M8 2v4M3 10h18"/>
+                </svg>
+                <span>Citas</span>
+            </button>
+        </nav>
+    </aside>
+
+    <!-- =========================================
+         CONTENIDO
+         ========================================= -->
+    <main class="contenido">
+
+        <!-- VISTA: INICIO -->
+        <section class="vista activa" id="vista-inicio">
+            <h1 class="vista-titulo">Panel principal</h1>
+
+            <div class="tarjetas">
+                <!-- Usuarios (botón solo para el administrador: abre la tabla de usuarios) -->
+                <button type="button" class="tarjeta tarjeta-boton" data-vista="usuarios" id="tarjetaUsuarios" hidden>
+                    <div class="tarjeta-icono">
+                        <svg viewBox="0 0 24 24" width="54" height="54" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <circle cx="12" cy="8" r="4"/>
+                            <path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/>
+                        </svg>
+                        <span class="insignia" id="contadorUsuarios" title="Usuarios con cuenta">–</span>
+                    </div>
+                    <span class="tarjeta-nombre">Usuarios</span>
+                </button>
+
+                <button type="button" class="tarjeta tarjeta-boton" data-vista="inventario">
+                    <div class="tarjeta-icono">
+                        <svg viewBox="0 0 24 24" width="54" height="54" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M21 8 12 3 3 8v8l9 5 9-5V8Z"/>
+                            <path d="m3 8 9 5 9-5"/>
+                            <path d="M12 13v8"/>
+                        </svg>
+                        <span class="insignia" id="contadorProductos" title="Productos activos en el inventario">–</span>
+                    </div>
+                    <span class="tarjeta-nombre">Productos</span>
+                </button>
+
+                <button type="button" class="tarjeta tarjeta-boton" data-vista="clientes" id="tarjetaClientes" hidden>
+                    <div class="tarjeta-icono">
+                        <svg viewBox="0 0 24 24" width="54" height="54" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <circle cx="9" cy="8" r="3.5"/>
+                            <path d="M2 20c0-3.9 3.1-7 7-7s7 3.1 7 7"/>
+                            <path d="M16 4.6a3.5 3.5 0 0 1 0 6.8"/>
+                            <path d="M18 13.3c2.3.8 4 3.1 4 5.7"/>
+                        </svg>
+                        <span class="insignia" id="contadorClientes" title="Clientes registrados">–</span>
+                    </div>
+                    <span class="tarjeta-nombre">Clientes</span>
+                </button>
+            </div>
         </section>
+
+        <!-- VISTA: INVENTARIO -->
+        <section class="vista" id="vista-inventario">
+            <div class="vista-encabezado">
+                <h1 class="vista-titulo">Inventario</h1>
+                <span class="encabezado-imagen" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 8 12 3 3 8v8l9 5 9-5V8Z"/>
+                        <path d="m3 8 9 5 9-5"/>
+                        <path d="M12 13v8"/>
+                    </svg>
+                </span>
+                <button type="button" class="boton-nuevo" id="botonNuevoProducto">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M12 5v14M5 12h14"/>
+                    </svg>
+                    <span>Nuevo</span>
+                </button>
+            </div>
+            <p class="estado-tabla" id="estadoInventario" role="status" aria-live="polite"></p>
+            <div class="tabla-contenedor">
+                <table class="tabla">
+                    <thead>
+                        <tr>
+                            <th>Código</th>
+                            <th>Producto</th>
+                            <th>Categoría</th>
+                            <th>Marca</th>
+                            <th>Precio</th>
+                            <th>Stock</th>
+                            <th>Proveedor</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cuerpoInventario"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- VISTA: PROVEEDORES -->
+        <section class="vista" id="vista-proveedores">
+            <div class="vista-encabezado">
+                <h1 class="vista-titulo">Proveedores</h1>
+                <span class="encabezado-imagen" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M1 6h13v10H1z"/>
+                        <path d="M14 10h4l4 3v3h-8"/>
+                        <circle cx="6" cy="18" r="2"/>
+                        <circle cx="17" cy="18" r="2"/>
+                    </svg>
+                </span>
+                <button type="button" class="boton-nuevo" id="botonNuevoProveedor">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M12 5v14M5 12h14"/>
+                    </svg>
+                    <span>Nuevo</span>
+                </button>
+            </div>
+            <p class="estado-tabla" id="estadoProveedores" role="status" aria-live="polite"></p>
+            <div class="tabla-contenedor">
+                <table class="tabla tabla-ancha">
+                    <thead>
+                        <tr id="encabezadoProveedores"></tr>
+                    </thead>
+                    <tbody id="cuerpoProveedores"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- VISTA: CLIENTES -->
+        <section class="vista" id="vista-clientes">
+            <div class="vista-encabezado">
+                <h1 class="vista-titulo">Clientes</h1>
+                <span class="encabezado-imagen" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="9" cy="8" r="3.5"/>
+                        <path d="M2 20c0-3.9 3.1-7 7-7s7 3.1 7 7"/>
+                        <path d="M16 4.6a3.5 3.5 0 0 1 0 6.8"/>
+                        <path d="M18 13.3c2.3.8 4 3.1 4 5.7"/>
+                    </svg>
+                </span>
+                <button type="button" class="boton-nuevo" id="botonNuevoCliente">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M12 5v14M5 12h14"/>
+                    </svg>
+                    <span>Nuevo</span>
+                </button>
+            </div>
+            <p class="estado-tabla" id="estadoClientes" role="status" aria-live="polite"></p>
+            <div class="tabla-contenedor">
+                <table class="tabla tabla-ancha">
+                    <thead>
+                        <tr id="encabezadoClientes"></tr>
+                    </thead>
+                    <tbody id="cuerpoClientes"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- VISTA: REGISTRAR CLIENTE -->
+        <section class="vista" id="vista-alta-cliente">
+            <div class="vista-encabezado">
+                <h1 class="vista-titulo">Registrar cliente</h1>
+                <span class="encabezado-imagen" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="9" cy="8" r="3.5"/>
+                        <path d="M2 20c0-3.9 3.1-7 7-7s7 3.1 7 7"/>
+                        <path d="M16 4.6a3.5 3.5 0 0 1 0 6.8"/>
+                        <path d="M18 13.3c2.3.8 4 3.1 4 5.7"/>
+                    </svg>
+                </span>
+            </div>
+
+            <form class="tarjeta-formulario" id="formAltaCliente">
+                <div class="formulario-campos" id="camposAltaCliente"></div>
+
+                <div class="cuenta-cliente">
+                    <h2 class="cuenta-titulo">Acceso del cliente (opcional)</h2>
+                    <p class="ayuda-cuenta">
+                        Para que el cliente pueda iniciar sesión, escribe una contraseña.
+                        Su <strong>usuario</strong> será el <strong>correo</strong> de arriba.
+                    </p>
+
+                    <div class="formulario-campos">
+                        <div class="campo-form ancho-completo">
+                            <label for="altaUsuario">Usuario (es el correo del cliente)</label>
+                            <input type="text" id="altaUsuario" readonly tabindex="-1" placeholder="Se llena con el correo de arriba">
+                        </div>
+                        <div class="campo-form">
+                            <label for="altaClave">Contraseña (mínimo 8 caracteres)</label>
+                            <input type="password" id="altaClave" autocomplete="new-password" maxlength="128">
+                        </div>
+                        <div class="campo-form">
+                            <label for="altaClave2">Repite la contraseña</label>
+                            <input type="password" id="altaClave2" autocomplete="new-password" maxlength="128">
+                        </div>
+                        <div class="campo-form ancho-completo">
+                            <button type="button" class="boton-secundario" id="botonGenerarClave">🔑 Generar contraseña automática</button>
+                        </div>
+                    </div>
+
+                    <label class="casilla" for="altaAviso">
+                        <input type="checkbox" id="altaAviso">
+                        <span>El cliente conoce y acepta el <a href="aviso-privacidad.html" target="_blank" rel="noopener">Aviso de Privacidad</a> (obligatorio si se crea el acceso).</span>
+                    </label>
+
+                    <!-- Verificación anti-robots: aparece al escribir la contraseña -->
+                    <div class="captcha-contenedor" id="altaCaptcha" hidden></div>
+                </div>
+
+                <p class="mensaje-alta" id="mensajeAltaCliente" role="status" aria-live="polite"></p>
+
+                <div class="formulario-pie">
+                    <button type="button" class="boton-secundario" id="botonVerClientes">Ver clientes registrados</button>
+                    <div class="grupo-botones">
+                        <button type="button" class="boton-secundario" id="botonLimpiarAlta">Limpiar</button>
+                        <button type="submit" class="boton-primario" id="botonGuardarAlta">Guardar cliente</button>
+                    </div>
+                </div>
+            </form>
+        </section>
+
+        <!-- VISTA: USUARIOS (solo administrador) -->
+        <section class="vista" id="vista-usuarios">
+            <div class="vista-encabezado">
+                <h1 class="vista-titulo">Usuarios</h1>
+
+                <span class="encabezado-imagen" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="8" r="4"/>
+                        <path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/>
+                    </svg>
+                </span>
+            </div>
+
+            <p class="estado-tabla" id="estadoUsuarios" role="status" aria-live="polite"></p>
+
+            <div class="tabla-contenedor">
+                <table class="tabla">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Correo</th>
+                            <th>Rol</th>
+                            <th>Creado</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cuerpoUsuarios"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- VISTA: CITAS -->
+        <section class="vista" id="vista-citas">
+            <div class="vista-encabezado">
+                <h1 class="vista-titulo">Gestión de Citas</h1>
+                <span class="encabezado-imagen" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                        <rect width="18" height="18" x="3" y="4" rx="2" ry="2"/>
+                        <path d="M16 2v4M8 2v4M3 10h18"/>
+                    </svg>
+                </span>
+                <button type="button" class="boton-nuevo" id="botonNuevaCita">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M12 5v14M5 12h14"/>
+                    </svg>
+                    <span>Nueva cita</span>
+                </button>
+            </div>
+
+            <div class="barra-filtros">
+                <label for="filtroCitas">Mostrar</label>
+                <select id="filtroCitas">
+                    <option value="proximas" selected>Próximas</option>
+                    <option value="hoy">Hoy</option>
+                    <option value="todas">Todas</option>
+                    <option value="completadas">Completadas</option>
+                    <option value="canceladas">Canceladas</option>
+                </select>
+            </div>
+
+            <p class="estado-tabla" id="estadoCitas" role="status" aria-live="polite"></p>
+            <div class="tabla-contenedor">
+                <table class="tabla tabla-citas">
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Hora</th>
+                            <th>Cliente</th>
+                            <th>Teléfono</th>
+                            <th>Servicio</th>
+                            <th>Vehículo</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cuerpoCitas"></tbody>
+                </table>
+            </div>
+        </section>
+
     </main>
 
-    <!-- El orden de estos scripts es importante -->
+    <!-- VENTANA DE FORMULARIO -->
+    <dialog class="dialogo" id="dialogoFormulario" aria-labelledby="tituloFormulario">
+        <form id="formularioDialogo">
+            <h2 class="dialogo-titulo" id="tituloFormulario">Formulario</h2>
+            <div class="formulario-campos" id="camposFormulario"></div>
+            <p class="dialogo-error" id="errorFormulario" role="alert"></p>
+            <div class="dialogo-acciones">
+                <button type="button" class="boton-secundario" id="botonCancelarFormulario">Cancelar</button>
+                <button type="submit" class="boton-primario" id="botonGuardarFormulario">Guardar</button>
+            </div>
+        </form>
+    </dialog>
+
+    <!-- VENTANA DE CONFIRMACIÓN -->
+    <dialog class="dialogo dialogo-chico" id="dialogoConfirmar" aria-labelledby="tituloConfirmar">
+        <form method="dialog">
+            <h2 class="dialogo-titulo" id="tituloConfirmar">Confirmar</h2>
+            <p class="dialogo-texto" id="textoConfirmar"></p>
+            <div class="dialogo-acciones">
+                <button type="submit" value="cancelar" class="boton-secundario">Cancelar</button>
+                <button type="submit" value="ok" class="boton-peligro" id="botonConfirmarOk">Confirmar</button>
+            </div>
+        </form>
+    </dialog>
+
+    <!-- =========================================
+         VENTANA DE CITAS (nueva / modificar)
+         ========================================= -->
+    <dialog class="dialogo" id="dialogoCita" aria-labelledby="tituloCita">
+        <form id="formularioCita">
+            <h2 class="dialogo-titulo" id="tituloCita">Nueva cita</h2>
+            <p class="ayuda-cita">
+                Se puede agendar con un máximo de 2 semanas de anticipación, de lunes a sábado,
+                de 9:00 a 18:00 (máximo 2 autos al mismo tiempo).
+            </p>
+
+            <div class="formulario-campos">
+                <div class="campo-form ancho-completo">
+                    <label for="citaCliente">Cliente *</label>
+                    <select id="citaCliente"></select>
+                </div>
+
+                <div class="campo-form">
+                    <label for="citaFecha">Fecha *</label>
+                    <input type="date" id="citaFecha" required>
+                </div>
+
+                <div class="campo-form">
+                    <label for="citaDuracion">Duración *</label>
+                    <select id="citaDuracion">
+                        <option value="30">30 minutos</option>
+                        <option value="60" selected>1 hora</option>
+                        <option value="90">1 hora 30 min</option>
+                        <option value="120">2 horas</option>
+                        <option value="180">3 horas</option>
+                        <option value="240">4 horas</option>
+                    </select>
+                </div>
+
+                <div class="campo-form ancho-completo">
+                    <label for="citaHora">Hora de inicio *</label>
+                    <select id="citaHora"></select>
+                </div>
+
+                <div class="campo-form ancho-completo">
+                    <label for="citaServicio">Servicio *</label>
+                    <input type="text" id="citaServicio" maxlength="150" placeholder="Ej. Cambio de aceite y filtro">
+                </div>
+
+                <div class="campo-form ancho-completo">
+                    <label for="citaVehiculo">Vehículo</label>
+                    <input type="text" id="citaVehiculo" maxlength="150" placeholder="Marca, modelo, año y placas">
+                </div>
+
+                <div class="campo-form ancho-completo">
+                    <label for="citaNotas">Notas (el cliente las puede ver)</label>
+                    <textarea id="citaNotas" rows="3" maxlength="500"></textarea>
+                </div>
+
+                <div class="campo-form ancho-completo" id="campoEstadoCita" hidden>
+                    <label for="citaEstado">Estado</label>
+                    <select id="citaEstado">
+                        <option value="programada">Programada</option>
+                        <option value="confirmada">Confirmada</option>
+                        <option value="completada">Completada</option>
+                        <option value="cancelada">Cancelada</option>
+                    </select>
+                </div>
+            </div>
+
+            <p class="dialogo-error" id="errorCita" role="alert"></p>
+            <div class="dialogo-acciones">
+                <button type="button" class="boton-secundario" id="botonCancelarCita">Cancelar</button>
+                <button type="submit" class="boton-primario" id="botonGuardarCita">Guardar</button>
+            </div>
+        </form>
+    </dialog>
+
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="js/supabase.js"></script>
+    <script src="js/usuarios.js"></script>
     <script src="js/guard.js"></script>
-    <script src="js/script.js" defer></script>
+    <script src="js/captcha.js"></script>
+    <script src="js/panel-captcha.js"></script>
+    <script src="js/panel.js"></script>
+    <script src="js/panel-usuarios.js"></script>
+    <script src="js/panel-menu.js"></script>
+    <script src="js/panel-citas.js"></script>
+    <!-- Títulos de las tablas para la vista de tarjetas en celular (va al final) -->
+    <script src="js/tablas.js"></script>
 </body>
 </html>

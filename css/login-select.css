@@ -1,0 +1,72 @@
+/* =========================================
+   SELECTOR DE USUARIO (login)
+   Se carga DESPUÉS de login.css
+   ========================================= */
+.campo select {
+    width: 100%;
+    padding: 12px 40px 12px 12px;
+    font-size: 16px; /* evita el zoom automático en iPhone */
+    color: #ffffff;
+    background-color: #0d1117;
+    border: 1px solid rgba(0, 234, 255, 0.4);
+    border-radius: 8px;
+    outline: none;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2300eaff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.campo select:focus {
+    border-color: #00eaff;
+    box-shadow: 0 0 8px rgba(0, 234, 255, 0.5);
+}
+
+.campo select option {
+    background-color: #0d1117;
+    color: #ffffff;
+}
+
+/* =========================================
+   SECCIÓN "ENTRAR COMO CLIENTE" (login.html)
+   ========================================= */
+.separador-cliente {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 22px 0 14px;
+    font-size: 0.85rem;
+    color: #b0b0b0;
+}
+
+.separador-cliente::before,
+.separador-cliente::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background-color: rgba(0, 234, 255, 0.3);
+}
+
+.boton-cliente {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    box-sizing: border-box;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: bold;
+    text-decoration: none;
+    color: #00eaff;
+    background: transparent;
+    border: 1px solid #00eaff;
+    border-radius: 8px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.boton-cliente:hover {
+    background-color: #00eaff;
+    color: #0b0b0b;
+}

@@ -4,7 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Taller Mecánico - OMEGA MECHANIC</title>
+    
+    <!-- Hojas de estilos -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/efectos.css"> <!-- Efecto de niebla -->
     <link rel="stylesheet" href="css/nosotros.css">
+    <link rel="stylesheet" href="css/menu-activo.css">
+    <!-- Menú de celular: tarjeta que se desliza como cortina -->
+    <link rel="stylesheet" href="css/menu-cortina.css">
+    <link rel="stylesheet" href="css/seguridad.css">
 </head>
 <body>
 
@@ -20,39 +28,55 @@
 
         <span class="titulo-barra">Bienvenido a nuestro Taller Mecánico</span>
 
-        <img src="img/Logotipo_del_taller.jpg" alt="Logo Taller" class="logo-barra" width="50" height="50" loading="eager">
+        <img src="img/Logotipo_del_taller.jpg" alt="Logo Taller" class="logo-barra" width="60" height="60" loading="eager">
     
-        <nav class="nav-botones" id="menuNav">
-            <button class="boton-cerrar" id="botonCerrar" aria-label="Cerrar menú">✕</button>
-
-            <a href="index.html" class="btn-nav">Inicio</a>
-            <a href="nosotros.html" class="btn-nav activo">Nosotros</a>
-            <a href="login.html" class="btn-nav">Login</a>
-            <a href="#" class="btn-nav">Botón 4</a>
-            <a href="#" class="btn-nav">Botón 5</a>
+        <nav id="menuNav">
+            <a href="index.html">Inicio</a>
+            <a href="nosotros.html" aria-current="page">Nosotros</a>
+            <a href="login.html">Login</a>
+            <a>Botón 4</a>
+            <a>Botón 5</a>
 
             <div class="menu-imagen-contenedor">
-                <img src="img/img_menu.jpg" alt="Imagen del taller en menú" class="img-menu-desplegable" width="180" height="180" loading="lazy">
+                <img src="img/img_menu.jpg" alt="Imagen del taller en menú" class="img-menu-desplegable" width="120" height="120" loading="lazy">
             </div>
         </nav>
     </header>
 
-    <!-- IMG ¿QUIÉNES SOMOS? -->
-    <section class="imagen-Quienes_somos">
-        <img src="img/img_Quienes_somos.jpg" alt="Taller Mecánico" class="img-quienes" width="500" height="300" loading="eager">
+    <!-- SECCIÓN ¿QUIÉNES SOMOS? CON CARRUSEL Y EFECTO DE NIEBLA -->
+    <section class="imagen-Quienes_somos carrusel-contenedor">
+        <div class="carrusel-interno">
+            <button class="carrusel-boton carrusel-boton-anterior" onclick="moverCarrusel(-1)" aria-label="Imagen anterior">&#10094;</button>
+
+            <div class="carrusel-track">
+                <div class="carrusel-slide activa">
+                    <img src="img/img_Quienes_somos.jpg" alt="Taller Mecánico" class="img-quienes img-personalizada" width="500" height="300" loading="eager">
+                </div>
+                <div class="carrusel-slide">
+                    <img src="img/img_muestra1.jpg" alt="Vista del taller" class="img-quienes img-personalizada" width="500" height="300" loading="lazy">
+                </div>
+                <div class="carrusel-slide">
+                    <img src="img/img_muestra2.jpg" alt="Equipo de trabajo" class="img-quienes img-personalizada" width="500" height="300" loading="lazy">
+                </div>
+            </div>
+
+            <button class="carrusel-boton carrusel-boton-siguiente" onclick="moverCarrusel(1)" aria-label="Siguiente imagen">&#10095;</button>
+        </div>
+        <!-- Capa de difuminado o niebla -->
+        <div class="difuminado-ancho"></div>
     </section>
 
-    <!-- SECCIÓN MASCOTA Y FILOSOFÍA -->
+    <!-- SECCIÓN EMPRESA, MASCOTA Y FILOSOFÍA -->
     <section class="contenedor-mascota-seccion">
         <div class="info-box top-box">
-            <h3>😁 Sonrisas</h3>
-            <p>Nuestro mayor logro: clientes satisfechos con cada motor rugiendo de nuevo.</p>
+            <h3>⚙️ OMEGA MECHANIC</h3>
+            <p>Precisión absoluta en cada diagnóstico, transformando la potencia en confiabilidad pura.</p>
         </div>
 
         <div class="centro-grid">
             <div class="info-box left-box">
                 <h3>🎯 Misión</h3>
-                <p>Brindar diagnóstico y reparación automotriz de alta precisión con un servicio transparente y confiable.</p>
+                <p>Brindar diagnóstico y reparación automotriz de alta precisión con un servicio transparente y confiable[cite: 6].</p>
             </div>
 
             <div class="imagen-contenedor-central">
@@ -61,20 +85,20 @@
 
             <div class="info-box right-box">
                 <h3>👁️ Visión</h3>
-                <p>Ser el taller mecánico líder en innovación tecnológica y personalización automotriz de la región.</p>
+                <p>Ser el taller mecánico líder en innovación tecnológica y personalización automotriz de la región[cite: 6].</p>
             </div>
         </div>
 
         <div class="info-box bottom-box">
             <h3>💎 Valores</h3>
-            <p>Honestidad, Precisión, Innovación, Pasión por los motores y Trabajo en equipo.</p>
+            <p>Honestidad, Precisión, Innovación, Pasión por los motores y Trabajo en equipo[cite: 6].</p>
         </div>
     </section>
 
     <!-- SECCIÓN DE LA HISTORIA -->
     <section class="seccion-historia">
         <h2 class="titulo-historia">El Despertar de Omega Mechanic</h2>
-        <p class="subtitulo-historia">Haz clic en las fechas para revelar los capítulos de nuestra leyenda.</p>
+        <p class="subtitulo-historia">Haz clic en las fechas para revelar los capítulos de nuestra leyenda[cite: 6].</p>
 
         <div class="historia-contenedor">
             <div class="historia-botones">
@@ -99,7 +123,7 @@
                         <div class="texto-historia">
                             <span class="badge-fecha">Año 2020</span>
                             <h3>El Surgimiento en la Oscuridad</h3>
-                            <p>En los suburbios de la red cibernética, bajo un cielo de neón y asfalto húmedo, nació OMEGA MECHANIC. Lo que empezó como un modesto garaje de diagnóstico automotriz manual se transformó rápidamente en el santuario definitivo de la ingeniería de alta precisión, donde ningún motor dañado se da por vencido.</p>
+                            <p>En los suburbios de la red cibernética, bajo un cielo de neón y asfalto húmedo, nació OMEGA MECHANIC. Lo que empezó como un modesto garaje de diagnóstico automotriz manual se transformó rápidamente en el santuario definitivo de la ingeniería de alta precisión, donde ningún motor dañado se da por vencido[cite: 6].</p>
                         </div>
                     </div>
                 </div>
@@ -110,7 +134,7 @@
                         <div class="texto-historia">
                             <span class="badge-fecha">Año 2023</span>
                             <h3>La Llegada de la Inteligencia</h3>
-                            <p>Para proteger y guiar el taller, los fundadores diseñaron a nuestra mascota cibernética. Equipada con núcleos de procesamiento cuántico y una llave de tuercas de aleación ligera, no es solo un robot: es el alma técnica del taller que saluda a cada cliente listo para rugir en la pista.</p>
+                            <p>Para proteger y guiar el taller, los fundadores diseñaron a nuestra mascota cibernética. Equipada con núcleos de procesamiento cuántico y una llave de tuercas de aleación ligera, no es solo un robot: es el alma técnica del taller que saluda a cada cliente listo para rugir en la pista[cite: 6].</p>
                         </div>
                     </div>
                 </div>
@@ -121,7 +145,7 @@
                         <div class="texto-historia">
                             <span class="badge-fecha">Año 2026</span>
                             <h3>Innovación sin Límites</h3>
-                            <p>Hoy, OMEGA MECHANIC domina la vanguardia de la personalización de vehículos y sistemas computarizados. Cada auto que cruza nuestras puertas sale mejorado, transformándose en una máquina imparable lista para conquistar el mañana.</p>
+                            <p>Hoy, OMEGA MECHANIC domina la vanguardia de la personalización de vehículos y sistemas computarizados. Cada auto que cruza nuestras puertas sale mejorado, transformándose en una máquina imparable lista para conquistar el mañana[cite: 6].</p>
                         </div>
                     </div>
                 </div>
@@ -132,9 +156,9 @@
     <!-- SECCIÓN ORGANIGRAMA -->
     <section class="seccion-organigrama">
         <h2 class="titulo-organigrama">Organigrama Omega Mechanic</h2>
-        <p class="subtitulo-organigrama">Conoce la estructura jerárquica de nuestro equipo de trabajo.</p>
+        <p class="subtitulo-organigrama">Conoce la estructura jerárquica de nuestro equipo de trabajo[cite: 6].</p>
 
-        <!-- VERSIÓN ESCRITORIO (Estructura original de 4,200px con líneas de neón) -->
+        <!-- VERSIÓN ESCRITORIO -->
         <div class="organigrama-escritorio">
             <div class="organigrama-scroll-wrapper">
                 <div class="canvas-organigrama">
@@ -266,23 +290,18 @@
             </div>
         </div>
 
-        <!-- VERSIÓN MÓVIL (lienzo con tarjetas y líneas por coordenadas) -->
+        <!-- VERSIÓN MÓVIL -->
         <div class="organigrama-movil">
             <div class="movil-lienzo">
-
-                <!-- LÍNEAS: cada <line> va de (x1,y1) a (x2,y2) -->
                 <svg class="movil-lineas" width="340" height="1010" viewBox="0 0 340 1010" aria-hidden="true">
-                    <!-- Línea principal que baja desde el Director -->
                     <line x1="170" y1="70" x2="170" y2="600" class="linea-neon" />
-
-                    <!-- Ramales hacia cada tarjeta del nivel 2 -->
-                    <line x1="125" y1="130" x2="220" y2="130" class="linea-neon" />  <!-- Luis -->
-                    <line x1="170" y1="210" x2="220" y2="210" class="linea-neon" />  <!-- Eduardo -->
-                    <line x1="-20" y1="130" x2="5" y2="130" class="linea-neon" />  <!-- Roman -->
+                    <line x1="125" y1="130" x2="220" y2="130" class="linea-neon" />
+                    <line x1="170" y1="210" x2="220" y2="210" class="linea-neon" />
+                    <line x1="-20" y1="130" x2="5" y2="130" class="linea-neon" />
                     <line x1="-20" y1="130" x2="-20" y2="330" class="linea-neon" />
                     <line x1="-20" y1="210" x2="5" y2="210" class="linea-neon" />
                     <line x1="-20" y1="330" x2="5" y2="330" class="linea-neon" />
-                    <line x1="330" y1="210" x2="360" y2="210" class="linea-neon" />  <!-- Emiliano -->
+                    <line x1="330" y1="210" x2="360" y2="210" class="linea-neon" />
                     <line x1="330" y1="290" x2="360" y2="290" class="linea-neon" />
                     <line x1="360" y1="210" x2="360" y2="290" class="linea-neon" />
                     <line x1="170" y1="375" x2="220" y2="375" class="linea-neon" />
@@ -290,12 +309,12 @@
                     <line x1="330" y1="460" x2="360" y2="460" class="linea-neon" />
                     <line x1="330" y1="540" x2="360" y2="540" class="linea-neon" />
                     <line x1="360" y1="375" x2="360" y2="540" class="linea-neon" />
+                    <line x1="125" y1="460" x2="220" y2="460" class="linea-neon" />
                     <line x1="-20" y1="460" x2="5" y2="460" class="linea-neon" />
                     <line x1="-20" y1="540" x2="5" y2="540" class="linea-neon" />
                     <line x1="-20" y1="460" x2="-20" y2="540" class="linea-neon" />
                 </svg>
 
-                <!-- TARJETAS: --x y --y son su posición en píxeles dentro del lienzo -->
                 <div class="m-nodo nivel-1" style="--x:105px; --y:10px;">
                     <img src="img/img_mia.jpg" alt="Director General" class="org-foto" width="40" height="40" loading="lazy">
                     <span class="m-nombre">Juan Eduardo Ocampo Castillo</span>
@@ -412,12 +431,15 @@
                         <span class="m-correo">eder@gmail.com</span>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
 
-    <!-- SCRIPT DE INTERACTIVIDAD -->
-    <script src="js/nosotros.js"></script>
+    <!-- SCRIPTS -->
+    <script src="js/script.js" defer></script>
+    <script src="js/niebla.js" defer></script> <!-- Script que aclara la niebla al hacer scroll -->
+    <script src="js/nosotros.js" defer></script>
+    <!-- Aviso de cookies -->
+    <script src="js/cookies.js" defer></script>
 </body>
 </html>

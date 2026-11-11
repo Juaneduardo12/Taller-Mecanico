@@ -1,0 +1,140 @@
+/* =========================================
+   MENÚ DE CELULAR: TARJETA QUE SE DESLIZA COMO CORTINA
+   (se abre de izquierda a derecha y se cierra de derecha a izquierda)
+   (con el borde de colores del arcoíris)
+
+   Reemplaza la apertura en abanico del menú de celular.
+   Cargar DESPUÉS de style.css y menu-activo.css.
+   Solo afecta a pantallas de celular (hasta 600px).
+   ========================================= */
+
+@media (max-width: 600px) {
+
+    /* ---------- La tarjeta (menú cerrado = cortina recogida) ---------- */
+    header.menu #menuNav {
+        position: fixed;
+        top: 78px;                 /* justo debajo de la barra superior */
+        left: 12px;
+        right: 12px;
+        width: auto;
+        height: auto;
+        max-height: calc(100vh - 100px);
+        max-height: calc(100dvh - 100px);
+        padding: 22px 18px 24px;
+        gap: 12px;
+        overflow-y: auto;
+        box-sizing: border-box;
+
+        /* Borde de arcoíris + fondo oscuro de la tarjeta */
+        border: 2px solid transparent;
+        border-radius: 20px;
+        background:
+            linear-gradient(rgba(17, 17, 17, 0.98), rgba(17, 17, 17, 0.98)) padding-box,
+            linear-gradient(90deg, #ff3b3b, #ff9f1c, #ffe14d, #3ddc84, #00eaff, #4d7cff, #b04dff, #ff3b3b) border-box;
+        background-size: 100% 100%, 600px 100%;
+        background-repeat: no-repeat, repeat-x;
+        box-shadow: 0 14px 34px rgba(0, 0, 0, 0.65);
+        backdrop-filter: none;
+
+        /* Cortina recogida (pegada a la izquierda): no se ve nada, y no se puede tocar */
+        transform: none;
+        transform-origin: left center;
+        opacity: 1;
+        clip-path: inset(0 100% 0 0 round 20px);
+        visibility: hidden;
+        pointer-events: none;
+
+        /* Al cerrar: la cortina se recoge de derecha a izquierda */
+        transition:
+            clip-path 0.7s cubic-bezier(0.65, 0, 0.35, 1),
+            visibility 0s linear 0.7s;
+
+        /* El arcoíris se mueve solo mientras el menú está abierto */
+        animation: arcoiris-borde 8s linear infinite;
+        animation-play-state: paused;
+    }
+
+    /* ---------- Menú abierto = cortina desplegada ---------- */
+    header.menu #menuNav.menu-abierto {
+        transform: none;
+        opacity: 1;
+        clip-path: inset(0 0 0 0 round 20px);
+        visibility: visible;
+        pointer-events: auto;
+        animation-play-state: running;
+
+        /* Al abrir: la cortina se corre de izquierda a derecha */
+        transition:
+            clip-path 0.85s cubic-bezier(0.22, 0.9, 0.3, 1),
+            visibility 0s;
+    }
+
+    /* ---------- Botones dentro de la tarjeta ---------- */
+    header.menu #menuNav a {
+        width: 100%;
+        max-width: none;
+        opacity: 0;
+        transform: translateX(-24px);
+        transform-origin: center;
+        transition:
+            opacity 0.2s ease,
+            transform 0.2s ease,
+            background-color 0.2s ease;
+    }
+
+    /* Al abrir, cada botón aparece uno tras otro, siguiendo a la cortina */
+    header.menu #menuNav.menu-abierto a {
+        opacity: 1;
+        transform: none;
+        transition:
+            opacity 0.4s ease var(--d, 0s),
+            transform 0.4s ease var(--d, 0s),
+            background-color 0.2s ease;
+    }
+
+    header.menu #menuNav.menu-abierto a:nth-child(1) { --d: 0.30s; }
+    header.menu #menuNav.menu-abierto a:nth-child(2) { --d: 0.38s; }
+    header.menu #menuNav.menu-abierto a:nth-child(3) { --d: 0.46s; }
+    header.menu #menuNav.menu-abierto a:nth-child(4) { --d: 0.54s; }
+    header.menu #menuNav.menu-abierto a:nth-child(5) { --d: 0.62s; }
+
+    /* ---------- Imagen dentro de la tarjeta ---------- */
+    header.menu #menuNav .menu-imagen-contenedor {
+        margin-top: 6px;
+        opacity: 0;
+        transform: scale(0.8);
+        transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    header.menu #menuNav.menu-abierto .menu-imagen-contenedor {
+        opacity: 1;
+        transform: scale(1);
+        transition: opacity 0.4s ease 0.72s, transform 0.4s ease 0.72s;
+    }
+}
+
+/* El borde de arcoíris se desplaza suavemente (el tamaño del mosaico es de 600px) */
+@keyframes arcoiris-borde {
+    from { background-position: 0 0, 0 0; }
+    to   { background-position: 0 0, 600px 0; }
+}
+
+/* Para quien tiene activada la opción de "reducir movimiento" en su sistema */
+@media (prefers-reduced-motion: reduce) {
+    header.menu #menuNav {
+        animation: none;
+        transition: opacity 0.2s ease, visibility 0s linear 0.2s;
+    }
+
+    header.menu #menuNav.menu-abierto {
+        transition: opacity 0.2s ease, visibility 0s;
+    }
+
+    header.menu #menuNav a,
+    header.menu #menuNav.menu-abierto a,
+    header.menu #menuNav .menu-imagen-contenedor,
+    header.menu #menuNav.menu-abierto .menu-imagen-contenedor {
+        transition: none;
+        transform: none;
+    }
+}

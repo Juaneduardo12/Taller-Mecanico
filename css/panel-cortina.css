@@ -1,0 +1,187 @@
+/* =========================================
+   PANEL: MENÚ DE CELULAR COMO TARJETA TIPO CORTINA
+   - Se abre de izquierda a derecha y se cierra de derecha a izquierda.
+   - Borde con los colores del arcoíris.
+   - Casi toda la pantalla: solo deja un pequeño margen alrededor.
+
+   Cargar DESPUÉS de panel.css y panel-extra.css.
+   - Celular (hasta 767px): tarjeta tipo cortina.
+   - Escritorio (768px o más): menú lateral ESTÁTICO, siempre visible.
+   ========================================= */
+
+@media (max-width: 767px) {
+
+    /* ---------- La tarjeta (menú cerrado = cortina recogida a la izquierda) ---------- */
+    .menu-lateral {
+        top: calc(var(--alto-barra, 64px) + 8px);
+        left: 12px;
+        right: 12px;
+        bottom: 12px;
+        width: auto;
+        max-width: none;
+        padding: 64px 14px 18px;   /* arriba queda libre un espacio para la X */
+        box-sizing: border-box;
+
+        /* Borde de arcoíris + fondo de la tarjeta */
+        border: 2px solid transparent;
+        border-radius: 20px;
+        background:
+            linear-gradient(var(--superficie, #1a1a1a), var(--superficie, #1a1a1a)) padding-box,
+            linear-gradient(90deg, #ff3b3b, #ff9f1c, #ffe14d, #3ddc84, #00eaff, #4d7cff, #b04dff, #ff3b3b) border-box;
+        background-size: 100% 100%, 600px 100%;
+        background-repeat: no-repeat, repeat-x;
+        box-shadow: 0 14px 34px rgba(0, 0, 0, 0.65);
+
+        /* Cortina recogida: no se ve y no se puede tocar */
+        transform: none;
+        clip-path: inset(0 100% 0 0 round 20px);
+        visibility: hidden;
+        pointer-events: none;
+
+        /* Al cerrar: la cortina se recoge de derecha a izquierda */
+        transition:
+            clip-path 0.7s cubic-bezier(0.65, 0, 0.35, 1),
+            visibility 0s linear 0.7s;
+
+        /* El arcoíris se mueve solo mientras el menú está abierto */
+        animation: arcoiris-borde 8s linear infinite;
+        animation-play-state: paused;
+    }
+
+    /* ---------- Menú abierto = cortina corrida de izquierda a derecha ---------- */
+    body.menu-abierto .menu-lateral {
+        transform: none;
+        clip-path: inset(0 0 0 0 round 20px);
+        visibility: visible;
+        pointer-events: auto;
+        animation-play-state: running;
+
+        transition:
+            clip-path 0.85s cubic-bezier(0.22, 0.9, 0.3, 1),
+            visibility 0s;
+    }
+
+    /* ---------- Botones: entran deslizándose desde la izquierda, uno tras otro ---------- */
+    .menu-lateral .item-menu {
+        opacity: 0;
+        transform: translateX(-24px);
+        transition:
+            opacity 0.2s ease,
+            transform 0.2s ease,
+            background-color 0.2s ease,
+            border-color 0.2s ease;
+    }
+
+    body.menu-abierto .menu-lateral .item-menu {
+        opacity: 1;
+        transform: none;
+        transition:
+            opacity 0.4s ease var(--d, 0s),
+            transform 0.4s ease var(--d, 0s),
+            background-color 0.2s ease,
+            border-color 0.2s ease;
+    }
+
+    body.menu-abierto .menu-lateral .item-menu:nth-child(1) { --d: 0.30s; }
+    body.menu-abierto .menu-lateral .item-menu:nth-child(2) { --d: 0.38s; }
+    body.menu-abierto .menu-lateral .item-menu:nth-child(3) { --d: 0.46s; }
+    body.menu-abierto .menu-lateral .item-menu:nth-child(4) { --d: 0.54s; }
+    body.menu-abierto .menu-lateral .item-menu:nth-child(5) { --d: 0.62s; }
+    body.menu-abierto .menu-lateral .item-menu:nth-child(6) { --d: 0.70s; }
+
+    /* ---------- Fondo oscuro detrás de la tarjeta (tocarlo cierra el menú) ---------- */
+    body.menu-abierto .fondo-menu {
+        display: block !important;
+    }
+}
+
+/* ---------- Botón X para cerrar la tarjeta (solo existe en celular) ---------- */
+.menu-lateral .menu-cerrar {
+    display: none;
+}
+
+@media (max-width: 767px) {
+    .menu-lateral .menu-cerrar {
+        position: absolute;
+        top: 10px;
+        right: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 42px;
+        height: 42px;
+        padding: 0 0 3px;
+        font-family: Arial, sans-serif;
+        font-size: 30px;
+        line-height: 1;
+        color: var(--cian, #00eaff);
+        background: transparent;
+        border: 1px solid rgba(0, 234, 255, 0.5);
+        border-radius: 12px;
+        cursor: pointer;
+
+        /* Aparece junto con la tarjeta */
+        opacity: 0;
+        transition: opacity 0.2s ease, background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    }
+
+    body.menu-abierto .menu-lateral .menu-cerrar {
+        opacity: 1;
+        transition: opacity 0.4s ease 0.35s, background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    }
+
+    .menu-lateral .menu-cerrar:hover,
+    .menu-lateral .menu-cerrar:focus-visible {
+        color: #ffffff;
+        background-color: var(--rojo, #e63946);
+        border-color: var(--rojo, #e63946);
+        outline: none;
+    }
+}
+
+/* El borde de arcoíris se desplaza suavemente (el tamaño del mosaico es de 600px) */
+@keyframes arcoiris-borde {
+    from { background-position: 0 0, 0 0; }
+    to   { background-position: 0 0, 600px 0; }
+}
+
+/* Para quien tiene activada la opción de "reducir movimiento" en su sistema */
+@media (prefers-reduced-motion: reduce) {
+    .menu-lateral {
+        animation: none;
+        transition: visibility 0s linear 0.2s;
+    }
+
+    body.menu-abierto .menu-lateral {
+        transition: visibility 0s;
+    }
+
+    .menu-lateral .item-menu,
+    body.menu-abierto .menu-lateral .item-menu {
+        transition: none;
+        transform: none;
+    }
+}
+
+/* =========================================
+   ESCRITORIO (768px o más): MENÚ LATERAL ESTÁTICO
+   El menú siempre está visible y fijo a la izquierda; no se abre ni se cierra.
+   (Se usa !important para que gane aunque panel.js agregue o quite la clase
+   "menu-abierto" del body.)
+   ========================================= */
+@media (min-width: 768px) {
+    .menu-lateral {
+        transform: none !important;
+        visibility: visible !important;
+    }
+
+    /* El contenido siempre deja libre el espacio del menú */
+    body .contenido {
+        margin-left: var(--ancho-menu, 240px) !important;
+    }
+
+    /* Ya no hace falta la hamburguesa */
+    .boton-hamburguesa {
+        display: none !important;
+    }
+}
