@@ -100,6 +100,12 @@
                 </svg>
                 <span>Citas</span>
             </button>
+            <button type="button" class="item-menu" data-vista="servicios">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+                </svg>
+                <span>Servicios</span>
+            </button>
         </nav>
     </aside>
 
@@ -392,6 +398,42 @@
             </div>
         </section>
 
+        <!-- VISTA: CATÁLOGO DE SERVICIOS -->
+        <section class="vista" id="vista-servicios">
+            <div class="vista-encabezado">
+                <h1 class="vista-titulo">Catálogo de Servicios</h1>
+                <span class="encabezado-imagen" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+                    </svg>
+                </span>
+                <button type="button" class="boton-nuevo" id="botonNuevoServicio" hidden>
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M12 5v14M5 12h14"/>
+                    </svg>
+                    <span>Nuevo servicio</span>
+                </button>
+            </div>
+
+            <p class="estado-tabla" id="estadoServicios" role="status" aria-live="polite"></p>
+            <div class="tabla-contenedor">
+                <table class="tabla">
+                    <thead>
+                        <tr>
+                            <th>Servicio</th>
+                            <th>Categoría</th>
+                            <th>Descripción</th>
+                            <th>Precio desde</th>
+                            <th>Duración</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cuerpoServicios"></tbody>
+                </table>
+            </div>
+        </section>
+
     </main>
 
     <!-- VENTANA DE FORMULARIO -->
@@ -460,7 +502,8 @@
 
                 <div class="campo-form ancho-completo">
                     <label for="citaServicio">Servicio *</label>
-                    <input type="text" id="citaServicio" maxlength="150" placeholder="Ej. Cambio de aceite y filtro">
+                    <input type="text" id="citaServicio" maxlength="150" list="listaServiciosCatalogo" placeholder="Ej. Cambio de aceite y filtro">
+                    <datalist id="listaServiciosCatalogo"></datalist>
                 </div>
 
                 <div class="campo-form ancho-completo">
@@ -492,6 +535,66 @@
         </form>
     </dialog>
 
+    <!-- =========================================
+         VENTANA DE SERVICIOS (nuevo / modificar)
+         ========================================= -->
+    <dialog class="dialogo" id="dialogoServicio" aria-labelledby="tituloServicio">
+        <form id="formularioServicio">
+            <h2 class="dialogo-titulo" id="tituloServicio">Nuevo servicio</h2>
+
+            <div class="formulario-campos">
+                <div class="campo-form ancho-completo">
+                    <label for="servNombre">Nombre del servicio *</label>
+                    <input type="text" id="servNombre" maxlength="150" placeholder="Ej. Cambio de aceite y filtro">
+                </div>
+
+                <div class="campo-form">
+                    <label for="servCategoria">Categoría</label>
+                    <input type="text" id="servCategoria" maxlength="80" list="listaCategorias" placeholder="Ej. Mantenimiento">
+                    <datalist id="listaCategorias"></datalist>
+                </div>
+
+                <div class="campo-form">
+                    <label for="servPrecio">Precio desde (MXN)</label>
+                    <input type="number" id="servPrecio" min="0" step="0.01" placeholder="Vacío = a cotizar">
+                </div>
+
+                <div class="campo-form">
+                    <label for="servDuracion">Duración estimada *</label>
+                    <select id="servDuracion">
+                        <option value="30">30 minutos</option>
+                        <option value="60" selected>1 hora</option>
+                        <option value="90">1 hora 30 min</option>
+                        <option value="120">2 horas</option>
+                        <option value="180">3 horas</option>
+                        <option value="240">4 horas</option>
+                        <option value="360">6 horas</option>
+                        <option value="480">8 horas</option>
+                    </select>
+                </div>
+
+                <div class="campo-form" id="campoActivoServicio" hidden>
+                    <label for="servActivo">Estado</label>
+                    <select id="servActivo">
+                        <option value="si">Activo</option>
+                        <option value="no">Inactivo</option>
+                    </select>
+                </div>
+
+                <div class="campo-form ancho-completo">
+                    <label for="servDescripcion">Descripción</label>
+                    <textarea id="servDescripcion" rows="3" maxlength="500" placeholder="Qué incluye el servicio"></textarea>
+                </div>
+            </div>
+
+            <p class="dialogo-error" id="errorServicio" role="alert"></p>
+            <div class="dialogo-acciones">
+                <button type="button" class="boton-secundario" id="botonCancelarServicio">Cancelar</button>
+                <button type="submit" class="boton-primario" id="botonGuardarServicio">Guardar</button>
+            </div>
+        </form>
+    </dialog>
+
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="js/supabase.js"></script>
     <script src="js/usuarios.js"></script>
@@ -502,6 +605,7 @@
     <script src="js/panel-usuarios.js"></script>
     <script src="js/panel-menu.js"></script>
     <script src="js/panel-citas.js"></script>
+    <script src="js/panel-servicios.js"></script>
     <!-- Títulos de las tablas para la vista de tarjetas en celular (va al final) -->
     <script src="js/tablas.js"></script>
 </body>

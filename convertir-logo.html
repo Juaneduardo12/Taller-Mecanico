@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex">
+    <title>Convertir logo para el PDF - OMEGA MECHANIC</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            padding: 24px 16px;
+            font-family: Arial, sans-serif;
+            color: #e0e0e0;
+            background: #0b0b0b;
+            line-height: 1.5;
+        }
+        main {
+            max-width: 560px;
+            margin: 0 auto;
+            padding: 26px 22px;
+            background: #1a1a1a;
+            border: 2px solid #00eaff;
+            border-radius: 16px;
+            box-shadow: 0 0 25px rgba(0, 234, 255, 0.25);
+        }
+        h1 { margin: 0 0 6px; font-size: 1.4rem; color: #00eaff; }
+        p { margin: 0 0 14px; font-size: 0.92rem; color: #b0b0b0; }
+        ol { margin: 0 0 18px; padding-left: 20px; font-size: 0.92rem; }
+        li { margin-bottom: 6px; }
+        input[type="file"] {
+            width: 100%;
+            padding: 12px;
+            color: #fff;
+            background: #0d1117;
+            border: 1px solid rgba(0, 234, 255, 0.4);
+            border-radius: 8px;
+        }
+        .vista { display: flex; justify-content: center; margin: 20px 0; }
+        .vista canvas {
+            width: 160px;
+            height: 160px;
+            background: #0b0b0b;
+            border: 3px solid #00eaff;
+            border-radius: 50%;
+        }
+        button {
+            width: 100%;
+            padding: 13px;
+            font-size: 1rem;
+            font-weight: bold;
+            color: #0b0b0b;
+            background: #00eaff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        button:disabled { opacity: 0.4; cursor: not-allowed; }
+        #mensaje { min-height: 1.4em; margin: 14px 0 0; text-align: center; }
+        #mensaje.ok { color: #2ecc71; }
+        #mensaje.error { color: #ff6b6b; }
+    </style>
+</head>
+<body>
+    <main>
+        <h1>Convertir el logo para el PDF</h1>
+        <p>Esta herramienta prepara tu logo para que aparezca en el PDF de las citas, incluso si abres el sitio desde una carpeta de tu computadora.</p>
+
+        <ol>
+            <li>Elige el archivo <strong>img/Logotipo_del_taller.jpg</strong>.</li>
+            <li>Da clic en <strong>Descargar logo-pdf.js</strong>.</li>
+            <li>Guarda ese archivo en la carpeta <strong>js/</strong> de tu proyecto, reemplazando el que ya existe.</li>
+            <li>Recarga la página de la cuenta del cliente y descarga un PDF.</li>
+        </ol>
+
+        <input type="file" id="archivo" accept="image/*">
+
+        <div class="vista"><canvas id="vista" width="320" height="320"></canvas></div>
+
+        <button type="button" id="descargar" disabled>Descargar logo-pdf.js</button>
+        <p id="mensaje" role="status" aria-live="polite"></p>
+    </main>
+
+    <script>
+        (function () {
+            var entrada = document.getElementById('archivo');
+            var boton = document.getElementById('descargar');
+            var mensaje = document.getElementById('mensaje');
+            var vista = document.getElementById('vista');
+            var contenido = '';
+
+            function avisar(texto, tipo) {
+                mensaje.textContent = texto;
+                mensaje.className = tipo || '';
+            }
+
+            entrada.addEventListener('change', function () {
+                var archivo = entrada.files[0];
+                boton.disabled = true;
+                contenido = '';
+                if (!archivo) return;
+
+                var lector = new FileReader();
+                lector.onerror = function () { avisar('No se pudo leer el archivo.', 'error'); };
+                lector.onload = function () {
+                    var imagen = new Image();
+                    imagen.onerror = function () { avisar('Ese archivo no parece una imagen válida.', 'error'); };
+                    imagen.onload = function () {
+                        // Se recorta al centro en cuadrado y se reduce a 400 x 400 para que pese poco
+                        var lado = 400;
+                        var lienzo = document.createElement('canvas');
+                        lienzo.width = lado;
+                        lienzo.height = lado;
+                        var origen = Math.min(imagen.naturalWidth, imagen.naturalHeight);
+                        var sx = (imagen.naturalWidth - origen) / 2;
+                        var sy = (imagen.naturalHeight - origen) / 2;
+                        lienzo.getContext('2d').drawImage(imagen, sx, sy, origen, origen, 0, 0, lado, lado);
+
+                        var datos = lienzo.toDataURL('image/jpeg', 0.9);
+                        contenido =
+                            '// Logo del taller incrustado para el PDF (generado con convertir-logo.html)\n' +
+                            'const LOGO_PDF_DATA_URL = "' + datos + '";\n';
+
+                        // Vista previa
+                        var ctx = vista.getContext('2d');
+                        ctx.clearRect(0, 0, vista.width, vista.height);
+                        ctx.drawImage(lienzo, 0, 0, vista.width, vista.height);
+
+                        boton.disabled = false;
+                        avisar('Listo (' + Math.round(contenido.length / 1024) + ' KB). Ya puedes descargar el archivo.', 'ok');
+                    };
+                    imagen.src = lector.result;
+                };
+                lector.readAsDataURL(archivo);
+            });
+
+            boton.addEventListener('click', function () {
+                var blob = new Blob([contenido], { type: 'text/javascript' });
+                var url = URL.createObjectURL(blob);
+                var enlace = document.createElement('a');
+                enlace.href = url;
+                enlace.download = 'logo-pdf.js';
+                document.body.appendChild(enlace);
+                enlace.click();
+                enlace.remove();
+                URL.revokeObjectURL(url);
+                avisar('Descargado. Guárdalo en la carpeta js/ reemplazando logo-pdf.js.', 'ok');
+            });
+        })();
+    </script>
+</body>
+</html>

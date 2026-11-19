@@ -48,7 +48,9 @@
         const fecha = usuario.creado_en
             ? new Date(usuario.creado_en).toLocaleDateString('es-MX', { day: '2-digit', month: 'short', year: 'numeric' })
             : '—';
-        tr.appendChild(celda(fecha));
+        const celdaFecha = celda(fecha);
+        if (usuario.creado_en) celdaFecha.setAttribute('data-orden', usuario.creado_en);
+        tr.appendChild(celdaFecha);
 
         return tr;
     }

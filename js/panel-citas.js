@@ -62,6 +62,7 @@
     const campoServicio = $('citaServicio');
     const campoVehiculo = $('citaVehiculo');
     const campoNotas = $('citaNotas');
+    const listaServicios = $('listaServiciosCatalogo');
     const campoEstado = $('citaEstado');
     const bloqueEstado = $('campoEstadoCita');
     const errorForm = $('errorCita');
@@ -148,9 +149,12 @@
         const local = partesLocales(cita.fecha_hora);
         const cliente = mapaClientes.get(cita.cliente_id);
 
-        fila.appendChild(celda(textoFecha(cita.fecha_hora)));
+        const celdaFecha = celda(textoFecha(cita.fecha_hora));
+        celdaFecha.setAttribute('data-orden', cita.fecha_hora);
+        fila.appendChild(celdaFecha);
 
         const celdaHora = celda(local.hora);
+        celdaHora.setAttribute('data-orden', local.hora);
         const fin = document.createElement('span');
         fin.className = 'cita-hora-fin';
         fin.textContent = ' - ' + hhmm(minutos(local.hora) + cita.duracion_min);
@@ -316,6 +320,29 @@
         }
     }
 
+    // ---------- Catálogo de servicios (sugerencias al escribir el servicio) ----------
+    let catalogo = new Map(); // nombre en minúsculas -> duración en minutos
+
+    async function cargarCatalogo() {
+        const { data, error } = await db
+            .from('servicios')
+            .select('nombre, duracion_min')
+            .eq('activo', true)
+            .order('nombre', { ascending: true });
+
+        catalogo = new Map();
+        const opciones = [];
+        if (!error && data) {
+            data.forEach((servicio) => {
+                catalogo.set(servicio.nombre.trim().toLowerCase(), servicio.duracion_min);
+                const opcion = document.createElement('option');
+                opcion.value = servicio.nombre;
+                opciones.push(opcion);
+            });
+        }
+        if (listaServicios) listaServicios.replaceChildren(...opciones);
+    }
+
     // ---------- Formulario (nueva / modificar) ----------
     async function llenarClientes(seleccionado) {
         await cargarClientes();
@@ -361,6 +388,7 @@
         }
 
         dialogo.showModal();
+        cargarCatalogo();
         await actualizarHoras(null);
         campoCliente.focus();
     }
@@ -389,11 +417,24 @@
         campoEstado.value = cita.estado;
 
         dialogo.showModal();
+        cargarCatalogo();
         await actualizarHoras(local.hora);
     }
 
     campoFecha.addEventListener('change', () => actualizarHoras(campoHora.value));
     campoDuracion.addEventListener('change', () => actualizarHoras(campoHora.value));
+
+    campoServicio.addEventListener('change', () => {
+        if (modo !== 'nueva') return;
+        const minutosCatalogo = catalogo.get(campoServicio.value.trim().toLowerCase());
+        if (!minutosCatalogo) return;
+
+        // La duración más cercana (hacia arriba) que ofrece el formulario
+        const opciones = Array.from(campoDuracion.options).map((o) => Number(o.value));
+        const elegida = opciones.find((m) => m >= minutosCatalogo) || opciones[opciones.length - 1];
+        campoDuracion.value = String(elegida);
+        actualizarHoras(campoHora.value);
+    });
     $('botonCancelarCita').addEventListener('click', () => dialogo.close());
 
     formulario.addEventListener('submit', async (evento) => {
